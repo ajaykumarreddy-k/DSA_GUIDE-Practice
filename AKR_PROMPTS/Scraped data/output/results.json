@@ -1,0 +1,514 @@
+[
+  {
+    "title": "Space Voyage",
+    "category": "Landing Page",
+    "gif_url": "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
+    "prompt": "Learn to design beautiful Websites using AI tools.",
+    "raw_text": "Space Voyage\nLanding Page\nPremium\nOrbis NFT\nLanding Page\nPremium\nLearn to design beautiful Websites using AI tools.\n\nMaster AI-powered design\n\nStart Learning for Free\nNeoVision\nLanding Page\nPremium\nVelorah\nAgency\nCopy\nGrow AI Talent Platform\nSaaS\nCopy\nSync AI\nHero Section\nPremium\nMindloop Landing\nLa",
+    "local_file": "prompt_0001.gif"
+  },
+  {
+    "title": "Orbis NFT",
+    "category": "Landing Page",
+    "gif_url": "https://motionsites.ai/assets/hero-orbis-nft-preview-C3wvh77a.gif",
+    "prompt": "Landing Page",
+    "raw_text": "Orbis NFT\nLanding Page\nPremium",
+    "local_file": "prompt_0002.gif"
+  },
+  {
+    "title": "NeoVision",
+    "category": "Landing Page",
+    "gif_url": "https://motionsites.ai/assets/hero-neovision-preview-qwRNOas1.gif",
+    "prompt": "Landing Page",
+    "raw_text": "NeoVision\nLanding Page\nPremium",
+    "local_file": "prompt_0003.gif"
+  },
+  {
+    "title": "Velorah",
+    "category": "Agency",
+    "gif_url": "https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif",
+    "prompt": "Velorah",
+    "raw_text": "Velorah\nAgency\nCopy",
+    "local_file": "prompt_0004.gif"
+  },
+  {
+    "title": "Grow AI Talent Platform",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-grow-ai-preview-BlQ8tAQ-.gif",
+    "prompt": "Build a dark-themed landing page hero section with a navbar, headline, CTA button, background video with fade-in/out loop, and a logo marquee. Use React + Vite + Tailwind CSS + TypeScript with shadcn/ui. Install @fontsource/geist-sans.\n\n1. Theme & Design Tokens (index.css)\nSet up a single dark theme (no light mode toggle). All colors in HSL:\n:root {\n  --background: 260 87% 3%;\n  --foreground: 40 6% 95%;\n  --card: 240 6% 9%;\n  --card-foreground: 40 6% 95%;\n  --popover: 240 6% 9%;\n  --popover-foreground: 40 6% 95%;\n  --primary: 262 83% 58%;\n  --primary-foreground: 0 0% 100%;\n  --secondary: 240 4% 16%;\n  --secondary-foreground: 40 6% 95%;\n  --muted: 240 4% 16%;\n  --muted-foreground: 240 5% 65%;\n  --accent: 262 83% 58%;\n  --accent-foreground: 0 0% 100%;\n  --destructive: 0 84.2% 60.2%;\n  --destructive-foreground: 0 0% 100%;\n  --border: 240 4% 20%;\n  --input: 240 4% 20%;\n  --ring: 262 83% 58%;\n  --radius: 0.75rem;\n  --hero-heading: 40 10% 96%;\n  --hero-sub: 40 6% 82%;\n}\n\nBody font: 'Geist Sans', 'Inter', system-ui, sans-serif\nImport these font weights:\n@import \"@fontsource/geist-sans/400.css\";\n@import \"@fontsource/geist-sans/500.css\";\n@import \"@fontsource/geist-sans/600.css\";\n@import \"@fontsource/geist-sans/700.css\";\n\n2. Liquid Glass Utility (index.css)\nAdd a .liquid-glass utility class in @layer utilities:\n.liquid-glass {\n  background: rgba(255, 255, 255, 0.01);\n  background-blend-mode: luminosity;\n  backdrop-filter: blur(4px);\n  -webkit-backdrop-filter: blur(4px);\n  border: none;\n  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);\n  position: relative;\n  overflow: hidden;\n}\n\n.liquid-glass::before {\n  content: '';\n  position: absolute;\n  inset: 0;\n  border-radius: inherit;\n  padding: 1.4px;\n  background: linear-gradient(180deg,\n    rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,\n    rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,\n    rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);\n  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  pointer-events: none;\n}\n\n3. Tailwind Config\nAdd these to tailwind.config.ts:\nAll the semantic color tokens mapped to hsl(var(--token))\nA hero color group: hero.heading and hero.sub\nA marquee keyframe: 0% { transform: translateX(0%) } → 100% { transform: translateX(-50%) }\nAnimation: marquee: \"marquee 20s linear infinite\"\n\n4. Button Variants\nIn the shadcn button.tsx, add two custom variants:\nhero: \"bg-primary text-primary-foreground rounded-full px-6 py-3 text-base font-medium hover:bg-primary/90\"\nheroSecondary: \"liquid-glass text-foreground rounded-full px-6 py-3 text-base font-normal hover:bg-white/5\"\n\n5. Navbar Component\nFull-width, py-5 px-8, flex row, justify-between\nLeft: A logo image (32px height). Use a logo.png from src/assets/logo.png\nCenter: Nav items as plain buttons: \"Features\" (with ChevronDown icon), \"Solutions\", \"Plans\", \"Learning\" (with ChevronDown icon). Text is text-foreground/90 text-base, gap-1 between items\nRight: \"Sign Up\" button using heroSecondary variant, size=\"sm\", rounded-full px-4 py-2\nBelow the navbar, add a full-width 1px gradient divider: mt-[3px] w-full h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent\n\n6. Hero Section\nSection with bg-background relative overflow-hidden\nContains the Navbar at the top\nBelow navbar + divider, centered content with pt-20 px-4\nHeadline \"Grow\": text-[230px] font-normal leading-[1.02] tracking-[-0.024em], font-family 'General Sans', sans-serif, bg-clip-text text-transparent with background-image: linear-gradient(223deg, #E8E8E9 0%, #3A7BBF 104.15%)\nSubtext: text-hero-sub text-center text-lg leading-8 max-w-md mt-4 opacity-80, two lines: \"The most powerful AI ever deployed\" / \"in talent acquisition\" (split with <br/>)\nCTA Button: heroSecondary variant, text \"Schedule a Consult\", px-[29px] py-[24px], wrapped in a div with mt-8 mb-[66px]\n\n7. Social Proof / Video Section\nImmediately below the hero, a separate <section> with relative w-full overflow-hidden.\nBackground Video: <video> element: autoPlay muted playsInline, absolute inset-0 w-full h-full object-cover, initial style={{ opacity: 0 }}\nSource URL: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260308_114720_3dabeb9e-2c39-4907-b747-bc3544e2d5b7.mp4\nFade logic (JavaScript): Use requestAnimationFrame to continuously read currentTime and duration. Fade in over 0.5s at the start, fade out over 0.5s at the end. On ended, set opacity to 0, wait 100ms, reset currentTime = 0, and play() again. This creates a seamless manual loop with fade transitions.\nGradient overlays: absolute inset-0 bg-gradient-to-b from-background via-transparent to-background\nContent (z-10): flex flex-col items-center pt-16 pb-24 px-4 gap-20\nA h-40 spacer div for video visibility\n\nLogo Marquee at max-w-5xl:\nLeft side: text \"Relied on by brands / across the globe\" in text-foreground/50 text-sm, with <br/>, whitespace-nowrap shrink-0\nRight side: horizontally scrolling marquee using animate-marquee (the 20s infinite animation)\nLogos are placeholder brands: Vortex, Nimbus, Prysma, Cirrus, Kynder, Halcyn — duplicated for seamless loop\nEach logo: a small liquid-glass w-6 h-6 rounded-lg square with the first letter, plus the brand name in text-base font-semibold text-foreground\nGap between logos: gap-16\n\n8. Page Composition\nThe Index page simply renders <HeroSection /> then <SocialProofSection /> sequentially with no wrapper styling.",
+    "raw_text": "Grow AI Talent Platform\nSaaS\nCopy",
+    "local_file": "prompt_0005.gif"
+  },
+  {
+    "title": "Sync AI",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif",
+    "prompt": "Hero Section",
+    "raw_text": "Sync AI\nHero Section\nPremium",
+    "local_file": "prompt_0006.gif"
+  },
+  {
+    "title": "Mindloop Landing",
+    "category": "Mindloop Landing",
+    "gif_url": "https://motionsites.ai/assets/hero-mindloop-landing-preview-Bqnstohr.gif",
+    "prompt": "Mindloop Landing",
+    "raw_text": "Mindloop Landing\nLanding Page\nCopy",
+    "local_file": "prompt_0007.gif"
+  },
+  {
+    "title": "Asme",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif",
+    "prompt": "Hero Section",
+    "raw_text": "Asme\nHero Section\nPremium",
+    "local_file": "prompt_0008.gif"
+  },
+  {
+    "title": "Transform Data",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif",
+    "prompt": "Transform Data",
+    "raw_text": "Transform Data\nHero Section\nPremium",
+    "local_file": "prompt_0009.gif"
+  },
+  {
+    "title": "AI Designer Portfolio",
+    "category": "AI Designer Portfolio",
+    "gif_url": "https://motionsites.ai/assets/hero-vortex-studio-preview-BQyvwopD.gif",
+    "prompt": "AI Designer Portfolio",
+    "raw_text": "AI Designer Portfolio\nLanding Page\nCopy",
+    "local_file": "prompt_0010.gif"
+  },
+  {
+    "title": "Terra Geo Map",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif",
+    "prompt": "Terra Geo Map",
+    "raw_text": "Terra Geo Map\nSaaS\nPremium",
+    "local_file": "prompt_0011.gif"
+  },
+  {
+    "title": "AI Designer Agency",
+    "category": "AI Designer Agency",
+    "gif_url": "https://motionsites.ai/assets/hero-ai-designer-agency-preview-vrAje6Od.gif",
+    "prompt": "AI Designer Agency",
+    "raw_text": "AI Designer Agency\nLanding Page\nPremium",
+    "local_file": "prompt_0012.gif"
+  },
+  {
+    "title": "Automation Machines",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-automation-machines-preview-DlTveRIN.gif",
+    "prompt": "Automation Machines",
+    "raw_text": "Automation Machines\nHero Section\nPremium",
+    "local_file": "prompt_0013.gif"
+  },
+  {
+    "title": "Portfolio Cosmic",
+    "category": "Portfolio Cosmic",
+    "gif_url": "https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif",
+    "prompt": "Portfolio Cosmic",
+    "raw_text": "Portfolio Cosmic\nPortfolio\nCopy",
+    "local_file": "prompt_0014.gif"
+  },
+  {
+    "title": "SkyElite Private Jets",
+    "category": "Landing Page",
+    "gif_url": "https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif",
+    "prompt": "SkyElite Private Jets",
+    "raw_text": "SkyElite Private Jets\nLanding Page\nCopy",
+    "local_file": "prompt_0015.gif"
+  },
+  {
+    "title": "xPortfolio Hero",
+    "category": "xPortfolio Hero",
+    "gif_url": "https://motionsites.ai/assets/hero-xportfolio-poster-B6q-pIN8.png",
+    "prompt": "xPortfolio Hero",
+    "raw_text": "xPortfolio Hero\nHero Section\nPremium",
+    "local_file": "prompt_0016.png"
+  },
+  {
+    "title": "DesignPro Academy",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-designpro-poster-DwA5o1A7.png",
+    "prompt": "DesignPro Academy",
+    "raw_text": "DesignPro Academy\nHero Section\nCopy",
+    "local_file": "prompt_0017.png"
+  },
+  {
+    "title": "Stellar AI",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-stellar-ai-poster-BQJztWy-.png",
+    "prompt": "Hero Section",
+    "raw_text": "Stellar AI\nHero Section\nCopy",
+    "local_file": "prompt_0018.png"
+  },
+  {
+    "title": "Power AI",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-power-ai-poster-B5SetZ6G.png",
+    "prompt": "Hero Section",
+    "raw_text": "Power AI\nHero Section\nCopy",
+    "local_file": "prompt_0019.png"
+  },
+  {
+    "title": "Aethera Studio",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-aethera-poster-DB6AdF0M.png",
+    "prompt": "Aethera Studio",
+    "raw_text": "Aethera Studio\nHero Section\nCopy",
+    "local_file": "prompt_0020.png"
+  },
+  {
+    "title": "NOVA Space Systems",
+    "category": "Landing Page",
+    "gif_url": "https://motionsites.ai/assets/hero-nova-space-poster-BNMHPfK2.png",
+    "prompt": "NOVA Space Systems",
+    "raw_text": "NOVA Space Systems\nLanding Page\nPremium",
+    "local_file": "prompt_0021.png"
+  },
+  {
+    "title": "Orbit Web3",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-orbit-web3-poster-CsiRb_pp.png",
+    "prompt": "Orbit Web3",
+    "raw_text": "Orbit Web3\nWeb3\nPremium",
+    "local_file": "prompt_0022.png"
+  },
+  {
+    "title": "Nexora Automation",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-nexora-poster-CLY3ybj2.png",
+    "prompt": "Create a SaaS landing page hero section with the following exact specifications:\n\nPage Layout\n\nThe entire page is h-screen flex flex-col bg-background overflow-hidden — the Navbar + Hero fill exactly 100vh with no scroll.\nThe page uses two Google Fonts imported via CSS: Instrument Serif (display/headings, including italic) and Inter (body text).\nFonts & Design Tokens (index.css)\n\nImport fonts:\n\n@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap');\nCSS variables (:root):\n\n--background: 0 0% 100% (white)\n--foreground: 210 14% 17% (dark charcoal)\n--primary: 210 14% 17% / --primary-foreground: 0 0% 100%\n--secondary: 0 0% 96% / --secondary-foreground: 0 0% 9%\n--muted: 0 0% 96% / --muted-foreground: 184 5% 55%\n--accent: 239 84% 67% (indigo/blue) / --accent-foreground: 0 0% 100%\n--border: 0 0% 90%\n--ring: 239 84% 67%\n--radius: 0.5rem\n--font-display: 'Instrument Serif', serif\n--font-body: 'Inter', sans-serif\n--shadow-dashboard: 0 25px 80px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.06)\nTailwind config extends fontFamily with display and body mapped to the CSS vars. All colors use hsl(var(--token)) pattern.\n\nNavbar\n\nflex items-center justify-between px-6 md:px-12 lg:px-20 py-5 font-body\nLeft: Logo text ✦ Nexora — text-xl font-semibold tracking-tight text-foreground\nRight (hidden on mobile): Nav links \"Home\", \"Pricing\", \"About\", \"Contact\" — text-sm text-muted-foreground hover:text-foreground with gap-8\nCTA button: rounded-full px-5 text-sm font-medium using primary styling\nHero Section\n\n\n\n\nBackground Video: Fullscreen muted autoplay loop video, absolute inset-0 w-full h-full object-cover z-0\nVideo URL: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260319_015952_e1deeb12-8fb7-4071-a42a-60779fc64ab6.mp4\nAll content wrapped in relative z-10 flex flex-col items-center w-full\n1. Badge (top)\n\nFramer Motion: fade up from y:10, duration 0.5s\ninline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-1.5 text-sm text-muted-foreground font-body\nText: \"Now with GPT-5 support ✨\"\nmb-6\n2. Headline\n\nFramer Motion: fade up from y:16, duration 0.6s, delay 0.1s\ntext-center font-display text-5xl md:text-6xl lg:text-[5rem] leading-[0.95] tracking-tight text-foreground max-w-xl\nContent: The Future of Smarter Automation — the word \"Smarter\" renders in Instrument Serif italic\n3. Subheadline\n\nFramer Motion: fade up from y:16, duration 0.6s, delay 0.2s\nmt-4 text-center text-base md:text-lg text-muted-foreground max-w-[650px] leading-relaxed font-body\nText: \"Automate your busywork with intelligent agents that learn, adapt, and execute—so your team can focus on what matters most.\"\n4. CTA Buttons\n\nFramer Motion: fade up from y:16, duration 0.6s, delay 0.3s\nmt-5 flex items-center gap-3\nPrimary button: rounded-full px-6 py-5 text-sm font-medium font-body — text \"Book a demo\"\nPlay button: ghost variant, h-11 w-11 rounded-full border-0 bg-background shadow-[0_2px_12px_rgba(0,0,0,0.08)] hover:bg-background/80 with a Play icon (lucide) h-4 w-4 fill-foreground\n5. Dashboard Preview (custom coded, NOT an image)\n\nFramer Motion: fade up from y:30, duration 0.8s, delay 0.5s\nContainer: mt-8 w-full max-w-5xl\nFrosted glass wrapper: rounded-2xl overflow-hidden p-3 md:p-4 with inline styles:\nbackground: rgba(255, 255, 255, 0.4)\nborder: 1px solid rgba(255, 255, 255, 0.5)\nboxShadow: var(--shadow-dashboard)\nDashboard internals (all coded in React, text-[11px], select-none pointer-events-none):\n\nTop bar: Logo \"N\" in rounded box + \"Nexora\" + chevron | Search bar with ⌘K shortcut | \"Move Money\" + bell + avatar \"JB\"\nSidebar (w-40): Items — Home (active), Tasks (badge \"10\"), Transactions, Payments (chevron), Cards, Capital, Accounts (chevron). Section \"Workflows\": Trake rutes, Payments, Notifications, Settings\nMain content (bg-secondary/30):\nGreeting: \"Welcome, Jane\" — text-sm font-semibold\nAction buttons row: Send (primary/accent), Request, Transfer, Deposit, Pay Bill, Create Invoice — rounded-full pill buttons text-[10px], + \"Customize\" text\nTwo equal-width cards (flex-1 basis-0) side by side:\nBalance card: \"Mercury Balance\" with checkmark, amount $8,450,190.32 (cents in text-xs text-muted-foreground), stats (Last 30 Days, +$1.8M green, -$900K red), SVG area chart (h-20) with smooth cubic Bézier curve, linear gradient fill from accent at 15% opacity to transparent, stroke in accent color strokeWidth=\"1.5\"\nAccounts card: Header \"Accounts\" with + and ⋮ icons. Three rows (py-3, no dividers, text-xs, justify-between): Credit $98,125.50, Treasury $6,750,200.00, Operations $1,592,864.82\nTransactions table: \"Recent Transactions\" heading, table with columns Date/Description/Amount/Status. 4 rows: AWS -$5,200 Pending (amber), Client Payment +$125,000 Completed (green), Payroll -$85,450 Completed, Office Supplies -$1,200 Completed\nDependencies\n\nframer-motion for all animations\nlucide-react for all icons\nshadcn/ui Button component\nTailwind CSS with tailwindcss-animate plugin\nKey Design Decisions\n\nThe dashboard overflows toward the bottom of the viewport and is clipped by overflow-hidden on the parent\nNo dark mode — light only\nAll colors use semantic Tailwind tokens, never raw color values in components\nThe SVG chart uses a hand-crafted cubic Bézier path, not a charting library",
+    "raw_text": "Nexora Automation\nSaaS\nCopy",
+    "local_file": "prompt_0023.png"
+  },
+  {
+    "title": "Nexus IT Solutions",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-nexus-poster-fNblRje9.png",
+    "prompt": "Nexus IT Solutions",
+    "raw_text": "Nexus IT Solutions\nHero Section\nPremium",
+    "local_file": "prompt_0024.png"
+  },
+  {
+    "title": "EVR Ventures",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-evr-ventures-poster-Bld4o1cl.png",
+    "prompt": "EVR Ventures",
+    "raw_text": "EVR Ventures\nHero Section\nPremium",
+    "local_file": "prompt_0025.png"
+  },
+  {
+    "title": "Planet Orbit",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-planet-orbit-poster-CuWG70ga.png",
+    "prompt": "Planet Orbit",
+    "raw_text": "Planet Orbit\nSaaS\nPremium",
+    "local_file": "prompt_0026.png"
+  },
+  {
+    "title": "E-commerce Website",
+    "category": "Landing Page",
+    "gif_url": "https://motionsites.ai/assets/hero-ecommerce-website-poster-DUcLYbYg.png",
+    "prompt": "E-commerce Website",
+    "raw_text": "E-commerce Website\nLanding Page\nPremium",
+    "local_file": "prompt_0027.png"
+  },
+  {
+    "title": "AKOR Security",
+    "category": "Landing Page",
+    "gif_url": "https://motionsites.ai/assets/hero-akor-security-poster-Cw0Ko1yz.png",
+    "prompt": "AKOR Security",
+    "raw_text": "AKOR Security\nLanding Page\nPremium",
+    "local_file": "prompt_0028.png"
+  },
+  {
+    "title": "New Era Bold Hero",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-new-era-poster-BIdtLrty.png",
+    "prompt": "New Era Bold Hero",
+    "raw_text": "New Era Bold Hero\nCreative\nCopy",
+    "local_file": "prompt_0029.png"
+  },
+  {
+    "title": "Wealth Video Hero",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-wealth-poster-D9mwBQ1R.png",
+    "prompt": "Wealth Video Hero",
+    "raw_text": "Wealth Video Hero\nFintech\nPremium",
+    "local_file": "prompt_0030.png"
+  },
+  {
+    "title": "Glassmorphism Agency Hero",
+    "category": "Glassmorphism Agency Hero",
+    "gif_url": "https://motionsites.ai/assets/hero-glassmorphism-agency-poster-BEMcgqRb.png",
+    "prompt": "Build a production-ready, responsive landing page using React, Tailwind CSS v4, and Vite. The design should feature a high-end, dark-mode \"glassmorphism\" aesthetic with specific purple/pink gradients.\n\n1. Tech Stack & Libraries:\nUse hls.js for video streaming.\nUse motion/react (formerly Framer Motion) for animations.\nUse react-use-measure for sizing logic.\nUse clsx and tailwind-merge for class management.\nUse lucide-react for standard icons (if needed), but I will provide custom SVG paths for specific UI elements.\n\n2. Global Styling:\nBackground: Dark/Black (#010101).\nPrimary Gradient: A diagonal gradient used for accents: from-[#FA93FA] via-[#C967E8] to-[#983AD6].\nTypography: Modern sans-serif, center-aligned hero text.\n\n3. Hero Section Components:\nAnnouncement Pill:\nA pill-shaped top badge.\nBackground: Semi-transparent dark (bg-[rgba(28,27,36,0.15)]) with a subtle border.\nIcon: A \"Zap\" icon inside a gradient-filled box with a glow effect.\nText: \"Used by founders. Loved by devs.\" in light grey.\n\nMain Headline (H1):\nLarge text (responsive sizing: 48px mobile to 80px desktop).\nText: \"Your Vision\" on line 1, \"Our Digital Reality.\" on line 2.\nStyle: Text should have a gradient fill (White to Purple/Pink).\n\nSubheadline:\nText: \"We turn bold ideas into modern designs that don't just look amazing, they grow your business fast.\"\nColor: text-white/80.\n\nCTA Button:\n\"Book a 15-min call\" text.\nRounded full button with a white background and black text.\nIncludes a circle icon with an arrow inside, styled with the primary purple gradient.\nOuter border wrapper with a glass effect.\n\n4. Hero Video Integration (Critical Details):\nSource: HLS Stream URL: https://customer-cbeadsgr09pnsezs.cloudflarestream.com/697945ca6b876878dba3b23fbd2f1561/manifest/video.m3u8\nFallback: If HLS fails, fallback to this MP4: /_videos/v1/f0c78f536d5f21a047fb7792723a36f9d647daa1\nImplementation: Do NOT use react-player. Use a native <video> tag with a custom useEffect hook implementation of hls.js.\nStyling:\nBlend Mode: Use mix-blend-screen so the video black background blends into the page.\nPositioning: The video should be at the bottom of the hero. Apply a negative top margin (-mt-[150px]) so it overlaps behind the text.\nZ-Index: Ensure the text content is z-20 (above) and video is z-10 (below).\nLayout: The video must be 100% width (w-full), auto height, and stretch edge-to-edge without being cropped (do not use object-contain or fixed heights).\nOverlay: Add a gradient fade (from-[#010101] via-transparent to-[#010101]) over the video container.\n\n5. Logo Cloud Section (Animated):\nPlace this section immediately below the video.\nBackground: Semi-transparent glass (bg-black/20 backdrop-blur-sm) with a top border (border-white/5).\nLayout:\nDesktop: \"Powering the best teams\" text on the left, separated by a vertical divider. Animated logo slider on the right.\nMobile: Stacked vertically.\nAnimation: Create an InfiniteSlider component using motion/react that scrolls logos horizontally forever.\nLogos: Use these SVG URLs (OpenAI, Nvidia, GitHub, etc.) and apply brightness-0 invert to make them white.\nhttps://html.tailus.io/blocks/customers/openai.svg\nhttps://html.tailus.io/blocks/customers/nvidia.svg\n(Include others similarly)\n\nPlease assemble these into a cohesive Hero.tsx, App.tsx, and components/ui/infinite-slider.tsx structure.",
+    "raw_text": "Glassmorphism Agency Hero\nAgency\nCopy",
+    "local_file": "prompt_0031.png"
+  },
+  {
+    "title": "Web3 EOS Hero",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-web3-eos-poster-DF0_WdVS.png",
+    "prompt": "Build a full-screen hero section for a Web3 landing page. Use the font \"General Sans\" (from Fontshare) throughout. The entire section has a pure black (#000000) background with a fullscreen looping background video (muted, autoplay, playsInline) using this URL: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260217_030345_246c0224-10a4-422c-b324-070b7c0eceda.mp4. The video is covered by a 50% black overlay (bg-black/50) for readability. All content sits on top of the video.\n\nNavbar:\n\nHorizontally spread across the top with 120px horizontal padding and 20px vertical padding.\n\nLeft side: a placeholder logo wordmark (use \"LOGOIPSUM\" or similar) in white, 187px wide and 25px tall, followed by 4 nav links spaced 30px apart: \"Get Started\", \"Developers\", \"Features\", \"Resources\". Each nav link is white, 14px, font-medium, with a small white 14px chevron-down arrow icon to the right (14px gap between label and arrow). Nav links are hidden on mobile.\n\nRight side: a \"Join Waitlist\" pill button. This button has a subtle layered construction — a fully rounded pill shape with a thin 0.6px solid white outer border, and inside that, a black-background pill with the text \"Join Waitlist\" in white, 14px, font-medium, centered with 29px horizontal and 11px vertical padding. There's also a subtle white glow/light streak effect along the top edge of the button (a blurred white-to-transparent gradient blob positioned at the top).\n\nHero Content (centered below the navbar):\n\nVertically centered in the remaining viewport space, pushed down with about 280px top padding on desktop (200px on mobile), 102px bottom padding.\n\nAll content is horizontally centered and stacked vertically with 40px gaps.\n\nBadge/pill: A small rounded pill (20px border-radius) with 10% white background and a 1px white/20% border. Inside: a tiny 4px white dot, then text reading \"Early access available from\" in white at 60% opacity, followed by \" May 1, 2026\" in solid white. Font is 13px, font-medium.\n\nHeading: Large text reading \"Web3 at the Speed of Experience\", max-width 613px, 56px on desktop / 36px on mobile, font-medium, line-height 1.28. The text has a gradient fill — a linear-gradient at ~144.5 degrees going from solid white (at ~28%) to fully transparent black (at ~115%), applied as a background-clip text effect so the text itself shows the gradient.\n\nSubtitle: Below the heading with a 24px gap. Text reads: \"Powering seamless experiences and real-time connections, EOS is the base for creators who move with purpose, leveraging resilience, speed, and scale to shape the future.\" — 15px, font-normal, white at 70% opacity, max-width 680px, centered.\n\nCTA Button: A \"Join Waitlist\" pill button similar to the navbar button but with a white background and black text instead. Same layered construction: 0.6px white outer border, white glow streak on top, and inside the white pill the text is 14px font-medium black, with 29px horizontal and 11px vertical padding.\n\nThe entire layout is responsive — nav links collapse on screens below md breakpoint, heading scales down, and padding adjusts.",
+    "raw_text": "Web3 EOS Hero\nWeb3\nCopy",
+    "local_file": "prompt_0032.png"
+  },
+  {
+    "title": "HR SaaS Hero",
+    "category": "HR SaaS Hero",
+    "gif_url": "https://motionsites.ai/assets/hero-hr-saas-poster-Bj2hU3_c.png",
+    "prompt": "Create a minimalist, high-end React hero section using Tailwind CSS v4 and the Motion library.\n\nLayout & Spacing:\n\nThe section should have a min-h-screen height and be centered.\n\nApply a heavy top padding of exactly 290px to the main content container to create an editorial, spacious feel.\n\nThe content container should have a max-w-[1200px] and a vertical gap of 32px between elements.\n\nBackground:\n\nUse this background video: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260302_085640_276ea93b-d7da-4418-a09b-2aa5b490e838.mp4.\n\nCritical: The video must be vertically flipped using scaleY(-1) and set to object-cover.\n\nApply a white gradient overlay on top of the video: from-[26.416%] from-[rgba(255,255,255,0)] to-[66.943%] to-white to seamlessly blend the video into the background.\n\nTypography (Geist & Instrument Serif):\n\nMain Heading: Use the 'Geist' font, medium weight, tracking -0.04em.\n\nText Content: 'Simple [management] for your remote team'.\n\nSizes: The main heading should be 80px (desktop), while the word 'management' should be in 'Instrument Serif' italic at 100px.\n\nDescription: Geist font, 18px, 80% opacity, slate color (#373a46), max-width 554px.\n\nInteractive Components:\n\nEmail Navbar: Create a rounded (40px) input container with bg-[#fcfcfc], a thin border, and a soft shadow (0px 10px 40px 5px rgba(194,194,194,0.25)).\n\nCTA Button: A dark, multi-layered gradient button ('Create Free Account') with a complex inner shadow for a high-gloss tactile effect: shadow-[inset_-4px_-6px_25px_0px_rgba(201,201,201,0.08),inset_4px_4px_10px_0px_rgba(29,29,29,0.24)].\n\nSocial Proof: Below the input, add a '1,020+ Reviews' badge with a row of star/brand icons.\n\nAnimations:\n\nUse Motion to staggered 'fade and slide up' the heading, description, and the email input block for a smooth entrance.\n\nKey Technical Specs for Implementation:\n\nVideo Class: className=\"w-full h-full object-cover [transform:scaleY(-1)]\"\n\nGradient Class: className=\"absolute inset-0 bg-gradient-to-b from-[26.416%] from-[rgba(255,255,255,0)] to-[66.943%] to-white\"\n\nButton Shadow: shadow-[inset_-4px_-6px_25px_0px_rgba(201,201,201,0.08),inset_4px_4px_10px_0px_rgba(29,29,29,0.24)]",
+    "raw_text": "HR SaaS Hero\nSaaS\nCopy",
+    "local_file": "prompt_0033.png"
+  },
+  {
+    "title": "Bionova Biotech",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-bionova-poster-CPaKbq55.png",
+    "prompt": "Bionova Biotech",
+    "raw_text": "Bionova Biotech\nSaaS\nPremium",
+    "local_file": "prompt_0034.png"
+  },
+  {
+    "title": "ClubX Investors",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-clubx-poster-Dwv_zKz1.png",
+    "prompt": "ClubX Investors",
+    "raw_text": "ClubX Investors\nHero Section\nPremium",
+    "local_file": "prompt_0035.png"
+  },
+  {
+    "title": "Orbit Engineers",
+    "category": "Agency",
+    "gif_url": "https://motionsites.ai/assets/hero-orbit-engineers-poster-BT1ffUzn.png",
+    "prompt": "Orbit Engineers",
+    "raw_text": "Orbit Engineers\nAgency\nPremium",
+    "local_file": "prompt_0036.png"
+  },
+  {
+    "title": "Nickel Payments",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-nickel-poster-Co3f0jXk.png",
+    "prompt": "Nickel Payments",
+    "raw_text": "Nickel Payments\nSaaS\nPremium",
+    "local_file": "prompt_0037.png"
+  },
+  {
+    "title": "CodeNest Coding Platform",
+    "category": "Landing Page",
+    "gif_url": "https://motionsites.ai/assets/hero-codenest-poster-Cq1PVGCy.png",
+    "prompt": "CodeNest Coding Platform",
+    "raw_text": "CodeNest Coding Platform\nLanding Page\nPremium",
+    "local_file": "prompt_0038.png"
+  },
+  {
+    "title": "Railroad.ai",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-railroad-ai-poster-lVI2bwI8.png",
+    "prompt": "Hero Section",
+    "raw_text": "Railroad.ai\nHero Section\nPremium",
+    "local_file": "prompt_0039.png"
+  },
+  {
+    "title": "Digitwist AI Builder",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-digitwist-poster-DbmglO1A.png",
+    "prompt": "Digitwist AI Builder",
+    "raw_text": "Digitwist AI Builder\nSaaS\nCopy",
+    "local_file": "prompt_0040.png"
+  },
+  {
+    "title": "Liquid Glass Agency",
+    "category": "Liquid Glass Agency",
+    "gif_url": "https://motionsites.ai/assets/hero-liquid-glass-agency-poster-BvnVaqJh.png",
+    "prompt": "Liquid Glass Agency",
+    "raw_text": "Liquid Glass Agency\nLanding Page\nCopy",
+    "local_file": "prompt_0041.png"
+  },
+  {
+    "title": "Taskly",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-taskly-poster-B5eMEGQS.png",
+    "prompt": "System Prompt: High-Fidelity \"Liquid Glass\" Hero Section\n\nCore Layout: Create a 1600px max-width landing page hero section. The background should be pure white with a subtle, layered gradient glow in the top-left (using blurred ellipses in light blue #60B1FF and #319AFF). The design must be fully responsive, transitioning from a single-column mobile view to a dual-column desktop layout.\n\nTypography:\n\nHeadlines & Brand: Use Fustat (Bold).\nBody & UI: Use Inter (Normal/Medium).\nHero Headline: \"Work smarter, achieve faster\" (75px, 1.05 line-height, -2px tracking).\n\nThe \"Strong Liquid Glass\" Navbar:\n\nPosition: Sticky at top-[30px], centered, w-fit.\nVisuals: backdrop-blur-[50px], background rgba(255,255,255,0.3), rounded-[16px].\nFidelity Details:\nOuter Stroke: 1px solid rgba(0,0,0,0.1).\nInner Highlight Shadow: inset 0px 4px 4px 0px rgba(255,255,255,0.25).\nItems: Logo \"Taskly\" (Fustat), Nav links (Home, Features, Company, Pricing), and a glassy \"SignUp\" button with an arrow icon.\n\nThe Glassy Orb (Hero Right):\n\nSource URL: https://future.co/images/homepage/glassy-orb/orb-purple.webm\nBlending Mode: Must use mix-blend-screen to filter the black background.\nScaling: scale-125 to make it massive and bleed slightly off-center.\nExact Color Grade (CSS Filter): hue-rotate(-55deg) saturate(250%) brightness(1.2) contrast(1.1). This transforms the purple asset into a vibrant, high-end \"Electric Brand Blue\" that matches the primary CTA.\n\nHero Content (Hero Left):\n\nSocial Proof: A \"Rated 4.9/5 by 2700+ customers\" badge with five orange #FF801E stars.\nSubheadline: \"Effortlessly manage your projects, collaborate with your team, and achieve your goals with our intuitive task management tool.\" (18px, Inter, -1px tracking).\nPrimary CTA: \"Get Started Now\" button.\nColor: rgba(0,132,255,0.8) with backdrop-blur-[2px].\nDetails: rounded-[16px], white text, inner highlight shadow inset 0px 4px 4px 0px rgba(255,255,255,0.35), and a white circular arrow icon.\nAnimation: Scale 1.02 on hover with a smooth transition.\n\nFooter Logos: Include a \"Trusted by Top-tier product companies\" section at the bottom with 5 grayscale SVG logos (e.g., placeholder logos for tech companies) spaced at gap-[100px].\n\nKey Technical Specs for the Developer:\n\nVideo Tag: autoPlay loop muted playsInline.\nContainer: Use a relative wrapper for the background glow and a z-10 main container for the content.\nSmoothing: Apply -webkit-font-smoothing: antialiased for the sharpest typography.",
+    "raw_text": "Taskly\nHero Section\nCopy",
+    "local_file": "prompt_0042.png"
+  },
+  {
+    "title": "Mindloop",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-mindloop-poster-2_RhEWJd.png",
+    "prompt": "Mindloop",
+    "raw_text": "Mindloop\nSaaS\nPremium",
+    "local_file": "prompt_0043.png"
+  },
+  {
+    "title": "Datacore Booking",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-datacore-booking-poster-C4umG3DT.png",
+    "prompt": "Datacore Booking",
+    "raw_text": "Datacore Booking\nSaaS\nCopy",
+    "local_file": "prompt_0044.png"
+  },
+  {
+    "title": "Apex SaaS",
+    "category": "Apex SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-apex-saas-poster-CZ6BkKIa.png",
+    "prompt": "Apex SaaS",
+    "raw_text": "Apex SaaS\nSaaS\nPremium",
+    "local_file": "prompt_0045.png"
+  },
+  {
+    "title": "Buzzentic Agency",
+    "category": "Buzzentic Agency",
+    "gif_url": "https://motionsites.ai/assets/hero-buzzentic-poster-7nm68cTe.png",
+    "prompt": "Buzzentic Agency",
+    "raw_text": "Buzzentic Agency\nAgency\nCopy",
+    "local_file": "prompt_0046.png"
+  },
+  {
+    "title": "Viktor Portfolio",
+    "category": "Viktor Portfolio",
+    "gif_url": "https://motionsites.ai/assets/hero-viktor-portfolio-preview-Bd2-Dg_u.gif",
+    "prompt": "Viktor Portfolio",
+    "raw_text": "Viktor Portfolio\nPortfolio\nPremium",
+    "local_file": "prompt_0047.gif"
+  },
+  {
+    "title": "Bloom AI",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-bloom-ai-preview-g6RcYLTl.gif",
+    "prompt": "Create a full-screen hero landing page for \"Bloom\" — an AI-powered plant/floral design platform. The design uses a liquid glass morphism aesthetic over a looping video background.\n\nBackground\nFull-screen autoplaying, looping, muted video background: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4\nVideo covers entire viewport with object-cover, sits at z-0. All content floats above at z-10.\n\nFonts\nDisplay/Body: Poppins (Google Fonts) — used for headings and body text\nSerif accent: Source Serif 4 (Google Fonts) — used only for italic/emphasis text inside headings (e.g., <em>, <i>, .italic inside h1-h3)\nHeadings use font-weight: 500\n\nColor Palette\nStrict grayscale only — all CSS variables are 0 0% X% HSL values\nText is text-white, text-white/80, text-white/60, text-white/50 for hierarchy\nNo colored accents whatsoever\n\nLiquid Glass CSS (two tiers)\nDefine under @layer components:\n\n.liquid-glass (light)\nbackground: rgba(255,255,255,0.01);\nbackground-blend-mode: luminosity;\nbackdrop-filter: blur(4px);\nborder: none;\nbox-shadow: inset 0 1px 1px rgba(255,255,255,0.1);\nposition: relative; overflow: hidden;\n::before pseudo-element: gradient border using linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%, transparent 40%, transparent 60%, rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%) with padding: 1.4px, masked via -webkit-mask-composite: xor; mask-composite: exclude;\n\n.liquid-glass-strong (heavy, for CTA/panels)\nSame structure but backdrop-filter: blur(50px), box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.15), and ::before uses 0.5/0.2 alpha instead of 0.45/0.15.\n\nLayout — Two-Panel Split\nFlex row, min-h-screen. Left panel w-[52%], right panel w-[48%] (hidden on mobile lg:flex).\n\nLeft Panel\nHas a liquid-glass-strong overlay (absolute inset-4 lg:inset-6 rounded-3xl)\nNav: Logo image (/logo.png, 32×32) + \"bloom\" text (semibold, 2xl, tracking-tighter, white) on left. \"Menu\" button with Menu icon on right, liquid-glass pill.\nHero center (flex-1, centered):\nLogo image again (80×80)\nh1: \"Innovating the / spirit of bloom AI\" — text-6xl lg:text-7xl, tracking-[-0.05em], white. The italic part uses font-serif text-white/80\nCTA button: \"Explore Now\" with Download icon in a w-7 h-7 rounded-full bg-white/15 circle. Button is liquid-glass-strong, rounded-full, hover:scale-105 active:scale-95\nThree pills: \"Artistic Gallery\", \"AI Generation\", \"3D Structures\" — liquid-glass, rounded-full, text-xs text-white/80\nBottom quote:\n\"VISIONARY DESIGN\" label (text-xs tracking-widest uppercase text-white/50)\nQuote: \"We imagined a realm with no ending.\" — mixed font-display/font-serif italic spans\nAuthor: \"MARCUS AURELIO\" with horizontal lines on each side\n\nRight Panel (desktop only)\nTop bar: Social icons (Twitter, LinkedIn, Instagram) in a liquid-glass pill with ArrowRight. Account button with Sparkles icon button, both liquid-glass.\nCommunity card: Small liquid-glass card (w-56), \"Enter our ecosystem\" title + description\nBottom feature section (mt-auto): Outer liquid-glass container with rounded-[2.5rem]\nTwo side-by-side cards: \"Processing\" (Wand2 icon) and \"Growth Archive\" (BookOpen icon), each liquid-glass rounded-3xl\nBottom card: flower image thumbnail (from @/assets/hero-flowers.png, 96×64), \"Advanced Plant Sculpting\" title + description, and a \"+\" button. All liquid-glass.\n\nIcons\nAll from lucide-react: Sparkles, Download, Wand2, BookOpen, ArrowRight, Twitter, Linkedin, Instagram, Menu\n\nKey Details\nAll interactive elements: hover:scale-105 transition-transform\nSocial icon links: text-white hover:text-white/80 transition-colors\nIcon containers: w-8 h-8 rounded-full bg-white/10 flex items-center justify-center\nNo border classes anywhere — glass effect handles all borders via ::before\nborder-radius token: --radius: 1rem",
+    "raw_text": "Bloom AI\nHero Section\nCopy",
+    "local_file": "prompt_0048.gif"
+  },
+  {
+    "title": "Loader Animation",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-loader-animation-preview-C3_SX_Io.gif",
+    "prompt": "Loader Animation",
+    "raw_text": "Loader Animation\nAnimation\nCopy",
+    "local_file": "prompt_0049.gif"
+  },
+  {
+    "title": "Dark Portfolio Hero",
+    "category": "Dark Portfolio Hero",
+    "gif_url": "https://motionsites.ai/assets/hero-portfolio-dark-preview-RZYzJHIL.gif",
+    "prompt": "Dark Portfolio Hero",
+    "raw_text": "Dark Portfolio Hero\nPortfolio\nPremium",
+    "local_file": "prompt_0050.gif"
+  },
+  {
+    "title": "Neuralyn",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-neuralyn-preview-Br4FRDQA.gif",
+    "prompt": "Neuralyn",
+    "raw_text": "Neuralyn\nSaaS\nCopy",
+    "local_file": "prompt_0051.gif"
+  },
+  {
+    "title": "Framelix 3D Studios",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-framelix-preview-DsyIImVY.gif",
+    "prompt": "Framelix 3D Studios",
+    "raw_text": "Framelix 3D Studios\nCreative / 3D\nPremium",
+    "local_file": "prompt_0052.gif"
+  },
+  {
+    "title": "Targo Logistics Hero",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-targo-preview-BF9qQyMr.gif",
+    "prompt": "Design Prompt: Targo Hero Section\n\nBrand Identity: Create a high-end, dark-themed hero section for a logistics brand called \"targo\". Use a color palette of deep black (#000000), a vibrant brand red (#EE3F2C), and crisp white for primary text. The typography should use the Rubik font family, with headlines in bold, uppercase, and slightly tight letter-spacing (approx. -4%).\n\nLayout & Positioning:\n\nHeader: A clean top navigation bar with a white SVG logo (abstract symbol + \"targo\" wordmark) on the left. Include \"Home\", \"About\", and \"Contact Us\" links, plus a small red \"Contact Us\" button with clipped corners on the right.\n\nMain Hero: The headline \"Swift and Simple Transport\" and a \"Get Started\" button should be left-aligned and positioned in the upper-third of the section (aligned toward the top rather than centered).\n\nBottom Widget: A \"Book a Free Consultation\" card positioned at the bottom-left.\n\nKey Design Elements:\n\nVideo Background: An auto-looping, muted background video using URL: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260227_042027_c4b2f2ea-1c7c-4d6e-9e3d-81a78063703f.mp4. Ensure it has 100% opacity with no dark overlay.\n\nClipped-Corner Buttons: All primary buttons must feature a custom geometric shape using CSS clip-path (a 10-12px diagonal cut on the top-right and bottom-left corners). Use the brand red for \"Get Started\" and solid white for \"Book a Call\".\n\nLiquid Glass Effect: The consultation card must use advanced glassmorphism: backdrop-filter: blur(40px) saturate(180%), a 1px white border with 12% opacity, a subtle diagonal white-to-transparent shine gradient across the surface, and an inner box-shadow for depth.\n\nScaled Proportions: The layout should feel refined and compact. Headlines should be roughly 64px on desktop, and the overall spacing should avoid excessive padding to maintain a \"scaled-down\" professional look.\n\nTechnical Details:\n\nFrameworks: React & Tailwind CSS.\n\nIcons: Use the Phone icon from lucide-react inside the consultation button.\n\nResponsiveness: Ensure the headline scales down to ~42px on mobile and the padding adjusts from 64px (desktop) to 32px (mobile).",
+    "raw_text": "Targo Logistics Hero\nAutomotive\nCopy",
+    "local_file": "prompt_0053.gif"
+  },
+  {
+    "title": "Weblex Dark Hero",
+    "category": "Landing Page",
+    "gif_url": "https://motionsites.ai/assets/hero-weblex-preview-BoIbrUHI.gif",
+    "prompt": "Weblex Dark Hero",
+    "raw_text": "Weblex Dark Hero\nLanding Page\nPremium",
+    "local_file": "prompt_0054.gif"
+  },
+  {
+    "title": "AI Automation Hero",
+    "category": "AI / SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-synapse-ai-preview-BjBuH68i.gif",
+    "prompt": "AI Automation Hero",
+    "raw_text": "AI Automation Hero\nAI / SaaS\nCopy",
+    "local_file": "prompt_0055.gif"
+  },
+  {
+    "title": "New Era Automotive Hero",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-new-era-auto-preview-W56vp0xD.gif",
+    "prompt": "New Era Automotive Hero",
+    "raw_text": "New Era Automotive Hero\nAutomotive\nPremium",
+    "local_file": "prompt_0056.gif"
+  },
+  {
+    "title": "Synapse Dark Hero",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-synapse-preview-CP83ds5W.gif",
+    "prompt": "Build a high-fidelity, dark-themed Hero Section using React, Tailwind CSS, and Framer Motion. The background should be solid black (#000000).\n\n1. Structure & Layout:\n\nNavbar: Fixed at the top with a blurred glass effect.\n\nLogo: Text \"Synapse\" (font-medium, tracking-tight, white).\n\nLinks: Features (active state with gradient border), Insights, About, Case Studies (strikethrough style), Contact.\n\nCTA: \"Get Started for Free\" (White/Gray gradient button).\n\nHero Content: Centered text container (z-10, relative).\n\nBadges: Row of 3 glass-effect badges \"Integrated with\" + Icon.\n\nHeadline: \"Where Innovation Meets Execution\" (Large ~80px font, tight tracking, fade-in animation).\n\nSubtext: 2-line description about testing and deployment.\n\nButtons:\n\n\"Get Started for Free\" (Solid Black background, White border).\n\n\"Let's Get Connected\" (Transparent glass style).\n\nLogo Marquee: A static row of grayscale, 40% opacity logos (use placeholder SVGs) at the bottom.\n\n2. Background Video (Crucial):\n\nSource: https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.m3u8\n\nImplementation: Create a memoized VideoPlayer component using hls.js to handle the .m3u8 stream. Ensure proper cleanup on unmount.\n\nStyling: 100% Opacity (no dark overlays), playing in loop/muted/autoplay.\n\nPositioning: The video container should have a height of 80vh and be positioned absolute bottom-[35vh], sitting effectively \"floating\" behind the text content but pushed up from the bottom edge.\n\n3. Animations:\n\nUse motion/react to apply staggered fade-in-up animations to the badges, headline, subtitle, and buttons on load.",
+    "raw_text": "Synapse Dark Hero\nSaaS\nCopy",
+    "local_file": "prompt_0057.gif"
+  },
+  {
+    "title": "Bold Portfolio Hero",
+    "category": "Bold Portfolio Hero",
+    "gif_url": "https://motionsites.ai/assets/hero-portfolio-bold-preview-9Yfbi-Wg.gif",
+    "prompt": "Bold Portfolio Hero",
+    "raw_text": "Bold Portfolio Hero\nPortfolio\nPremium",
+    "local_file": "prompt_0058.gif"
+  },
+  {
+    "title": "Datacore SaaS Hero",
+    "category": "Datacore SaaS Hero",
+    "gif_url": "https://motionsites.ai/assets/hero-datacore-preview-DWeq7Ls3.gif",
+    "prompt": "Datacore SaaS Hero",
+    "raw_text": "Datacore SaaS Hero\nSaaS\nPremium",
+    "local_file": "prompt_0059.gif"
+  },
+  {
+    "title": "ClearInvoice SaaS Hero",
+    "category": "ClearInvoice SaaS Hero",
+    "gif_url": "https://motionsites.ai/assets/hero-clearinvoice-preview-l3q8sam6.gif",
+    "prompt": "ClearInvoice SaaS Hero",
+    "raw_text": "ClearInvoice SaaS Hero\nSaaS\nCopy",
+    "local_file": "prompt_0060.gif"
+  },
+  {
+    "title": "Price Calculator",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-price-calculator-preview-Dak8DDgY.gif",
+    "prompt": "Price Calculator",
+    "raw_text": "Price Calculator\nSaaS\nCopy",
+    "local_file": "prompt_0061.gif"
+  },
+  {
+    "title": "Taskora SaaS Hero",
+    "category": "Taskora SaaS Hero",
+    "gif_url": "https://motionsites.ai/assets/hero-taskora-preview-BlRBv8IU.gif",
+    "prompt": "Taskora SaaS Hero",
+    "raw_text": "Taskora SaaS Hero\nSaaS\nPremium",
+    "local_file": "prompt_0062.gif"
+  },
+  {
+    "title": "Investor Deck",
+    "category": "",
+    "gif_url": "https://motionsites.ai/assets/hero-deck-preview-CbidQJxW.gif",
+    "prompt": "Investor Deck",
+    "raw_text": "Investor Deck\nPresentation\nPremium",
+    "local_file": "prompt_0063.gif"
+  },
+  {
+    "title": "Finlytic AI Agent",
+    "category": "SaaS",
+    "gif_url": "https://motionsites.ai/assets/hero-finlytic-preview-CV9g0FHP.gif",
+    "prompt": "Finlytic AI Agent",
+    "raw_text": "Finlytic AI Agent\nSaaS\nPremium",
+    "local_file": "prompt_0064.gif"
+  }
+]
