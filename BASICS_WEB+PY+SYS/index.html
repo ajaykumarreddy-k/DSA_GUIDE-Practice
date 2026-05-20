@@ -113,49 +113,6 @@
             transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
         }
 
-        /* Logo image: invert(1) only — cream bg → dark (matches navbar), text → white/cyan.
-           Light mode: no filter needed, natural dark ink works on light bg. */
-        .logo-img {
-            filter: invert(1);
-            transition: filter 0.3s ease;
-        }
-        [data-theme="light"] .logo-img {
-            filter: none;
-        }
-        /* home-view stays above docs while scrolling, preventing bleed-through */
-        #home-view {
-            position: relative;
-            z-index: 40;
-        }
-
-        /* Folder tab shared styles — each row's horizontal shelf tab */
-        .folder-tab {
-            padding: 13px 24px;
-            border-radius: 20px 20px 0 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: transform 0.18s ease, box-shadow 0.18s ease;
-            box-shadow: inset 0 -2px 0 rgba(0,0,0,0.08);
-            min-width: 130px;
-        }
-        .folder-tab:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        @media (max-width: 480px) {
-            .folder-tab {
-                padding: 10px 16px;
-                font-size: 8px;
-                min-width: 100px;
-                letter-spacing: 0.15em;
-            }
-        }
-
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
@@ -335,173 +292,100 @@
 </head>
 <body class="font-sans antialiased overflow-x-hidden selection:bg-zinc-700 selection:text-white min-h-screen relative bg-bg">
 
-    <!-- LANDING HOME PAGE VIEW — Folder Cover Design -->
-    <div id="home-view" class="h-screen w-full flex flex-col relative bg-[#05241e] text-[#c3e2cc] select-none overflow-hidden">
+    <!-- LANDING HOME PAGE VIEW (Curved Tab Folder Cover Design) -->
+    <div id="home-view" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 relative bg-[#05241e] text-[#c3e2cc] select-none z-50">
+        <!-- Ambient subtle backdrop overlays -->
+        <div class="absolute inset-0 opacity-[0.015] pointer-events-none bg-[radial-gradient(transparent_50%,rgba(0,0,0,0.8))] mix-blend-overlay"></div>
 
-        <!-- ══════════════════════════════════════════════
-             STAGGERED FOLDER TABS
-             Each tab is a full-width horizontal shelf element.
-             They fan left-to-right by increasing left-offset as
-             you go from front (bottom) to back (top), exactly
-             replicating a physical multi-tab folder cover.
-        ══════════════════════════════════════════════ -->
-        <div class="relative w-full flex-shrink-0" style="height: clamp(160px, 24vh, 210px);">
-
-            <!-- Row 3 — furthest back, starts rightmost (~55% from left) -->
-            <div class="absolute inset-x-0 flex" style="bottom: 128px; padding-left: clamp(52%, 55%, 60%); z-index: 1; padding-right: 0;">
-                <div onclick="enterDocsAndScroll('#section-networking')"
-                     class="folder-tab bg-[#d4cdc5] text-[#1a3d2e]">
-                    <span>( ECOSYSTEM )</span>
+        <!-- Curved Overlapping Folder Tabs Container -->
+        <div class="w-full max-w-5xl mx-auto mt-4 md:mt-8 relative z-20">
+            <!-- Row 1 (Behind) -->
+            <div class="flex items-end justify-start -space-x-4 pl-8 mb-[-1px]">
+                <div onclick="enterDocsAndScroll('#section-basics')" class="px-5 py-3 bg-[#e5e1da] text-[#05241e] rounded-t-[18px] font-mono text-[9px] font-bold tracking-widest cursor-pointer shadow-[0_-4px_10px_rgba(0,0,0,0.15)] transition-all hover:translate-y-[-4px] hover:pb-[16px] active:scale-95">
+                    ( BASICS )
                 </div>
-                <div class="flex-1 bg-transparent"></div>
+                <div onclick="enterDocsAndScroll('#section-dsa')" class="px-5 py-3 bg-[#a2b997] text-[#05241e] rounded-t-[18px] font-mono text-[9px] font-bold tracking-widest cursor-pointer shadow-[0_-4px_10px_rgba(0,0,0,0.15)] transition-all hover:translate-y-[-4px] hover:pb-[16px] active:scale-95">
+                    ( DSA & ALGO )
+                </div>
+                <div onclick="enterDocsAndScroll('#section-networking')" class="px-5 py-3 bg-[#d9d2c9] text-[#05241e] rounded-t-[18px] font-mono text-[9px] font-bold tracking-widest cursor-pointer shadow-[0_-4px_10px_rgba(0,0,0,0.15)] transition-all hover:translate-y-[-4px] hover:pb-[16px] active:scale-95">
+                    ( ECOSYSTEM )
+                </div>
             </div>
-
-            <!-- Row 2 — middle depth, starts at ~30% from left -->
-            <div class="absolute inset-x-0 flex" style="bottom: 88px; padding-left: clamp(28%, 32%, 36%); z-index: 2; padding-right: 0;">
-                <div onclick="enterDocsAndScroll('#section-dsa')"
-                     class="folder-tab bg-[#a2b997] text-[#05241e]">
-                    <span>( DSA &amp; ALGO )</span>
+            <!-- Row 2 (Front) -->
+            <div class="flex items-end justify-start -space-x-4 pl-2 mb-[-1px] relative z-10">
+                <div class="px-7 py-3 bg-[#05241e] text-[#c3e2cc] rounded-t-[18px] border-t border-l border-r border-[#0c3c32] font-mono text-[9px] font-bold tracking-widest select-none">
+                    ( 2026 )
                 </div>
-                <div class="flex-1 bg-transparent"></div>
+                <div onclick="enterDocsAndScroll('#section-oop')" class="px-7 py-3 bg-[#9dc183] text-[#05241e] rounded-t-[18px] font-mono text-[9px] font-bold tracking-widest cursor-pointer shadow-[0_-4px_10px_rgba(0,0,0,0.15)] transition-all hover:translate-y-[-4px] hover:pb-[16px] active:scale-95">
+                    ( BRANDING / OOP )
+                </div>
             </div>
-
-            <!-- Row 1 — near-front, starts at ~12% from left -->
-            <div class="absolute inset-x-0 flex" style="bottom: 48px; padding-left: clamp(8%, 12%, 16%); z-index: 3; padding-right: 0;">
-                <div onclick="enterDocsAndScroll('#section-basics')"
-                     class="folder-tab bg-[#e5e0d8] text-[#1a3d2e]">
-                    <span>( BASICS )</span>
-                </div>
-                <div class="flex-1 bg-transparent"></div>
-            </div>
-
-            <!-- Row 0 — front row, flush left: year tab + OOP tab -->
-            <div class="absolute inset-x-0 flex" style="bottom: 4px; z-index: 4;">
-                <!-- Year tab merges into canvas background -->
-                <div class="folder-tab bg-[#05241e] text-[#c3e2cc]/60 border border-[#0e3d31] cursor-default flex-shrink-0">
-                    <span>( 2026 )</span>
-                </div>
-                <!-- OOP sage-green tab -->
-                <div onclick="enterDocsAndScroll('#section-oop')"
-                     class="folder-tab bg-[#9dc183] text-[#05241e] -ml-px flex-shrink-0">
-                    <span>( BRANDING / OOP )</span>
-                </div>
-                <!-- Canvas fill to right edge -->
-                <div class="flex-1 bg-transparent"></div>
-            </div>
-
-            <!-- Shelf baseline — seamless line between tabs and body -->
-            <div class="absolute bottom-0 inset-x-0 h-[2px] bg-[#072d20]" style="z-index:5"></div>
+            <!-- Seamless horizontal tab divider line -->
+            <div class="h-[2px] w-full bg-[#05241e] relative z-20"></div>
         </div>
 
-        <!-- ══════════════════════════════════════════════
-             COVER BODY — split horizontally:
-             Left: flower + metadata column
-             Right: large serif title "Reference"
-        ══════════════════════════════════════════════ -->
-        <div class="flex-1 flex flex-col px-5 sm:px-8 md:px-12 pt-6 sm:pt-8 pb-0 min-h-0">
-
-            <!-- ── Flower + Metadata row (top) ── -->
-            <div class="flex items-start justify-between flex-shrink-0">
-                <!-- Slowly spinning 6-petal asterisk flower (matches logo mark) -->
-                <div class="text-[#c3e2cc] opacity-70 flex-shrink-0"
-                     style="animation: spin 55s linear infinite; transform-origin: center;">
-                    <svg width="44" height="44" viewBox="0 0 100 100" fill="currentColor"
-                         class="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12">
-                        <g transform="translate(50,50)">
-                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(0)"  />
-                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(60)" />
-                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(120)"/>
-                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(180)"/>
-                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(240)"/>
-                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(300)"/>
-                            <circle cx="0" cy="0" r="7"/>
-                        </g>
-                    </svg>
-                </div>
-
-                <!-- Top-right compilation metadata -->
-                <div class="text-right flex-shrink-0">
-                    <p class="font-mono text-[8px] sm:text-[9px] tracking-[0.22em] text-[#c3e2cc]/50 uppercase leading-[1.9]">
-                        PYTHON COMPILATION<br>VOL. 1
-                    </p>
-                </div>
+        <!-- Asymmetrical cover graphic elements -->
+        <div class="flex-1 max-w-5xl w-full mx-auto flex items-center justify-between px-6 z-10 mt-8 mb-4">
+            <!-- Symmetrical Organic Asterisk Flower (Left Side) -->
+            <div class="text-[#c3e2cc] animate-[spin_40s_linear_infinite] opacity-90 select-none">
+                <svg class="w-20 h-20 md:w-32 md:h-32" viewBox="0 0 100 100" fill="currentColor">
+                    <g transform="translate(50,50)">
+                        <circle cx="0" cy="0" r="8"/>
+                        <!-- Curved organic rounded petals -->
+                        <path d="M -6,-10 C -15,-35, 15,-35, 6,-10 Z" />
+                        <path d="M -6,-10 C -15,-35, 15,-35, 6,-10 Z" transform="rotate(45)" />
+                        <path d="M -6,-10 C -15,-35, 15,-35, 6,-10 Z" transform="rotate(90)" />
+                        <path d="M -6,-10 C -15,-35, 15,-35, 6,-10 Z" transform="rotate(135)" />
+                        <path d="M -6,-10 C -15,-35, 15,-35, 6,-10 Z" transform="rotate(180)" />
+                        <path d="M -6,-10 C -15,-35, 15,-35, 6,-10 Z" transform="rotate(225)" />
+                        <path d="M -6,-10 C -15,-35, 15,-35, 6,-10 Z" transform="rotate(270)" />
+                        <path d="M -6,-10 C -15,-35, 15,-35, 6,-10 Z" transform="rotate(315)" />
+                    </g>
+                </svg>
             </div>
 
-            <!-- ── MAIN HORIZONTAL ROW: Logo (left) + Title (right) ── -->
-            <div class="flex-1 flex flex-row items-end justify-between gap-4 sm:gap-8 pb-14 sm:pb-16 md:pb-20 min-h-0">
-
-                <!-- Left column: logo image -->
-                <div class="flex-shrink-0 self-end">
-                    <!-- Natural cream badge — no filter; looks like a print label on the folder -->
-                    <div class="rounded-xl overflow-hidden shadow-lg">
-                        <img src="Logo/A.png" alt="AKR-Ref"
-                             class="block object-contain
-                                    h-16 w-auto
-                                    sm:h-20
-                                    md:h-24
-                                    lg:h-28">
-                    </div>
-                </div>
-
-                <!-- Right column: large serif title -->
-                <div class="flex-1 flex flex-col items-end justify-end text-right">
-                    <h1 class="font-serif font-light tracking-tight text-[#c3e2cc] leading-[0.88]
-                                text-[clamp(3.5rem,11vw,8.5rem)]">
-                        Ref<em class="italic font-extralight">erence</em>
-                    </h1>
-                </div>
+            <!-- Title & Metadata layout (Right Side) -->
+            <div class="text-right flex flex-col items-end justify-center">
+                <span class="text-[10px] font-mono tracking-[0.2em] text-[#c3e2cc]/60 uppercase mb-4 leading-relaxed">
+                    PYTHON COMPILATION<br>VOL. 1
+                </span>
+                <h1 class="text-6xl md:text-8xl font-serif italic font-light tracking-tight text-[#c3e2cc] leading-none mb-4">
+                    Reference
+                </h1>
             </div>
         </div>
 
-        <!-- ══════════════════════════════════════════════
-             BOTTOM BAR — pagination dots + control pod
-        ══════════════════════════════════════════════ -->
-        <div class="relative flex items-center justify-center flex-shrink-0
-                    px-5 sm:px-8 md:px-12 pb-5 sm:pb-7"
-             style="height: clamp(60px,8vh,80px);">
-
-            <!-- Pagination dots (centered) -->
-            <div class="flex gap-[6px] sm:gap-[8px]">
-                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-100"></span>
-                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
-                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
-                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
-                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
-                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
-                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
+        <!-- Center dots indicators and floating controls -->
+        <div class="w-full max-w-5xl mx-auto flex items-center justify-between relative z-10 px-6 mt-4 pb-20">
+            <div class="flex gap-2.5 mx-auto pl-12 select-none">
+                <span class="w-1.5 h-1.5 rounded-full bg-white opacity-100"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-white opacity-40"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-white opacity-40"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-white opacity-40"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-white opacity-40"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-white opacity-40"></span>
             </div>
 
-            <!-- Control pod — fixed to bottom-right -->
-            <div class="absolute right-5 sm:right-8 md:right-12 bottom-4 sm:bottom-5 flex flex-col gap-2">
-                <button onclick="enterDocsView()" title="Open Guide"
-                        class="w-10 h-10 sm:w-12 sm:h-12 rounded-[13px]
-                               bg-[#0d3d30] hover:bg-[#124d3e]
-                               text-[#c3e2cc] border border-[#1a5943]
-                               shadow-lg flex items-center justify-center
-                               transition-all duration-200 hover:scale-105 active:scale-95">
-                    <span class="material-symbols-rounded text-[18px] sm:text-[20px]">arrow_downward</span>
+            <!-- Symmetrical floating controls pod in bottom right -->
+            <div class="absolute right-6 bottom-0 flex flex-col gap-3 select-none z-20">
+                <button onclick="enterDocsView()" class="w-11 h-11 rounded-2xl bg-[#0c3c32] hover:bg-[#124d40] text-[#c3e2cc] border border-[#165a4c] shadow-md flex items-center justify-center transition-all hover:scale-105 active:scale-95" title="Expand Documentation">
+                    <span class="material-symbols-rounded text-[20px]">expand_all</span>
                 </button>
-                <button onclick="toggleTheme()" title="Toggle Theme"
-                        class="w-10 h-10 sm:w-12 sm:h-12 rounded-[13px]
-                               bg-[#0d3d30] hover:bg-[#124d3e]
-                               text-[#c3e2cc] border border-[#1a5943]
-                               shadow-lg flex items-center justify-center
-                               transition-all duration-200 hover:scale-105 active:scale-95">
-                    <span class="material-symbols-rounded text-[18px] sm:text-[20px] theme-icon">light_mode</span>
+                <button onclick="toggleTheme()" class="w-11 h-11 rounded-2xl bg-[#0c3c32] hover:bg-[#124d40] text-[#c3e2cc] border border-[#165a4c] shadow-md flex items-center justify-center transition-all hover:scale-105 active:scale-95" title="Toggle Theme">
+                    <span class="material-symbols-rounded text-[20px] theme-icon">light_mode</span>
                 </button>
             </div>
         </div>
-
     </div>
-
 
     <!-- DOCUMENTATION CONTAINER -->
     <div id="docs-container" class="w-full min-h-screen block relative">
 
         <!-- GLOBAL TOP NAVBAR (Desktop) -->
     <header id="desktop-header" class="hidden md:flex fixed top-0 left-0 right-0 h-16 bg-bg border-b border-border items-center justify-between px-6 z-50">
-        <div class="flex items-center cursor-pointer" onclick="goToHome()" title="Back to Home">
-            <img src="Logo/A.png" alt="AKR-Ref" class="h-9 w-auto object-contain logo-img">
+        <div class="flex items-center gap-3 font-medium text-textMain cursor-pointer" onclick="goToHome()">
+            <span class="material-symbols-rounded text-accentText">code_blocks</span>
+            <span class="text-lg tracking-wide font-serif select-none">AKR-Ref</span>
         </div>
         <nav class="flex items-center gap-8 text-sm text-textMuted font-medium">
             <a href="#section-basics" class="hover:text-textMain transition-colors">Python</a>
@@ -517,8 +401,8 @@
 
     <!-- Mobile Header -->
     <header id="mobile-header" class="md:hidden fixed top-0 left-0 right-0 h-14 bg-bg border-b border-border flex items-center justify-between px-4 z-50">
-        <div class="flex items-center cursor-pointer" onclick="goToHome()" title="Back to Home">
-            <img src="Logo/A.png" alt="AKR-Ref" class="h-7 w-auto object-contain logo-img">
+        <div class="flex items-center gap-2 font-medium text-textMain cursor-pointer" onclick="goToHome()">
+            <span class="material-symbols-rounded text-accentText">code_blocks</span> AKR-Ref
         </div>
         <div class="flex items-center gap-3">
             <!-- Theme Toggle mobile -->
@@ -1206,7 +1090,7 @@ def quick_sort(arr):
 
         // Global scroll reveal listener
         window.addEventListener('scroll', () => {
-            const threshold = window.innerHeight * 0.95;
+            const threshold = window.innerHeight * 0.3;
             if (window.scrollY > threshold) {
                 document.body.classList.add('scrolled-docs');
                 localStorage.setItem('docs-viewed', 'true');
