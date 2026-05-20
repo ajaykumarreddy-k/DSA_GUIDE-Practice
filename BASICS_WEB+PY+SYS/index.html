@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Reference | API Docs</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter (Sans for body) & Lora (Serif for headers to match Anthropic's style) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+
+    <!-- Prism.js for Syntax Highlighting (Dark) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: 'var(--bg)',
+                        surface: 'var(--surface)',
+                        border: 'var(--border)',
+                        textMain: 'var(--text-main)',
+                        textMuted: 'var(--text-muted)',
+                        accentBg: 'var(--accent-bg)',
+                        accentBorder: 'var(--accent-border)',
+                        accentText: 'var(--accent-text)',
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        serif: ['"Lora"', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root, [data-theme="dark"] {
+            --bg: #18181b;          /* zinc-900 */
+            --surface: #27272a;     /* zinc-800 */
+            --border: #3f3f46;      /* zinc-700 */
+            --text-main: #e4e4e7;    /* zinc-200 */
+            --text-muted: #a1a1aa;   /* zinc-400 */
+            --accent-bg: rgba(30, 58, 95, 0.4);
+            --accent-border: rgba(43, 90, 142, 0.5);
+            --accent-text: #93c5fd;  /* blue-300 */
+            --pre-bg: #131315;
+            --pre-border: #27272a;
+            --code-inline-bg: #27272a;
+            --code-inline-border: #3f3f46;
+            --code-inline-text: #d4d4d8;
+            --white: #ffffff;
+            --h1-color: #ffffff;
+            --h2-color: #ffffff;
+            --h3-color: #f4f4f5;
+            --term-color: #ffffff;
+            --desc-color: #d4d4d8;
+            --scrollbar-thumb: #3f3f46;
+            --scrollbar-thumb-hover: #52525b;
+            --search-modal-bg: rgba(24, 24, 27, 0.85);
+            --search-results-hover: #27272a;
+            --glass-bg: rgba(39, 39, 42, 0.5);
+            --glass-border: rgba(63, 63, 70, 0.4);
+            --glass-glow: rgba(59, 130, 246, 0.08);
+            --home-text-shadow: rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="light"] {
+            --bg: #fafaf9;          /* Soft minimal off-white */
+            --surface: #f4f4f5;     /* zinc-100 */
+            --border: #e4e4e7;      /* zinc-200 */
+            --text-main: #18181b;    /* zinc-900 */
+            --text-muted: #71717a;   /* zinc-500 */
+            --accent-bg: #eff6ff;    /* soft blue tint */
+            --accent-border: #bfdbfe;
+            --accent-text: #1d4ed8;  /* highly readable blue */
+            --pre-bg: #f5f5f4;       /* stone-100 */
+            --pre-border: #e6e6e6;
+            --code-inline-bg: #f4f4f5;
+            --code-inline-border: #e4e4e7;
+            --code-inline-text: #27272a;
+            --white: #09090b;
+            --h1-color: #09090b;
+            --h2-color: #09090b;
+            --h3-color: #18181b;
+            --term-color: #09090b;
+            --desc-color: #27272a;
+            --scrollbar-thumb: #d4d4d8;
+            --scrollbar-thumb-hover: #a1a1aa;
+            --search-modal-bg: rgba(250, 250, 249, 0.85);
+            --search-results-hover: #e4e4e7;
+            --glass-bg: rgba(244, 244, 245, 0.7);
+            --glass-border: rgba(228, 228, 231, 0.6);
+            --glass-glow: rgba(59, 130, 246, 0.04);
+            --home-text-shadow: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        aside, header, main, footer, .feature-card, button, input {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Logo image: invert(1) only — cream bg → dark (matches navbar), text → white/cyan.
+           Light mode: no filter needed, natural dark ink works on light bg. */
+        .logo-img {
+            filter: invert(1);
+            transition: filter 0.3s ease;
+        }
+        [data-theme="light"] .logo-img {
+            filter: none;
+        }
+        /* home-view stays above docs while scrolling, preventing bleed-through */
+        #home-view {
+            position: relative;
+            z-index: 40;
+        }
+
+        /* Folder tab shared styles — each row's horizontal shelf tab */
+        .folder-tab {
+            padding: 13px 24px;
+            border-radius: 20px 20px 0 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            box-shadow: inset 0 -2px 0 rgba(0,0,0,0.08);
+            min-width: 130px;
+        }
+        .folder-tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        @media (max-width: 480px) {
+            .folder-tab {
+                padding: 10px 16px;
+                font-size: 8px;
+                min-width: 100px;
+                letter-spacing: 0.15em;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+
+        /* Typography */
+        h1, h2 { font-family: 'Lora', serif; }
+        
+        .api-h1 { font-size: 2.25rem; font-weight: 500; color: var(--h1-color); letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+        .api-h2 { font-size: 1.5rem; font-weight: 500; color: var(--h2-color); margin-top: 3rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        .api-h3 { font-size: 1.125rem; font-weight: 600; color: var(--h3-color); margin-top: 2rem; margin-bottom: 0.75rem; font-family: 'Inter', sans-serif;}
+
+        /* Links */
+        a { transition: color 0.2s; }
+        a:hover { color: var(--white); }
+
+        /* Left Nav items */
+        .left-nav-item {
+            display: block; padding: 0.375rem 0.75rem; border-radius: 0.375rem;
+            color: var(--text-muted); font-size: 0.875rem; text-decoration: none; transition: all 0.2s;
+        }
+        .left-nav-item:hover { background-color: var(--surface); color: var(--text-main); }
+        .left-nav-item.active { background-color: var(--surface); color: var(--white); font-weight: 500; border-left: 2px solid var(--accent-text); }
+
+        /* Right Nav items */
+        .right-nav-item {
+            display: block; padding: 0.25rem 0; color: var(--text-muted); font-size: 0.8125rem;
+            border-left: 2px solid transparent; padding-left: 0.75rem; margin-left: -2px; transition: all 0.2s;
+        }
+        .right-nav-item:hover { color: var(--text-main); }
+        .right-nav-item.active { color: var(--white); border-left-color: var(--white); font-weight: 500; }
+
+        /* Inline Code */
+        code:not(pre code) {
+            background-color: var(--code-inline-bg); border: 1px solid var(--code-inline-border); border-radius: 0.25rem;
+            padding: 0.125rem 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem;
+            color: var(--code-inline-text);
+        }
+
+        /* Pre/Code Blocks */
+        pre {
+            background-color: var(--pre-bg) !important;
+            border: 1px solid var(--pre-border); border-radius: 0.5rem;
+            padding: 1rem !important; margin: 1rem 0 2rem 0 !important;
+            font-family: 'JetBrains Mono', monospace !important; font-size: 0.875rem !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        /* Definition Lists for structured content */
+        .details-grid {
+            display: grid; grid-template-columns: minmax(120px, auto) 1fr; gap: 0.5rem 1rem; margin-bottom: 1.5rem;
+            font-size: 0.9375rem; line-height: 1.6;
+        }
+        .details-term { font-weight: 600; color: var(--term-color); }
+        .details-desc { color: var(--desc-color); }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.875rem; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { color: var(--white); font-weight: 600; background-color: var(--surface); }
+        td { color: var(--desc-color); background-color: transparent; }
+
+        /* Copy Button Styles */
+        pre {
+            position: relative !important;
+        }
+        .code-copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.375rem;
+            border-radius: 0.375rem;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.15s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        pre:hover .code-copy-btn {
+            opacity: 1;
+        }
+        .code-copy-btn:hover {
+            color: var(--white);
+            background-color: var(--border);
+            border-color: var(--scrollbar-thumb-hover);
+        }
+        .code-copy-btn.copied {
+            color: #34d399;
+            border-color: #059669;
+            background-color: #064e3b;
+        }
+
+        /* Highlight target section on search navigation */
+        .search-nav-highlight {
+            background-color: var(--accent-bg) !important;
+            border-radius: 0.5rem;
+            outline: 2px solid var(--accent-border);
+            transition: all 0.5s ease;
+        }
+
+        .search-result-item.active {
+            background-color: var(--search-results-hover) !important;
+        }
+
+        /* Scroll-reveal transitions for sidebars and headers */
+        body:not(.scrolled-docs) #desktop-header,
+        body:not(.scrolled-docs) #mobile-header,
+        body:not(.scrolled-docs) #left-sidebar,
+        body:not(.scrolled-docs) #right-sidebar {
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transform: translateY(-10px);
+        }
+
+        #desktop-header, #mobile-header, #left-sidebar, #right-sidebar {
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease !important;
+        }
+
+        body.scrolled-docs #desktop-header,
+        body.scrolled-docs #mobile-header,
+        body.scrolled-docs #left-sidebar,
+        body.scrolled-docs #right-sidebar {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            transform: translateY(0);
+        }
+
+        /* Home Page Features Card */
+        .feature-card {
+            box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+        }
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -4px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Custom Prism Light Theme Override */
+        [data-theme="light"] .token.comment,
+        [data-theme="light"] .token.prolog,
+        [data-theme="light"] .token.doctype,
+        [data-theme="light"] .token.cdata { color: #8e908c; font-style: italic; }
+        [data-theme="light"] .token.punctuation { color: #4d4d4c; }
+        [data-theme="light"] .token.property,
+        [data-theme="light"] .token.tag,
+        [data-theme="light"] .token.boolean,
+        [data-theme="light"] .token.number,
+        [data-theme="light"] .token.constant,
+        [data-theme="light"] .token.symbol,
+        [data-theme="light"] .token.deleted { color: #c82829; }
+        [data-theme="light"] .token.selector,
+        [data-theme="light"] .token.attr-name,
+        [data-theme="light"] .token.string,
+        [data-theme="light"] .token.char,
+        [data-theme="light"] .token.builtin,
+        [data-theme="light"] .token.inserted { color: #718c00; }
+        [data-theme="light"] .token.operator,
+        [data-theme="light"] .token.entity,
+        [data-theme="light"] .token.url,
+        [data-theme="light"] .language-css .token.string,
+        [data-theme="light"] .style .token.string { color: #3e999f; }
+        [data-theme="light"] .token.atrule,
+        [data-theme="light"] .token.attr-value,
+        [data-theme="light"] .token.keyword { color: #8959a8; font-weight: 500; }
+        [data-theme="light"] .token.function,
+        [data-theme="light"] .token.class-name { color: #4271ae; }
+        [data-theme="light"] .token.regex,
+        [data-theme="light"] .token.important,
+        [data-theme="light"] .token.variable { color: #eab700; }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-zinc-700 selection:text-white min-h-screen relative bg-bg">
+
+    <!-- LANDING HOME PAGE VIEW — Folder Cover Design -->
+    <div id="home-view" class="h-screen w-full flex flex-col relative bg-[#05241e] text-[#c3e2cc] select-none overflow-hidden">
+
+        <!-- ══════════════════════════════════════════════
+             STAGGERED FOLDER TABS
+             Each tab is a full-width horizontal shelf element.
+             They fan left-to-right by increasing left-offset as
+             you go from front (bottom) to back (top), exactly
+             replicating a physical multi-tab folder cover.
+        ══════════════════════════════════════════════ -->
+        <div class="relative w-full flex-shrink-0" style="height: clamp(160px, 24vh, 210px);">
+
+            <!-- Row 3 — furthest back, starts rightmost (~55% from left) -->
+            <div class="absolute inset-x-0 flex" style="bottom: 128px; padding-left: clamp(52%, 55%, 60%); z-index: 1; padding-right: 0;">
+                <div onclick="enterDocsAndScroll('#section-networking')"
+                     class="folder-tab bg-[#d4cdc5] text-[#1a3d2e]">
+                    <span>( ECOSYSTEM )</span>
+                </div>
+                <div class="flex-1 bg-transparent"></div>
+            </div>
+
+            <!-- Row 2 — middle depth, starts at ~30% from left -->
+            <div class="absolute inset-x-0 flex" style="bottom: 88px; padding-left: clamp(28%, 32%, 36%); z-index: 2; padding-right: 0;">
+                <div onclick="enterDocsAndScroll('#section-dsa')"
+                     class="folder-tab bg-[#a2b997] text-[#05241e]">
+                    <span>( DSA &amp; ALGO )</span>
+                </div>
+                <div class="flex-1 bg-transparent"></div>
+            </div>
+
+            <!-- Row 1 — near-front, starts at ~12% from left -->
+            <div class="absolute inset-x-0 flex" style="bottom: 48px; padding-left: clamp(8%, 12%, 16%); z-index: 3; padding-right: 0;">
+                <div onclick="enterDocsAndScroll('#section-basics')"
+                     class="folder-tab bg-[#e5e0d8] text-[#1a3d2e]">
+                    <span>( BASICS )</span>
+                </div>
+                <div class="flex-1 bg-transparent"></div>
+            </div>
+
+            <!-- Row 0 — front row, flush left: year tab + OOP tab -->
+            <div class="absolute inset-x-0 flex" style="bottom: 4px; z-index: 4;">
+                <!-- Year tab merges into canvas background -->
+                <div class="folder-tab bg-[#05241e] text-[#c3e2cc]/60 border border-[#0e3d31] cursor-default flex-shrink-0">
+                    <span>( 2026 )</span>
+                </div>
+                <!-- OOP sage-green tab -->
+                <div onclick="enterDocsAndScroll('#section-oop')"
+                     class="folder-tab bg-[#9dc183] text-[#05241e] -ml-px flex-shrink-0">
+                    <span>( BRANDING / OOP )</span>
+                </div>
+                <!-- Canvas fill to right edge -->
+                <div class="flex-1 bg-transparent"></div>
+            </div>
+
+            <!-- Shelf baseline — seamless line between tabs and body -->
+            <div class="absolute bottom-0 inset-x-0 h-[2px] bg-[#072d20]" style="z-index:5"></div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+             COVER BODY — split horizontally:
+             Left: flower + metadata column
+             Right: large serif title "Reference"
+        ══════════════════════════════════════════════ -->
+        <div class="flex-1 flex flex-col px-5 sm:px-8 md:px-12 pt-6 sm:pt-8 pb-0 min-h-0">
+
+            <!-- ── Flower + Metadata row (top) ── -->
+            <div class="flex items-start justify-between flex-shrink-0">
+                <!-- Slowly spinning 6-petal asterisk flower (matches logo mark) -->
+                <div class="text-[#c3e2cc] opacity-70 flex-shrink-0"
+                     style="animation: spin 55s linear infinite; transform-origin: center;">
+                    <svg width="44" height="44" viewBox="0 0 100 100" fill="currentColor"
+                         class="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12">
+                        <g transform="translate(50,50)">
+                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(0)"  />
+                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(60)" />
+                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(120)"/>
+                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(180)"/>
+                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(240)"/>
+                            <path d="M 0,0 C -9,-14,-9,-30, 0,-38 C 9,-30, 9,-14, 0,0 Z" transform="rotate(300)"/>
+                            <circle cx="0" cy="0" r="7"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Top-right compilation metadata -->
+                <div class="text-right flex-shrink-0">
+                    <p class="font-mono text-[8px] sm:text-[9px] tracking-[0.22em] text-[#c3e2cc]/50 uppercase leading-[1.9]">
+                        PYTHON COMPILATION<br>VOL. 1
+                    </p>
+                </div>
+            </div>
+
+            <!-- ── MAIN HORIZONTAL ROW: Logo (left) + Title (right) ── -->
+            <div class="flex-1 flex flex-row items-end justify-between gap-4 sm:gap-8 pb-14 sm:pb-16 md:pb-20 min-h-0">
+
+                <!-- Left column: logo image -->
+                <div class="flex-shrink-0 self-end">
+                    <!-- Natural cream badge — no filter; looks like a print label on the folder -->
+                    <div class="rounded-xl overflow-hidden shadow-lg">
+                        <img src="Logo/A.png" alt="AKR-Ref"
+                             class="block object-contain
+                                    h-16 w-auto
+                                    sm:h-20
+                                    md:h-24
+                                    lg:h-28">
+                    </div>
+                </div>
+
+                <!-- Right column: large serif title -->
+                <div class="flex-1 flex flex-col items-end justify-end text-right">
+                    <h1 class="font-serif font-light tracking-tight text-[#c3e2cc] leading-[0.88]
+                                text-[clamp(3.5rem,11vw,8.5rem)]">
+                        Ref<em class="italic font-extralight">erence</em>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+             BOTTOM BAR — pagination dots + control pod
+        ══════════════════════════════════════════════ -->
+        <div class="relative flex items-center justify-center flex-shrink-0
+                    px-5 sm:px-8 md:px-12 pb-5 sm:pb-7"
+             style="height: clamp(60px,8vh,80px);">
+
+            <!-- Pagination dots (centered) -->
+            <div class="flex gap-[6px] sm:gap-[8px]">
+                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-100"></span>
+                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
+                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
+                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
+                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
+                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
+                <span class="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full bg-[#c3e2cc] opacity-30"></span>
+            </div>
+
+            <!-- Control pod — fixed to bottom-right -->
+            <div class="absolute right-5 sm:right-8 md:right-12 bottom-4 sm:bottom-5 flex flex-col gap-2">
+                <button onclick="enterDocsView()" title="Open Guide"
+                        class="w-10 h-10 sm:w-12 sm:h-12 rounded-[13px]
+                               bg-[#0d3d30] hover:bg-[#124d3e]
+                               text-[#c3e2cc] border border-[#1a5943]
+                               shadow-lg flex items-center justify-center
+                               transition-all duration-200 hover:scale-105 active:scale-95">
+                    <span class="material-symbols-rounded text-[18px] sm:text-[20px]">arrow_downward</span>
+                </button>
+                <button onclick="toggleTheme()" title="Toggle Theme"
+                        class="w-10 h-10 sm:w-12 sm:h-12 rounded-[13px]
+                               bg-[#0d3d30] hover:bg-[#124d3e]
+                               text-[#c3e2cc] border border-[#1a5943]
+                               shadow-lg flex items-center justify-center
+                               transition-all duration-200 hover:scale-105 active:scale-95">
+                    <span class="material-symbols-rounded text-[18px] sm:text-[20px] theme-icon">light_mode</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- DOCUMENTATION CONTAINER -->
+    <div id="docs-container" class="w-full min-h-screen block relative">
+
+        <!-- GLOBAL TOP NAVBAR (Desktop) -->
+    <header id="desktop-header" class="hidden md:flex fixed top-0 left-0 right-0 h-16 bg-bg border-b border-border items-center justify-between px-6 z-50">
+        <div class="flex items-center cursor-pointer" onclick="goToHome()" title="Back to Home">
+            <img src="Logo/A.png" alt="AKR-Ref" class="h-9 w-auto object-contain logo-img">
+        </div>
+        <nav class="flex items-center gap-8 text-sm text-textMuted font-medium">
+            <a href="#section-basics" class="hover:text-textMain transition-colors">Python</a>
+            <a href="#section-oop" class="hover:text-textMain transition-colors">Adv Python</a>
+            <a href="#section-dsa" class="hover:text-textMain transition-colors">Data structures</a>
+            <a href="#section-networking" class="hover:text-textMain transition-colors">System Architec Processes</a>
+            <!-- Theme Toggle inside Docs -->
+            <button class="theme-toggle p-2 rounded-full border border-border bg-surface text-textMuted hover:text-textMain transition-all shadow-sm active:scale-95 flex items-center justify-center ml-2" title="Toggle Theme">
+                <span class="material-symbols-rounded text-[18px] theme-icon">light_mode</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Header -->
+    <header id="mobile-header" class="md:hidden fixed top-0 left-0 right-0 h-14 bg-bg border-b border-border flex items-center justify-between px-4 z-50">
+        <div class="flex items-center cursor-pointer" onclick="goToHome()" title="Back to Home">
+            <img src="Logo/A.png" alt="AKR-Ref" class="h-7 w-auto object-contain logo-img">
+        </div>
+        <div class="flex items-center gap-3">
+            <!-- Theme Toggle mobile -->
+            <button class="theme-toggle p-1.5 rounded-full border border-border bg-surface text-textMuted hover:text-textMain transition-all flex items-center justify-center" title="Toggle Theme">
+                <span class="material-symbols-rounded text-[18px] theme-icon">light_mode</span>
+            </button>
+            <button id="mobile-menu-btn" class="text-textMuted hover:text-textMain p-1">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- LEFT SIDEBAR -->
+    <aside id="left-sidebar" class="w-64 fixed top-14 md:top-16 bottom-0 left-0 border-r border-border bg-bg overflow-y-auto transform -translate-x-full md:translate-x-0 transition-transform duration-200 z-40">
+        <div class="p-4 pt-6">
+            <!-- Search -->
+            <div class="bg-surface rounded-md border border-border px-3 py-1.5 flex items-center gap-2 text-textMuted text-sm mb-6 cursor-pointer hover:bg-border/50 transition-colors">
+                <span class="material-symbols-rounded text-[18px]">search</span>
+                <span>Search...</span>
+                <span class="ml-auto text-[10px] border border-border px-1.5 rounded bg-bg">⌘K</span>
+            </div>
+
+            <!-- Navigation Sections (Dynamically Injected with Categories) -->
+            <div class="mb-6">
+                <nav class="space-y-0.5" id="dynamic-left-nav">
+                    <!-- Injected via JS based on H2s and data-category attributes -->
+                </nav>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden backdrop-blur-sm"></div>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-doc-content" class="md:ml-64 xl:mr-72 p-6 pt-20 md:pt-24 lg:px-12 xl:px-16 pb-12 w-full max-w-[1000px] min-h-screen relative z-10">
+        
+        <div class="flex-1">
+            <div class="flex items-start justify-between mb-8">
+                <div class="text-sm text-textMuted">
+                    <span class="text-textMain font-medium">Python Language Overview</span>
+                </div>
+            </div>
+
+            <h1 class="api-h1">Python Complete Revision Guide</h1>
+            <p class="text-textMuted text-[1.05rem] leading-relaxed mb-6">
+                The Python API Reference is a structured guide providing programmatic and conceptual access to Python fundamentals, data structures, OOP patterns, networking, and deployment mechanics.
+            </p>
+
+            <!-- Anthropic-style Info Box -->
+            <div class="bg-accentBg border border-accentBorder rounded-lg p-4 flex gap-3 text-sm text-blue-100 mb-12 shadow-sm">
+                <span class="material-symbols-rounded text-accentText text-[20px] shrink-0">info</span>
+                <div class="leading-relaxed">
+                    New to Python? For direct execution access, start with <a href="#section-basics" class="text-white underline underline-offset-2">Setup and Run</a>. For managed environment infrastructure, see the <a href="#section-ecosystem" class="text-white underline underline-offset-2">Frameworks & Ecosystem</a> section.
+                </div>
+            </div>
+
+            <div class="prose max-w-none text-textMain">
+
+                <!-- ================= CORE FUNDAMENTALS ================= -->
+                
+                <section id="section-basics" class="doc-section scroll-mt-20" data-category="Core Fundamentals">
+                    <h2 class="api-h2">0. Basics of Python</h2>
+                    
+                    <h3 class="api-h3">Topic: Language Overview</h3>
+                    <div class="details-grid">
+                        <div class="details-term">What is it:</div>
+                        <div class="details-desc">Python is a high-level, interpreted, dynamically typed programming language.</div>
+                        
+                        <div class="details-term">Why use it:</div>
+                        <div class="details-desc">It features an easy-to-read syntax, massive community libraries, and is widely adopted across web backend, data science, AI, and scripting automation.</div>
+                        
+                        <div class="details-term">How it works:</div>
+                        <div class="details-desc">Code runs line-by-line via an interpreter — no manual compilation is needed to convert English-like syntax directly to binary.</div>
+                    </div>
+                    
+                    <p class="text-sm text-textMuted mt-2 mb-4">Pipeline: <code>Source Code (.py) -> Python Interpreter -> Binary Output</code></p>
+
+                    <h3 class="api-h3">Topic: Setup & Run</h3>
+                    <p class="text-sm mb-3">To use the Python CLI, you'll need terminal access. Run the following commands:</p>
+<pre><code class="language-bash">python --version      # check version
+python hello.py       # run a file
+python                # open interactive shell (REPL)</code></pre>
+                </section>
+
+                <section id="section-variables" class="doc-section scroll-mt-20" data-category="Core Fundamentals">
+                    <h2 class="api-h2">1. Variables & Scope</h2>
+                    
+                    <h3 class="api-h3">Topic: Definitions & Architecture</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Variable:</div>
+                        <div class="details-desc">Container that stores in the data. Under the hood, variables are labels pointing to memory addresses (pointers).</div>
+                        
+                        <div class="details-term">Static vs Dynamic:</div>
+                        <div class="details-desc">Python is dynamically typed (e.g., <code>a = 5</code>). You do not need to explicitly declare types like in C++ (<code>int a = 5;</code>).</div>
+
+                        <div class="details-term">Scope Details:</div>
+                        <div class="details-desc">Scope dictates where a variable is accessible (Local and Global). Python resolves scope locally first, then globally (LEGB rule).</div>
+                    </div>
+
+<pre><code class="language-python">x = 10          # int
+name = "Alice"  # str
+a = b = c = 0       # all point to same value
+x, y, z = 1, 2, 3   # unpacking — assign multiple at once
+
+# Scope Implementation
+g = "I am global"    # accessible everywhere
+
+def demo():
+    l = "I am local"    # only inside this function
+    global g            # keyword to access/modify global
+    g = "modified"
+
+demo()
+print(g)   # Outputs: "modified"</code></pre>
+                </section>
+
+                <section id="section-datatypes" class="doc-section scroll-mt-20" data-category="Core Fundamentals">
+                    <h2 class="api-h2">2. Data Types & Structures</h2>
+                    
+                    <h3 class="api-h3">Topic: Core Primitive Types</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Immutable:</div>
+                        <div class="details-desc"><code>int</code>, <code>float</code>, <code>str</code> (Note: Python has no separate 'char' type, just a string of length 1), <code>tuple</code>, <code>bool</code>.</div>
+                        
+                        <div class="details-term">Mutable:</div>
+                        <div class="details-desc"><code>list</code> (ordered collection), <code>dict</code> (key-value pairs), <code>set</code> (unordered collection of unique values).</div>
+                    </div>
+<pre><code class="language-python"># Basic Assignments
+a = 1           # int
+b = 1.2         # float
+c = "hello"     # str
+e = []          # list
+f = ()          # tuple
+g = {"name": "Ajay"} # dict
+h = {1, 2, 3}   # set</code></pre>
+
+                    <h3 class="api-h3">Topic: Lists vs Arrays</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Arrays:</div>
+                        <div class="details-desc">Homogeneous (same data type only). Memory efficient and faster. Can be 1D (simple array), 2D (matrix/rows & cols), or 3D (layers/tensors).</div>
+                        
+                        <div class="details-term">Lists:</div>
+                        <div class="details-desc">Heterogeneous (mix of data types). Highly flexible, built-in, but slower for massive calculations.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Comprehensions</h3>
+                    <p class="text-sm mb-3">A concise way to create lists or dictionaries directly from iterables.</p>
+<pre><code class="language-python"># List Comprehension
+squares = [x**2 for x in range(5)]           # [0, 1, 4, 9, 16]
+evens = [x for x in range(10) if x % 2 == 0] # [0, 2, 4, 6, 8]
+
+# Dictionary Comprehension
+sq_dict = {x: x**2 for x in range(3)}        # {0: 0, 1: 1, 2: 4}</code></pre>
+                </section>
+
+                <section id="section-control-flow" class="doc-section scroll-mt-20" data-category="Core Fundamentals">
+                    <h2 class="api-h2">3. Operators & Control Flow</h2>
+                    
+                    <h3 class="api-h3">Topic: Operators</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Arithmetic:</div>
+                        <div class="details-desc">Addition (<code>+</code>), Subtraction (<code>-</code>), Multiplication (<code>*</code>), True Division (<code>/</code>), Floor Division (<code>//</code>), Modulus (<code>%</code>).</div>
+                        
+                        <div class="details-term">Logical & Binary:</div>
+                        <div class="details-desc"><code>and</code>, <code>or</code>, <code>not</code>. Unary/Binary operations act on bits.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Conditional Statements</h3>
+                    <p class="text-sm mb-3">Controls the execution flow based on boolean expressions.</p>
+<pre><code class="language-python">x = 75
+# if, elif, else
+if x >= 90:    print("A")
+elif x >= 75:  print("B")
+else:          print("F")
+
+# Nested if
+if x > 0:
+    if x % 2 == 0: print("Positive Even")
+
+# Match-Case (Python 3.10+ / Switch-Case equivalent)
+match x:
+    case 90: print("Perfect")
+    case _:  print("Default")</code></pre>
+
+                    <h3 class="api-h3">Topic: Loops (For vs While)</h3>
+                    <div class="details-grid">
+                        <div class="details-term">For Loop:</div>
+                        <div class="details-desc">Use when the number of iterations is known (e.g., iterating through a list). Supports <code>break</code> and <code>continue</code>.</div>
+                        
+                        <div class="details-term">While Loop:</div>
+                        <div class="details-desc">Use when looping depends on a specific condition remaining true.</div>
+                    </div>
+                </section>
+
+                <!-- ================= LOGIC & FUNCTIONS ================= -->
+
+                <section id="section-logic-problems" class="doc-section scroll-mt-20" data-category="Logic & Functions">
+                    <h2 class="api-h2">4. Core Logic Problems</h2>
+                    <h3 class="api-h3">Topic: Classic Algorithms</h3>
+<pre><code class="language-python"># 1. Prime Number Check
+def is_prime(n):
+    if n < 2: return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0: return False
+    return True
+
+# 2. Factorial (Recursive)
+def factorial(n):
+    if n == 0 or n == 1: return 1
+    return n * factorial(n - 1)
+
+# 3. Armstrong Number (e.g., 153 = 1^3 + 5^3 + 3^3)
+def is_armstrong(n):
+    digits = str(n)
+    power = len(digits)
+    return n == sum(int(d)**power for d in digits)
+
+# 4. Fibonacci Series
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        print(a, end=" ")
+        a, b = b, a + b
+
+# 5. Array Left/Right Rotation
+a = [1, 2, 3, 4, 5]
+k = 2 # Rotations
+print("Left:", a[k:] + a[:k])
+print("Right:", a[-k:] + a[:-k] if k else a)</code></pre>
+                </section>
+
+                <section id="section-functions" class="doc-section scroll-mt-20" data-category="Logic & Functions">
+                    <h2 class="api-h2">5. Functions & Recursion</h2>
+                    
+                    <h3 class="api-h3">Topic: Function Architecture</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Types:</div>
+                        <div class="details-desc">Built-in (e.g., <code>print()</code>, <code>len()</code>) vs User-Defined (created via <code>def</code>).</div>
+                        
+                        <div class="details-term">Recursion:</div>
+                        <div class="details-desc">A function that calls itself. Must have a Base Condition to prevent infinite loops.</div>
+                        
+                        <div class="details-term">Lambda:</div>
+                        <div class="details-desc">Anonymous, one-time-use synchronous functions for small, single-line logic.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Arguments (*args & **kwargs)</h3>
+<pre><code class="language-python"># *args = Positional (Tuple), **kwargs = Keyword (Dict)
+def demo(a, b, *args, **kwargs):
+    print(args)       # (3, 4)
+    print(kwargs)     # {'x': 10}
+
+demo(1, 2, 3, 4, x=10)</code></pre>
+
+                    <h3 class="api-h3">Topic: Map, Filter, Reduce</h3>
+                    <p class="text-sm mb-3">Functional programming tools to process iterables efficiently without explicit loops.</p>
+<pre><code class="language-python">from functools import reduce
+nums = [1, 2, 3, 4, 5]
+
+# map(function, iterable) - Apply function to every item
+doubled = list(map(lambda x: x * 2, nums))       # [2, 4, 6, 8, 10]
+
+# filter(function, iterable) - Keep items returning True
+evens = list(filter(lambda x: x % 2 == 0, nums)) # [2, 4]
+
+# reduce(function, iterable) - Roll up list into single value
+total = reduce(lambda x, y: x + y, nums)         # 15</code></pre>
+
+                    <h3 class="api-h3">Topic: String Reversal Methods</h3>
+                    <p class="text-sm mb-3">Common interview question solved via 6 different methodologies:</p>
+<pre><code class="language-python">s = "Python"
+# 1. Slicing (Best & Fastest)
+print(s[::-1])
+
+# 2. Built-in
+print("".join(reversed(s)))
+
+# 3. Iteration
+rev = ""
+for char in s: rev = char + rev
+
+# 4. Recursion
+def rev_rec(s): return s if len(s)==0 else rev_rec(s[1:]) + s[0]
+
+# 5. Stack (LIFO)
+stack = list(s); rev = ""
+while stack: rev += stack.pop()
+
+# 6. Two-Pointer Approach
+s_list = list(s)
+l, r = 0, len(s)-1
+while l < r:
+    s_list[l], s_list[r] = s_list[r], s_list[l]
+    l += 1; r -= 1</code></pre>
+                </section>
+
+                <!-- ================= OOP & ADVANCED ================= -->
+
+                <section id="section-oop" class="doc-section scroll-mt-20" data-category="Object Oriented & Advanced">
+                    <h2 class="api-h2">6. Object Oriented Programming (OOP)</h2>
+                    
+                    <h3 class="api-h3">Topic: Core Concepts</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Class:</div>
+                        <div class="details-desc">A template or blueprint used to create objects.</div>
+                        
+                        <div class="details-term">Object:</div>
+                        <div class="details-desc">An instance of a class occupying memory.</div>
+                        
+                        <div class="details-term">Methods/Attributes:</div>
+                        <div class="details-desc">Attributes are properties/variables. Methods are functions defined inside the class.</div>
+
+                        <div class="details-term">Constructors (<code>__init__</code>):</div>
+                        <div class="details-desc">Special methods used to create an object automatically. Used to enter mandatory details. Types include parameterized and default.</div>
+                        
+                        <div class="details-term"><code>self</code> Keyword:</div>
+                        <div class="details-desc">Refers to the current object instance. Used to differentiate between class attributes and local parameters.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: The 4 Pillars</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Encapsulation:</div>
+                        <div class="details-desc">Bundling data and methods into a single unit. Uses Access Modifiers: Public (visible), Protected (<code>_</code>, visible to subclasses), Private (<code>__</code>, hidden).</div>
+                        
+                        <div class="details-term">Polymorphism:</div>
+                        <div class="details-desc">Same method behaving differently. <br>• <strong>Method Overriding (Runtime):</strong> Child class alters parent method.<br>• <strong>Method Overloading (Compile-time):</strong> Same method, different parameters (handled via defaults in Python).</div>
+                        
+                        <div class="details-term">Inheritance:</div>
+                        <div class="details-desc">Parent → Child relationship. Types: Single, Multiple, Multilevel, Hierarchical, Hybrid. Utilizes the <code>super()</code> function to call parent constructors/methods.</div>
+                        
+                        <div class="details-term">Abstraction:</div>
+                        <div class="details-desc">Hiding internal implementation details (e.g., exposing frontend UI while hiding backend logic).</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Magic (Dunder) Methods</h3>
+                    <p class="text-sm mb-3">Methods surrounded by double underscores. Used for Operator Overloading and core behaviors.</p>
+<pre><code class="language-python">class Session:
+    def __init__(self, chairs):
+        self.chairs = chairs
+
+    # Operator Overloading for '+'
+    def __add__(self, other):
+        return Session(self.chairs + other.chairs)
+
+    # String representation (what prints out)
+    def __str__(self):
+        return f"Total Chairs: {self.chairs}"
+
+s1 = Session(10)
+s2 = Session(20)
+print(s1 + s2) # Outputs: Total Chairs: 30</code></pre>
+                </section>
+
+                <section id="section-advanced" class="doc-section scroll-mt-20" data-category="Object Oriented & Advanced">
+                    <h2 class="api-h2">7. Advanced Python Concepts</h2>
+                    
+                    <h3 class="api-h3">Topic: Memory & References (Copying)</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Assignment (<code>=</code>):</div>
+                        <div class="details-desc">Does NOT copy. Both variables point to the same memory object.</div>
+                        <div class="details-term">Shallow Copy:</div>
+                        <div class="details-desc">Creates a new outer container, but nested elements still reference the original.</div>
+                        <div class="details-term">Deep Copy:</div>
+                        <div class="details-desc">Creates a completely independent clone at all nested levels.</div>
+                    </div>
+<pre><code class="language-python">import copy
+original = [[1, 2], [3, 4]]
+
+shallow = copy.copy(original)
+deep = copy.deepcopy(original)
+
+shallow[0][0] = 99
+print(original)  # [[99, 2], [3, 4]] -> Affected by shallow copy
+print(deep)      # [[1, 2], [3, 4]]  -> Completely safe</code></pre>
+
+                    <h3 class="api-h3">Topic: Generators & Decorators</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Generators:</div>
+                        <div class="details-desc">Functions using <code>yield</code>. They pause execution, returning values one at a time. Extremely memory efficient for large datasets.</div>
+                        <div class="details-term">Decorators:</div>
+                        <div class="details-desc">Functions that take another function as input, add functionality, and return it. Signified by <code>@decorator_name</code>.</div>
+                    </div>
+<pre><code class="language-python"># Generator
+def count_up(n):
+    for i in range(1, n+1):
+        yield i  # Yields value, pauses function
+
+# Decorator
+def my_logger(func):
+    def wrapper():
+        print("Starting execution...")
+        func()
+        print("Ending execution.")
+    return wrapper
+
+@my_logger
+def say_hello():
+    print("Hello!")</code></pre>
+
+                    <h3 class="api-h3">Topic: Global Interpreter Lock (GIL)</h3>
+                    <div class="details-grid">
+                        <div class="details-term">What is the GIL:</div>
+                        <div class="details-desc">A mutex in CPython that prevents multiple native threads from executing Python bytecodes at once.</div>
+                        <div class="details-term">The Impact:</div>
+                        <div class="details-desc">Python threads cannot achieve true parallelism on multi-core CPUs. For true parallel CPU-bound tasks, you must use the <code>multiprocessing</code> module instead of <code>threading</code>.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Exceptions & Files</h3>
+<pre><code class="language-python"># Exception Handling
+try:
+    result = 10 / 0
+except ZeroDivisionError as e:
+    print("Caught:", e)
+finally:
+    print("Cleanup logic here")
+
+# File Handling (Context Manager)
+with open("file.txt", "w") as f:
+    f.write("Data")</code></pre>
+                </section>
+
+                <!-- ================= COMPUTER SCIENCE ================= -->
+
+                <section id="section-dsa" class="doc-section scroll-mt-20" data-category="Computer Science">
+                    <h2 class="api-h2">8. Data Structures & Algorithms</h2>
+                    
+                    <h3 class="api-h3">Topic: Core Data Structures</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Stack (LIFO):</div>
+                        <div class="details-desc">Last In First Out. Used for undo/redo features, browser tabs. Operations: Push, Pop, Peek.</div>
+                        
+                        <div class="details-term">Queue (FIFO):</div>
+                        <div class="details-desc">First In First Out. Used for scheduling algorithms, deadlock handling, round robin.</div>
+                        
+                        <div class="details-term">Linked Lists:</div>
+                        <div class="details-desc">Nodes containing data and pointers. Types: Singly, Doubly, Circular, Multiple.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Sorting & Searching Implementations</h3>
+                    <p class="text-sm mb-3">Below is an implementation of Binary Search and Quick Sort:</p>
+<pre><code class="language-python"># Binary Search - O(log n) Time | Array MUST be sorted
+def binary_search(arr, target):
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target: return mid
+        elif arr[mid] < target: low = mid + 1
+        else: high = mid - 1
+    return -1
+
+# Quick Sort - O(n log n) Time | O(n) Space (in this simplistic form)
+def quick_sort(arr):
+    if len(arr) <= 1: return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    return quick_sort(left) + middle + quick_sort(right)</code></pre>
+
+                    <h3 class="api-h3">Topic: Complexity Reference</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Description</th>
+                                <th>Best Case</th>
+                                <th>Worst Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Linear Search</td>
+                                <td>Checks every element sequentially.</td>
+                                <td>O(1)</td>
+                                <td>O(n)</td>
+                            </tr>
+                            <tr>
+                                <td>Binary Search</td>
+                                <td>Divides a sorted array in half repeatedly.</td>
+                                <td>O(1)</td>
+                                <td>O(log n)</td>
+                            </tr>
+                            <tr>
+                                <td>Bubble Sort</td>
+                                <td>Swaps nearby elements repeatedly.</td>
+                                <td>O(n)</td>
+                                <td>O(n²)</td>
+                            </tr>
+                            <tr>
+                                <td>Quick Sort</td>
+                                <td>Uses a pivot to partition the array (Fastest).</td>
+                                <td>O(n log n)</td>
+                                <td>O(n²)</td>
+                            </tr>
+                            <tr>
+                                <td>Merge Sort</td>
+                                <td>Divide and conquer approach.</td>
+                                <td>O(n log n)</td>
+                                <td>O(n log n)</td>
+                            </tr>
+                            <tr>
+                                <td>Tim Sort</td>
+                                <td>Hybrid of Merge + Insertion sort.</td>
+                                <td>O(n)</td>
+                                <td>O(n log n)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- ================= SYSTEMS & CAREERS ================= -->
+
+                <section id="section-networking" class="doc-section scroll-mt-20" data-category="Systems & Careers">
+                    <h2 class="api-h2">9. Networking & APIs</h2>
+                    
+                    <h3 class="api-h3">Topic: API Architectures</h3>
+                    <div class="details-grid">
+                        <div class="details-term">RESTful API:</div>
+                        <div class="details-desc">Representational State Transfer. Uses standard HTTP methods. Stateless and scalable.</div>
+                        
+                        <div class="details-term">GraphQL:</div>
+                        <div class="details-desc">Query language where clients request exactly the data they need, preventing over-fetching.</div>
+                        
+                        <div class="details-term">gRPC & SOAP:</div>
+                        <div class="details-desc">gRPC uses Protocol Buffers (super fast, low latency). SOAP is an older, strict XML-based protocol.</div>
+                        
+                        <div class="details-term">Security:</div>
+                        <div class="details-desc"><strong>Encryption:</strong> Converts human text to cipher text. <strong>Decryption:</strong> Converts cipher text back.<br><strong>Authentication:</strong> Verifying identity (Who are you?). <strong>Authorization:</strong> Verifying permissions (What can you access?).</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: HTTP Status Codes</h3>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-textMuted mb-6">
+                        <li><strong class="text-textMain">100s:</strong> Informational (e.g., 100 Continue)</li>
+                        <li><strong class="text-textMain">200s:</strong> Success (e.g., 200 OK, 201 Created)</li>
+                        <li><strong class="text-textMain">300s:</strong> Redirection (e.g., 301 Moved Permanently)</li>
+                        <li><strong class="text-textMain">400s:</strong> Client Error (e.g., 400 Bad Request, 401 Unauthorized, 404 Not Found)</li>
+                        <li><strong class="text-textMain">500s:</strong> Server Error (e.g., 500 Internal Server Error)</li>
+                    </ul>
+
+                    <h3 class="api-h3">Topic: cURL Command Tutorial</h3>
+                    <p class="text-sm mb-3">Command-line tool for interacting with APIs directly from the terminal.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Flag</th>
+                                <th>Description & Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Method</td>
+                                <td><code>-X</code></td>
+                                <td>Changes verb. <code>curl -X POST url</code></td>
+                            </tr>
+                            <tr>
+                                <td>Headers</td>
+                                <td><code>-H</code></td>
+                                <td>Passes format/auth. <code>-H "Content-Type: application/json"</code></td>
+                            </tr>
+                            <tr>
+                                <td>Data</td>
+                                <td><code>-d</code></td>
+                                <td>Payload body. <code>-d '{"key": "val"}'</code></td>
+                            </tr>
+                            <tr>
+                                <td>Verbose</td>
+                                <td><code>-v</code></td>
+                                <td>Shows full request/response handshake.</td>
+                            </tr>
+                            <tr>
+                                <td>Header Only</td>
+                                <td><code>-I</code></td>
+                                <td>Checks if API is alive (HEAD request).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="section-ecosystem-tools" class="doc-section scroll-mt-20" data-category="Systems & Careers">
+                    <h2 class="api-h2">10. Ecosystem, Tools & Placement</h2>
+                    
+                    <h3 class="api-h3">Topic: Python Hierarchy</h3>
+                    <p class="text-sm mb-3">Code scaling architecture:</p>
+                    <div class="bg-surface border border-border p-3 rounded text-sm text-textMuted font-mono text-center mb-6">
+                        Functions → Modules → Packages → Libraries → Frameworks
+                    </div>
+
+                    <h3 class="api-h3">Topic: SDLC & Machine Learning</h3>
+                    <div class="details-grid">
+                        <div class="details-term">SDLC Methods:</div>
+                        <div class="details-desc">Software Development Life Cycle. Methodologies include Waterfall (linear), Agile (iterative), SCRUM (sprints & daily standups), and XP (eXtreme Programming).</div>
+                        
+                        <div class="details-term">ML Types:</div>
+                        <div class="details-desc"><strong>Supervised:</strong> Labeled data. <strong>Unsupervised:</strong> Unlabeled data. <strong>Reinforcement:</strong> Trial/error with feedback. <strong>Fine-Tuning:</strong> Adjusting pre-trained models on specialized domains.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Bun vs NPM</h3>
+                    <div class="details-grid mt-4">
+                        <div class="details-term">Why Bun:</div>
+                        <div class="details-desc">A blazing fast JavaScript runtime meant to replace Node/NPM. Eliminates friction with auto-installs.</div>
+                    </div>
+                    <table class="mt-2">
+                        <thead><tr><th>NPM Command</th><th>Bun Equivalent</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>npm install</code></td><td><code>bun i</code></td></tr>
+                            <tr><td><code>npm install &lt;name&gt;</code></td><td><code>bun a &lt;name&gt;</code></td></tr>
+                            <tr><td><code>npm run dev</code></td><td><code>bun dev</code></td></tr>
+                            <tr><td><code>npx &lt;pkg&gt;</code></td><td><code>bunx &lt;pkg&gt;</code></td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="api-h3">Topic: Placement Terminology</h3>
+                    <div class="details-grid">
+                        <div class="details-term">JD:</div>
+                        <div class="details-desc">Job Description. Crucial for resume shortlisting.</div>
+                        
+                        <div class="details-term">Moonlighting:</div>
+                        <div class="details-desc">Handling two different full-time jobs/tasks simultaneously (often against company policy).</div>
+                        
+                        <div class="details-term">Interview Flow:</div>
+                        <div class="details-desc">Resume Shortlisting → Assessment Tests (MCQ/Coding) → Problem Solving → Technical/Manager Rounds → HR (Salary Negotiation).</div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR (On this page) -->
+    <aside id="right-sidebar" class="w-64 fixed inset-y-0 right-0 py-10 px-6 overflow-y-auto hidden xl:block border-l border-border bg-bg z-30">
+        <div class="text-xs font-semibold text-textMain mb-4 uppercase tracking-wider pt-8">On this page</div>
+        <nav class="space-y-1 border-l border-border pl-3" id="dynamic-right-nav">
+            <!-- Injected via JS based on H3s in the active H2 -->
+        </nav>
+    </aside>
+</div>
+
+    <script>
+        // ==========================================
+        // STATE & ROUTING CONTROLS (Home vs Docs)
+        // ==========================================
+        function enterDocsView() {
+            const docs = document.getElementById('docs-container');
+            if (docs) {
+                docs.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function goToHome() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.body.classList.remove('scrolled-docs');
+            localStorage.removeItem('docs-viewed');
+        }
+
+        function enterDocsAndScroll(selector) {
+            const target = document.querySelector(selector);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // ==========================================
+        // THEME MANAGEMENT SYSTEM
+        // ==========================================
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcons(newTheme);
+        }
+
+        function updateThemeIcons(theme) {
+            const icons = document.querySelectorAll('.theme-icon');
+            icons.forEach(icon => {
+                icon.innerText = theme === 'dark' ? 'light_mode' : 'dark_mode';
+            });
+        }
+
+        // Set initial theme attribute immediately before DOM to avoid layout flicker
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Global scroll reveal listener
+        window.addEventListener('scroll', () => {
+            const threshold = window.innerHeight * 0.95;
+            if (window.scrollY > threshold) {
+                document.body.classList.add('scrolled-docs');
+                localStorage.setItem('docs-viewed', 'true');
+            } else {
+                document.body.classList.remove('scrolled-docs');
+                localStorage.removeItem('docs-viewed');
+            }
+        });
+
+        // Restore docs view state immediately if previously opened
+        if (localStorage.getItem('docs-viewed') === 'true') {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const docs = document.getElementById('docs-container');
+                    if (docs) {
+                        docs.scrollIntoView({ behavior: 'auto' });
+                    }
+                }, 50);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update theme icons state on load
+            updateThemeIcons(localStorage.getItem('theme') || 'dark');
+
+            // Bind all theme switches
+            const themeToggles = document.querySelectorAll('.theme-toggle');
+            themeToggles.forEach(btn => {
+                btn.addEventListener('click', toggleTheme);
+            });
+
+            const leftNavContainer = document.getElementById('dynamic-left-nav');
+            const rightNavContainer = document.getElementById('dynamic-right-nav');
+            const sections = document.querySelectorAll('.doc-section');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const leftSidebar = document.getElementById('left-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            let activeH2Id = null;
+
+            // 1. Build Categorized Left Nav (H2s grouped by data-category)
+            let navHTML = '';
+            let currentCategory = '';
+            
+            sections.forEach(section => {
+                const h2 = section.querySelector('h2');
+                const category = section.getAttribute('data-category');
+                
+                if (h2 && category) {
+                    // Create a new category header if the category changes
+                    if (category !== currentCategory) {
+                        navHTML += `<div class="text-[10px] font-bold text-textMuted mt-8 mb-3 px-3 uppercase tracking-widest">${category}</div>`;
+                        currentCategory = category;
+                    }
+                    
+                    const id = section.id;
+                    const text = h2.innerText.replace(/^[0-9.]+\s*/, ''); // Remove leading numbers
+                    navHTML += `<a href="#${id}" class="left-nav-item mb-0.5" data-target-id="${id}">${text}</a>`;
+                }
+            });
+            
+            leftNavContainer.innerHTML = navHTML;
+
+            // 2. Build Right Nav dynamically based on active H2
+            function updateRightNav(sectionId) {
+                if (activeH2Id === sectionId) return; // Prevent unnecessary rebuilds
+                activeH2Id = sectionId;
+                
+                rightNavContainer.innerHTML = ''; // Clear current
+                
+                const section = document.getElementById(sectionId);
+                if (!section) return;
+
+                const h3s = section.querySelectorAll('h3');
+                if (h3s.length === 0) {
+                    rightNavContainer.innerHTML = '<span class="text-textMuted text-xs">No subtopics</span>';
+                    return;
+                }
+
+                h3s.forEach((h3, index) => {
+                    // Assign ID to h3 if it doesn't have one
+                    if (!h3.id) h3.id = `${sectionId}-sub-${index}`;
+                    
+                    const text = h3.innerText.replace(/^Topic:\s*/i, '');
+                    
+                    const a = document.createElement('a');
+                    a.href = `#${h3.id}`;
+                    a.className = 'right-nav-item';
+                    a.innerText = text;
+                    a.dataset.targetId = h3.id;
+                    rightNavContainer.appendChild(a);
+                });
+            }
+
+            // 3. Scroll Spy Implementation
+            const observerOptions = {
+                root: null,
+                rootMargin: '-10% 0px -80% 0px',
+                threshold: 0
+            };
+
+            const sectionObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        
+                        // Update Left Nav active state
+                        document.querySelectorAll('.left-nav-item').forEach(link => {
+                            link.classList.toggle('active', link.dataset.targetId === id);
+                        });
+
+                        // Rebuild & Update Right Nav
+                        updateRightNav(id);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(sec => sectionObserver.observe(sec));
+
+            // Right Nav Scroll Spy (for H3s)
+            const h3Observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.right-nav-item').forEach(link => {
+                            link.classList.toggle('active', link.dataset.targetId === entry.target.id);
+                        });
+                    }
+                });
+            }, { rootMargin: '-10% 0px -80% 0px' });
+
+            // Observe all H3s dynamically added
+            document.querySelectorAll('h3').forEach(h3 => h3Observer.observe(h3));
+
+            // 4. Mobile Menu Toggle
+            function toggleMenu() {
+                const isClosed = leftSidebar.classList.contains('-translate-x-full');
+                if (isClosed) {
+                    leftSidebar.classList.remove('-translate-x-full');
+                    overlay.classList.remove('hidden');
+                } else {
+                    leftSidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('hidden');
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+            
+            document.querySelectorAll('.left-nav-item').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) toggleMenu();
+                });
+            });
+
+             // Initialize right nav for first section
+             if (sections.length > 0) updateRightNav(sections[0].id);
+
+             // ==========================================
+             // UX ENHANCEMENT: CODE BLOCK COPY BUTTONS
+             // ==========================================
+             document.querySelectorAll('pre').forEach(preBlock => {
+                 const btn = document.createElement('button');
+                 btn.className = 'code-copy-btn';
+                 btn.innerHTML = '<span class="material-symbols-rounded text-[16px]">content_copy</span>';
+                 btn.title = 'Copy code';
+                 
+                 btn.addEventListener('click', async () => {
+                     const code = preBlock.querySelector('code');
+                     const textToCopy = code ? code.innerText : preBlock.innerText;
+                     
+                     try {
+                         await navigator.clipboard.writeText(textToCopy);
+                         btn.innerHTML = '<span class="material-symbols-rounded text-[16px]">check</span>';
+                         btn.classList.add('copied');
+                         btn.title = 'Copied!';
+                         
+                         setTimeout(() => {
+                             btn.innerHTML = '<span class="material-symbols-rounded text-[16px]">content_copy</span>';
+                             btn.classList.remove('copied');
+                             btn.title = 'Copy code';
+                         }, 2000);
+                     } catch (err) {
+                         console.error('Failed to copy text: ', err);
+                     }
+                 });
+                 preBlock.appendChild(btn);
+             });
+
+             // ==========================================
+             // UX ENHANCEMENT: TOAST NOTIFICATIONS
+             // ==========================================
+             const toastContainer = document.getElementById('toast-container');
+             function showToast(message) {
+                 const toast = document.createElement('div');
+                 toast.className = 'bg-zinc-800 border border-zinc-700 text-white text-xs px-4 py-3 rounded-lg shadow-xl flex items-center gap-2 transform translate-y-4 opacity-0 transition-all duration-300 pointer-events-auto';
+                 toast.innerHTML = `
+                     <span class="material-symbols-rounded text-emerald-400 text-lg">check_circle</span>
+                     <span>${message}</span>
+                 `;
+                 
+                 toastContainer.appendChild(toast);
+                 
+                 // Animate in
+                 setTimeout(() => {
+                     toast.classList.remove('translate-y-4', 'opacity-0');
+                 }, 10);
+                 
+                 // Animate out
+                 setTimeout(() => {
+                     toast.classList.add('translate-y-4', 'opacity-0');
+                     setTimeout(() => {
+                         toast.remove();
+                     }, 300);
+                 }, 3000);
+             }
+
+             // ==========================================
+             // UX ENHANCEMENT: SCROLL TO TOP BUTTON
+             // ==========================================
+             const backToTopBtn = document.getElementById('back-to-top');
+             window.addEventListener('scroll', () => {
+                 if (window.scrollY > 300) {
+                     backToTopBtn.classList.remove('translate-y-20', 'opacity-0');
+                     backToTopBtn.classList.add('translate-y-0', 'opacity-100');
+                 } else {
+                     backToTopBtn.classList.add('translate-y-20', 'opacity-0');
+                     backToTopBtn.classList.remove('translate-y-0', 'opacity-100');
+                 }
+             });
+             
+             backToTopBtn.addEventListener('click', () => {
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+             });
+
+             // ==========================================
+             // UX ENHANCEMENT: DYNAMIC SEARCH MODAL (Ctrl+K)
+             // ==========================================
+             const searchModal = document.getElementById('search-modal');
+             const searchInput = document.getElementById('search-input');
+             const searchResults = document.getElementById('search-results');
+             const searchBarTrigger = document.querySelector('aside .cursor-pointer');
+             
+             // 1. Build search index dynamically from DOM structure
+             const searchIndex = [];
+             sections.forEach(section => {
+                 const category = section.getAttribute('data-category') || 'General';
+                 const h2 = section.querySelector('h2');
+                 const h2Text = h2 ? h2.innerText : '';
+                 
+                 // Index H2
+                 searchIndex.push({
+                     type: 'section',
+                     category: category,
+                     title: h2Text.replace(/^[0-9.]+\s*/, ''),
+                     subtitle: category,
+                     anchor: `#${section.id}`,
+                     text: ''
+                 });
+                 
+                 // Index H3s and their following contents
+                 section.querySelectorAll('h3').forEach(h3 => {
+                     const h3Text = h3.innerText.replace(/^Topic:\s*/i, '');
+                     let sibling = h3.nextElementSibling;
+                     let textContent = '';
+                     
+                     // Read sibling text content until next H3 or next H2
+                     while (sibling && sibling.tagName !== 'H3' && sibling.tagName !== 'H2') {
+                         if (sibling.classList && sibling.classList.contains('details-grid')) {
+                             textContent += ' ' + sibling.innerText;
+                         } else if (sibling.tagName !== 'PRE') {
+                             textContent += ' ' + sibling.textContent;
+                         }
+                         sibling = sibling.nextElementSibling;
+                     }
+                     
+                     searchIndex.push({
+                         type: 'topic',
+                         category: category,
+                         title: h3Text,
+                         subtitle: `${category} > ${h2Text.replace(/^[0-9.]+\s*/, '')}`,
+                         anchor: h3.id ? `#${h3.id}` : `#${section.id}`,
+                         text: textContent.trim().replace(/\s+/g, ' ').slice(0, 180) + (textContent.length > 180 ? '...' : '')
+                     });
+                 });
+             });
+
+             let selectedIndex = -1;
+             let currentResults = [];
+
+             function openSearch() {
+                 searchModal.classList.remove('hidden');
+                 searchModal.classList.add('flex');
+                 document.body.style.overflow = 'hidden';
+                 setTimeout(() => searchInput.focus(), 50);
+             }
+
+             function closeSearch() {
+                 searchModal.classList.add('hidden');
+                 searchModal.classList.remove('flex');
+                 document.body.style.overflow = '';
+                 searchInput.value = '';
+                 renderResults([]);
+             }
+
+             if (searchBarTrigger) {
+                 searchBarTrigger.addEventListener('click', openSearch);
+             }
+
+             // Global key shortcuts
+             window.addEventListener('keydown', (e) => {
+                 if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                     e.preventDefault();
+                     if (searchModal.classList.contains('hidden')) {
+                         openSearch();
+                     } else {
+                         closeSearch();
+                     }
+                 }
+                 if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
+                     closeSearch();
+                 }
+             });
+
+             searchModal.addEventListener('click', (e) => {
+                 if (e.target === searchModal) {
+                     closeSearch();
+                 }
+             });
+
+             function renderResults(results) {
+                 currentResults = results;
+                 selectedIndex = -1;
+                 
+                 if (results.length === 0) {
+                     if (searchInput.value.trim() === '') {
+                         searchResults.innerHTML = '<div class="text-xs text-textMuted p-3 text-center">Type something to search...</div>';
+                     } else {
+                         searchResults.innerHTML = '<div class="text-xs text-textMuted p-3 text-center">No results found for "' + escapeHtml(searchInput.value) + '"</div>';
+                     }
+                     return;
+                 }
+                 
+                 let html = '';
+                 results.forEach((item, idx) => {
+                     html += `
+                         <a href="${item.anchor}" class="search-result-item flex flex-col gap-0.5 p-3 rounded-md hover:bg-surface text-left transition-colors cursor-pointer" data-index="${idx}">
+                             <div class="text-[9px] text-accentText font-semibold uppercase tracking-wider">${escapeHtml(item.subtitle)}</div>
+                             <div class="text-sm text-textMain font-medium">${escapeHtml(item.title)}</div>
+                             ${item.text ? `<div class="text-xs text-textMuted mt-0.5 line-clamp-1">${escapeHtml(item.text)}</div>` : ''}
+                         </a>
+                     `;
+                 });
+                 searchResults.innerHTML = html;
+                 
+                 // Handle clicks
+                 searchResults.querySelectorAll('.search-result-item').forEach(el => {
+                     el.addEventListener('click', (e) => {
+                         e.preventDefault();
+                         const anchor = el.getAttribute('href');
+                         navigateToAnchor(anchor);
+                     });
+                 });
+             }
+
+             function navigateToAnchor(anchor) {
+                 closeSearch();
+                 const target = document.querySelector(anchor);
+                 if (target) {
+                     target.scrollIntoView({ behavior: 'smooth' });
+                     
+                     // Highlight target temporarily
+                     target.classList.add('search-nav-highlight');
+                     setTimeout(() => {
+                         target.classList.remove('search-nav-highlight');
+                     }, 1500);
+                 }
+             }
+
+             function escapeHtml(str) {
+                 return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+             }
+
+             // Search typing listener
+             searchInput.addEventListener('input', () => {
+                 const query = searchInput.value.toLowerCase().trim();
+                 if (query === '') {
+                     renderResults([]);
+                     return;
+                 }
+                 
+                 const matches = [];
+                 searchIndex.forEach(item => {
+                     const titleIdx = item.title.toLowerCase().indexOf(query);
+                     const textIdx = item.text.toLowerCase().indexOf(query);
+                     const catIdx = item.category.toLowerCase().indexOf(query);
+                     
+                     if (titleIdx !== -1 || textIdx !== -1 || catIdx !== -1) {
+                         let score = 0;
+                         if (titleIdx === 0) score += 100;
+                         else if (titleIdx !== -1) score += 50;
+                         if (catIdx !== -1) score += 30;
+                         if (textIdx !== -1) score += 10;
+                         
+                         matches.push({ ...item, score });
+                     }
+                 });
+                 
+                 matches.sort((a, b) => b.score - a.score);
+                 renderResults(matches.slice(0, 8));
+             });
+
+             // Keyboard Navigation inside modal
+             searchInput.addEventListener('keydown', (e) => {
+                 const items = searchResults.querySelectorAll('.search-result-item');
+                 if (items.length === 0) return;
+                 
+                 if (e.key === 'ArrowDown') {
+                     e.preventDefault();
+                     selectedIndex = (selectedIndex + 1) % items.length;
+                     updateActiveItem(items);
+                 } else if (e.key === 'ArrowUp') {
+                     e.preventDefault();
+                     selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+                     updateActiveItem(items);
+                 } else if (e.key === 'Enter') {
+                     e.preventDefault();
+                     if (selectedIndex >= 0 && selectedIndex < items.length) {
+                         items[selectedIndex].click();
+                     } else if (items.length > 0) {
+                         items[0].click();
+                     }
+                 }
+             });
+
+             function updateActiveItem(items) {
+                 items.forEach((item, idx) => {
+                     if (idx === selectedIndex) {
+                         item.classList.add('active');
+                         item.scrollIntoView({ block: 'nearest' });
+                     } else {
+                         item.classList.remove('active');
+                     }
+                 });
+             }
+         });
+    </script>
+
+    <!-- SEARCH MODAL -->
+    <div id="search-modal" class="fixed inset-0 bg-black/70 z-[100] hidden backdrop-blur-sm items-center justify-center p-4">
+        <div class="bg-bg border border-border w-full max-w-lg rounded-lg shadow-2xl flex flex-col overflow-hidden max-h-[80vh]">
+            <!-- Search Input Header -->
+            <div class="flex items-center gap-3 px-4 py-3 border-b border-border bg-surface">
+                <span class="material-symbols-rounded text-textMuted text-[20px]">search</span>
+                <input type="text" id="search-input" placeholder="Search reference docs..." class="bg-transparent text-white placeholder-textMuted text-sm outline-none w-full" autocomplete="off" />
+                <span class="text-[9px] border border-border px-1.5 py-0.5 rounded bg-bg text-textMuted">ESC</span>
+            </div>
+            <!-- Search Results -->
+            <div id="search-results" class="flex-1 overflow-y-auto p-2 space-y-0.5 max-h-[300px]">
+                <div class="text-xs text-textMuted p-3 text-center">Type something to search...</div>
+            </div>
+            <!-- Search Footer -->
+            <div class="px-4 py-2 border-t border-border bg-surface flex items-center justify-between text-[11px] text-[#71717a]">
+                <div class="flex items-center gap-3">
+                    <span class="flex items-center gap-1"><span class="material-symbols-rounded text-[12px]">keyboard_arrow_up</span><span class="material-symbols-rounded text-[12px]">keyboard_arrow_down</span> Navigate</span>
+                    <span class="flex items-center gap-1"><span class="material-symbols-rounded text-[12px]">keyboard_return</span> Select</span>
+                </div>
+                <span>Search powered by AKR-Ref</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 p-3 bg-zinc-800 border border-zinc-700 text-textMuted hover:text-white rounded-full shadow-lg transition-all duration-300 translate-y-20 opacity-0 z-50 hover:bg-zinc-700 flex items-center justify-center" title="Scroll to Top">
+        <span class="material-symbols-rounded">arrow_upward</span>
+    </button>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-6 left-6 z-[110] pointer-events-none flex flex-col gap-2"></div>
+    
+    <!-- Prism.js for Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+</body>
+</html>
