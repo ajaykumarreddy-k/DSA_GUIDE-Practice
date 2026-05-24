@@ -387,28 +387,37 @@
              you go from front (bottom) to back (top), exactly
              replicating a physical multi-tab folder cover.
         ══════════════════════════════════════════════ -->
-        <div class="relative w-full flex-shrink-0" style="height: clamp(160px, 24vh, 210px);">
+        <div class="relative w-full flex-shrink-0" style="height: clamp(210px, 30vh, 260px);">
 
-            <!-- Row 3 — furthest back, starts rightmost (~55% from left) -->
-            <div class="absolute inset-x-0 flex" style="bottom: 128px; padding-left: clamp(52%, 55%, 60%); z-index: 1; padding-right: 0;">
-                <div onclick="enterDocsAndScroll('#section-networking')"
-                     class="folder-tab bg-[#d4cdc5] text-[#1a3d2e]">
-                    <span>( ECOSYSTEM )</span>
+            <!-- Row 4 — furthest back, rightmost -->
+            <div class="absolute inset-x-0 flex" style="bottom: 164px; padding-left: clamp(65%, 70%, 75%); z-index: 0; padding-right: 0;">
+                <div onclick="enterDocsAndScroll('#section-placement-prep')"
+                     class="folder-tab bg-[#c8c1b9] text-[#1a3d2e]">
+                    <span>( PLACEMENT )</span>
                 </div>
                 <div class="flex-1 bg-transparent"></div>
             </div>
 
-            <!-- Row 2 — middle depth, starts at ~30% from left -->
-            <div class="absolute inset-x-0 flex" style="bottom: 88px; padding-left: clamp(28%, 32%, 36%); z-index: 2; padding-right: 0;">
-                <div onclick="enterDocsAndScroll('#section-dsa')"
+            <!-- Row 3 — middle-back depth -->
+            <div class="absolute inset-x-0 flex" style="bottom: 124px; padding-left: clamp(48%, 52%, 56%); z-index: 1; padding-right: 0;">
+                <div onclick="enterDocsAndScroll('#section-dbms-intro')"
+                     class="folder-tab bg-[#b0c8b3] text-[#05241e]">
+                    <span>( DBMS &amp; SQL )</span>
+                </div>
+                <div class="flex-1 bg-transparent"></div>
+            </div>
+
+            <!-- Row 2 — middle depth -->
+            <div class="absolute inset-x-0 flex" style="bottom: 84px; padding-left: clamp(32%, 36%, 40%); z-index: 2; padding-right: 0;">
+                <div onclick="enterDocsAndScroll('#section-dsa-leetcode-prep')"
                      class="folder-tab bg-[#a2b997] text-[#05241e]">
                     <span>( DSA &amp; ALGO )</span>
                 </div>
                 <div class="flex-1 bg-transparent"></div>
             </div>
 
-            <!-- Row 1 — near-front, starts at ~12% from left -->
-            <div class="absolute inset-x-0 flex" style="bottom: 48px; padding-left: clamp(8%, 12%, 16%); z-index: 3; padding-right: 0;">
+            <!-- Row 1 — near-front -->
+            <div class="absolute inset-x-0 flex" style="bottom: 44px; padding-left: clamp(16%, 20%, 24%); z-index: 3; padding-right: 0;">
                 <div onclick="enterDocsAndScroll('#section-basics')"
                      class="folder-tab bg-[#e5e0d8] text-[#1a3d2e]">
                     <span>( BASICS )</span>
@@ -416,7 +425,7 @@
                 <div class="flex-1 bg-transparent"></div>
             </div>
 
-            <!-- Row 0 — front row, flush left: year tab + OOP tab -->
+            <!-- Row 0 — front row, flush left: year tab + OOP tab + Ecosystem tab -->
             <div class="absolute inset-x-0 flex" style="bottom: 4px; z-index: 4;">
                 <!-- Year tab merges into canvas background -->
                 <div class="folder-tab bg-[#05241e] text-[#c3e2cc]/60 border border-[#0e3d31] cursor-default flex-shrink-0">
@@ -426,6 +435,11 @@
                 <div onclick="enterDocsAndScroll('#section-oop')"
                      class="folder-tab bg-[#9dc183] text-[#05241e] -ml-px flex-shrink-0">
                     <span>( BRANDING / OOP )</span>
+                </div>
+                <!-- Ecosystem warm stone tab -->
+                <div onclick="enterDocsAndScroll('#section-networking')"
+                     class="folder-tab bg-[#d4cdc5] text-[#1a3d2e] -ml-px flex-shrink-0">
+                    <span>( ECOSYSTEM )</span>
                 </div>
                 <!-- Canvas fill to right edge -->
                 <div class="flex-1 bg-transparent"></div>
@@ -545,11 +559,13 @@
         <div class="flex items-center cursor-pointer" onclick="goToHome()" title="Back to Home">
             <img src="Logo/A.png" alt="AKR-Ref" class="h-9 w-auto object-contain logo-img">
         </div>
-        <nav class="flex items-center gap-8 text-sm text-textMuted font-medium">
+        <nav class="flex items-center gap-6 text-sm text-textMuted font-medium">
             <a href="#section-basics" class="hover:text-textMain transition-colors">Python</a>
             <a href="#section-oop" class="hover:text-textMain transition-colors">Adv Python</a>
-            <a href="#section-dsa" class="hover:text-textMain transition-colors">Data structures</a>
-            <a href="#section-networking" class="hover:text-textMain transition-colors">System Architec Processes</a>
+            <a href="#section-dsa" class="hover:text-textMain transition-colors">DSA Basics</a>
+            <a href="#section-dbms-intro" class="hover:text-textMain transition-colors">DBMS &amp; SQL</a>
+            <a href="#section-dsa-leetcode-prep" class="hover:text-textMain transition-colors">LeetCode Prep</a>
+            <a href="#section-placement-prep" class="hover:text-textMain transition-colors">Interview &amp; HR</a>
             <!-- Theme Toggle inside Docs -->
             <button class="theme-toggle p-2 rounded-full border border-border bg-surface text-textMuted hover:text-textMain transition-all shadow-sm active:scale-95 flex items-center justify-center ml-2" title="Toggle Theme">
                 <span class="material-symbols-rounded text-[18px] theme-icon">light_mode</span>
@@ -1204,6 +1220,856 @@ def quick_sort(arr):
                         
                         <div class="details-term">Interview Flow:</div>
                         <div class="details-desc">Resume Shortlisting → Assessment Tests (MCQ/Coding) → Problem Solving → Technical/Manager Rounds → HR (Salary Negotiation).</div>
+                    </div>
+                </section>
+
+                <!-- ================= DATABASE SYSTEMS & SQL ================= -->
+
+                <section id="section-dbms-intro" class="doc-section scroll-mt-20" data-category="DBMS &amp; SQL">
+                    <h2 class="api-h2">11. DBMS &amp; Architecture</h2>
+                    
+                    <h3 class="api-h3">Topic: DBMS Overview</h3>
+                    <div class="details-grid">
+                        <div class="details-term">What is a DBMS:</div>
+                        <div class="details-desc">A Database Management System (DBMS) is software that manages databases, helping you store, organize, update, retrieve, and keep data safe.</div>
+                        <div class="details-term">Analogy:</div>
+                        <div class="details-desc">Think of a DBMS like an organized cupboard in your home.
+                            <br>• <strong>Files</strong> = clothes
+                            <br>• <strong>Shelves</strong> = tables
+                            <br>• <strong>Cupboard</strong> = database
+                            <br>• <strong>You</strong> = user
+                            <br>• <strong>Locks</strong> = security
+                            <br>Without a DBMS, data becomes a messy wardrobe where you throw clothes everywhere!
+                        </div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Types of DBMS</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-4">
+                        <div class="bg-surface/50 border border-border p-4 rounded-lg">
+                            <div class="text-accentText font-bold text-xs uppercase tracking-wider mb-2">1. Relational (RDBMS)</div>
+                            <p class="text-xs text-textMuted leading-relaxed mb-2">Stores data in tables (rows &amp; columns). High consistency and structured schemas.</p>
+                            <span class="text-[10px] bg-bg border border-border px-2 py-0.5 rounded text-white font-mono">MySQL, PostgreSQL</span>
+                        </div>
+                        <div class="bg-surface/50 border border-border p-4 rounded-lg">
+                            <div class="text-accentText font-bold text-xs uppercase tracking-wider mb-2">2. Hierarchical</div>
+                            <p class="text-xs text-textMuted leading-relaxed mb-2">Organized in a tree-like parent-child structure where nodes have one parent.</p>
+                            <span class="text-[10px] bg-bg border border-border px-2 py-0.5 rounded text-white font-mono">IBM IMS</span>
+                        </div>
+                        <div class="bg-surface/50 border border-border p-4 rounded-lg">
+                            <div class="text-accentText font-bold text-xs uppercase tracking-wider mb-2">3. Network</div>
+                            <p class="text-xs text-textMuted leading-relaxed mb-2">Graph-like structure where nodes can have multiple parents. Used in telecom networks.</p>
+                            <span class="text-[10px] bg-bg border border-border px-2 py-0.5 rounded text-white font-mono">IDS, Integrated Data Store</span>
+                        </div>
+                        <div class="bg-surface/50 border border-border p-4 rounded-lg">
+                            <div class="text-accentText font-bold text-xs uppercase tracking-wider mb-2">4. NoSQL (Non-Relational)</div>
+                            <p class="text-xs text-textMuted leading-relaxed mb-2">Flexible, fast, handles unstructured/semi-structured data dynamically.</p>
+                            <span class="text-[10px] bg-bg border border-border px-2 py-0.5 rounded text-white font-mono">MongoDB, Redis, Neo4j</span>
+                        </div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: NoSQL Paradigms</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Document DB:</div>
+                        <div class="details-desc">Stores records as semi-structured document objects (JSON/BSON). <em>Example: MongoDB</em></div>
+                        
+                        <div class="details-term">Key-Value DB:</div>
+                        <div class="details-desc">Stores simple associative key-value dictionaries. Superfast in-memory lookup. <em>Example: Redis</em></div>
+                        
+                        <div class="details-term">Column DB:</div>
+                        <div class="details-desc">Stores data in tables grouped by columns rather than rows. <em>Example: Apache Cassandra</em></div>
+                        
+                        <div class="details-term">Graph DB:</div>
+                        <div class="details-desc">Uses nodes (entities) and edges (relations) to represent linked graphs. <em>Example: Neo4j</em></div>
+                    </div>
+                </section>
+
+                <section id="section-dbms-er-model" class="doc-section scroll-mt-20" data-category="DBMS &amp; SQL">
+                    <h2 class="api-h2">12. ER Model &amp; Attributes</h2>
+                    
+                    <h3 class="api-h3">Topic: ER Model Basics</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Definition:</div>
+                        <div class="details-desc">The Entity-Relationship (ER) model is a conceptual schema diagram used to map database entities, properties, and connections before creating physical tables.</div>
+                        
+                        <div class="details-term">Entity:</div>
+                        <div class="details-desc">A real-world object that exists independently and has unique properties. <em>Examples: Student, Employee, Car, Order.</em></div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Attribute Types</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Simple:</div>
+                        <div class="details-desc">Atomic values that cannot be broken down further (e.g., <code>Age</code>, <code>Salary</code>).</div>
+                        
+                        <div class="details-term">Composite:</div>
+                        <div class="details-desc">Properties that can be divided into smaller sub-attributes (e.g., <code>Name</code> → <code>first_name</code>, <code>last_name</code>).</div>
+                        
+                        <div class="details-term">Multivalued:</div>
+                        <div class="details-desc">Can hold multiple values for a single entity (e.g., <code>Phone Numbers</code>, <code>Emails</code>). Represented as double ovals in ER.</div>
+                        
+                        <div class="details-term">Derived:</div>
+                        <div class="details-desc">Calculated dynamically from another attribute rather than stored directly (e.g., <code>Age</code> derived from <code>Date_of_birth</code>).</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Relationships &amp; Cardinality</h3>
+                    <div class="details-grid">
+                        <div class="details-term">One-to-One (1:1):</div>
+                        <div class="details-desc">One entity record maps to exactly one other. <em>Example: One person has one passport.</em></div>
+                        
+                        <div class="details-term">One-to-Many (1:M):</div>
+                        <div class="details-desc">One record maps to multiple records in the other table. <em>Example: One teacher teaches many students.</em></div>
+                        
+                        <div class="details-term">Many-to-One (M:1):</div>
+                        <div class="details-desc">Multiple records map to a single record. <em>Example: Many employees report to one manager.</em></div>
+                        
+                        <div class="details-term">Many-to-Many (M:N):</div>
+                        <div class="details-desc">Many records on both sides connect to each other. Requires a junction table. <em>Example: Students take many courses, and courses have many students.</em></div>
+                    </div>
+                </section>
+
+                <section id="section-dbms-keys" class="doc-section scroll-mt-20" data-category="DBMS &amp; SQL">
+                    <h2 class="api-h2">13. Database Keys</h2>
+                    
+                    <h3 class="api-h3">Topic: Key Types</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Primary Key (PK):</div>
+                        <div class="details-desc">Uniquely identifies a row in a table. It cannot be NULL and must contain unique values (e.g., <code>StudentID</code>).</div>
+                        
+                        <div class="details-term">Foreign Key (FK):</div>
+                        <div class="details-desc">A column or group of columns that references a primary key in another table. It enforces referential integrity.</div>
+                        
+                        <div class="details-term">Composite Key:</div>
+                        <div class="details-desc">A key that consists of more than one column to uniquely identify a row (e.g., <code>OrderID + ProductID</code>).</div>
+                        
+                        <div class="details-term">Candidate Key:</div>
+                        <div class="details-desc">A minimal set of attributes that can uniquely identify a row. One becomes the Primary Key, while others become Alternate Keys (e.g., <code>Email</code>, <code>Phone</code>, <code>RollNumber</code>).</div>
+                        
+                        <div class="details-term">Super Key:</div>
+                        <div class="details-desc">A set of one or more attributes that can uniquely identify a row. A super key can contain extra attributes that are not strictly necessary (e.g., <code>StudentID + Email</code>).</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Key Relationships Code</h3>
+<pre><code class="language-sql">-- Enforcing PK and FK relationships
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE, -- Candidate Key
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);</code></pre>
+                </section>
+
+                <section id="section-dbms-normalization" class="doc-section scroll-mt-20" data-category="DBMS &amp; SQL">
+                    <h2 class="api-h2">14. Normalization (1NF, 2NF, 3NF, BCNF)</h2>
+                    
+                    <h3 class="api-h3">Topic: Goal &amp; Objective</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Objective:</div>
+                        <div class="details-desc">Normalization is a systematic data design process used to remove data duplicates (redundancy), reduce storage space, prevent consistency anomalies, and optimize index lookups.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: First Normal Form (1NF)</h3>
+                    <p class="text-sm mb-3">Rule: Every column must contain atomic (single) values. No repeating groups.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                        <div class="bg-surface/50 border border-red-500/20 p-4 rounded-lg">
+                            <div class="text-red-400 font-semibold text-xs uppercase mb-2">❌ NOT in 1NF (Repeating Groups)</div>
+                            <table class="w-full text-xs">
+                                <thead><tr><th>ID</th><th>Name</th><th>Phone</th></tr></thead>
+                                <tbody>
+                                    <tr><td>1</td><td>Alex</td><td>9876, 7654, 1234</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-surface/50 border border-emerald-500/20 p-4 rounded-lg">
+                            <div class="text-emerald-400 font-semibold text-xs uppercase mb-2">✔ Convert to 1NF (Atomic Values)</div>
+                            <table class="w-full text-xs">
+                                <thead><tr><th>ID</th><th>Name</th><th>Phone</th></tr></thead>
+                                <tbody>
+                                    <tr><td>1</td><td>Alex</td><td>9876</td></tr>
+                                    <tr><td>1</td><td>Alex</td><td>7654</td></tr>
+                                    <tr><td>1</td><td>Alex</td><td>1234</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Second Normal Form (2NF)</h3>
+                    <p class="text-sm mb-3">Rule: Must be in 1NF, and all non-key columns must fully depend on the entire Primary Key. No <strong>partial dependency</strong> (non-key depending on only part of a composite primary key).</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                        <div class="bg-surface/50 border border-red-500/20 p-4 rounded-lg">
+                            <div class="text-red-400 font-semibold text-xs uppercase mb-2">❌ NOT in 2NF</div>
+                            <p class="text-xs text-textMuted mb-2">Primary Key: <code>(OrderID, ProductID)</code></p>
+                            <table class="w-full text-xs">
+                                <thead><tr><th>OrderID*</th><th>ProductID*</th><th>ProductName</th></tr></thead>
+                                <tbody>
+                                    <tr><td>10</td><td>P22</td><td>Laptop</td></tr>
+                                </tbody>
+                            </table>
+                            <p class="text-[10px] text-red-300 mt-2 font-mono">ProductName depends only on ProductID (partial PK), not OrderID!</p>
+                        </div>
+                        <div class="bg-surface/50 border border-emerald-500/20 p-4 rounded-lg">
+                            <div class="text-emerald-400 font-semibold text-xs uppercase mb-2">✔ Split Into Two Tables (2NF)</div>
+                            <p class="text-[10px] font-bold text-textMain">Order Table:</p>
+                            <table class="w-full text-xs mb-2">
+                                <thead><tr><th>OrderID*</th><th>ProductID*</th></tr></thead>
+                                <tbody><tr><td>10</td><td>P22</td></tr></tbody>
+                            </table>
+                            <p class="text-[10px] font-bold text-textMain">Product Table:</p>
+                            <table class="w-full text-xs">
+                                <thead><tr><th>ProductID*</th><th>ProductName</th></tr></thead>
+                                <tbody><tr><td>P22</td><td>Laptop</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Third Normal Form (3NF)</h3>
+                    <p class="text-sm mb-3">Rule: Must be in 2NF, and no non-key columns can depend on other non-key columns. No <strong>transitive dependency</strong> (A → B → C).</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                        <div class="bg-surface/50 border border-red-500/20 p-4 rounded-lg">
+                            <div class="text-red-400 font-semibold text-xs uppercase mb-2">❌ NOT in 3NF</div>
+                            <table class="w-full text-xs">
+                                <thead><tr><th>StudentID*</th><th>DeptID</th><th>DeptName</th></tr></thead>
+                                <tbody>
+                                    <tr><td>101</td><td>D50</td><td>CSE</td></tr>
+                                </tbody>
+                            </table>
+                            <p class="text-[10px] text-red-300 mt-2 font-mono">DeptName depends transitively on DeptID, which is not a primary key.</p>
+                        </div>
+                        <div class="bg-surface/50 border border-emerald-500/20 p-4 rounded-lg">
+                            <div class="text-emerald-400 font-semibold text-xs uppercase mb-2">✔ Split Into Two Tables (3NF)</div>
+                            <p class="text-[10px] font-bold text-textMain">Student Table:</p>
+                            <table class="w-full text-xs mb-2">
+                                <thead><tr><th>StudentID*</th><th>DeptID</th></tr></thead>
+                                <tbody><tr><td>101</td><td>D50</td></tr></tbody>
+                            </table>
+                            <p class="text-[10px] font-bold text-textMain">Department Table:</p>
+                            <table class="w-full text-xs">
+                                <thead><tr><th>DeptID*</th><th>DeptName</th></tr></thead>
+                                <tbody><tr><td>D50</td><td>CSE</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Boyce-Codd Normal Form (BCNF)</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Definition:</div>
+                        <div class="details-desc">A stronger version of 3NF. For every functional dependency <code>X → Y</code>, <code>X</code> MUST be a Super Key of the table.</div>
+                        <div class="details-term">Difference:</div>
+                        <div class="details-desc">3NF allows <code>X → Y</code> if <code>Y</code> is a prime attribute. BCNF strictly forbids this.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Normal Form Cheat Sheet</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Normal Form</th>
+                                <th>Goal / Removes</th>
+                                <th>Primary Constraint</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1NF</strong></td>
+                                <td>Repeating groups &amp; non-atomic data</td>
+                                <td>Atomic values inside every cell</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2NF</strong></td>
+                                <td>Partial functional dependencies</td>
+                                <td>Full dependency on the Primary Key</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3NF</strong></td>
+                                <td>Transitive dependencies (A → B → C)</td>
+                                <td>Non-key columns depend only on the Primary Key</td>
+                            </tr>
+                            <tr>
+                                <td><strong>BCNF</strong></td>
+                                <td>Non-key determinants</td>
+                                <td>Determinant X in X → Y must be a Super Key</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="section-dbms-acid" class="doc-section scroll-mt-20" data-category="DBMS &amp; SQL">
+                    <h2 class="api-h2">15. ACID Transaction Properties</h2>
+                    
+                    <h3 class="api-h3">Topic: The ACID Rules</h3>
+                    <p class="text-sm mb-4">Transactions must adhere to the ACID principles to ensure data safety, even under unexpected power failures or logical crashes.</p>
+                    
+                    <div class="details-grid">
+                        <div class="details-term">A — Atomicity:</div>
+                        <div class="details-desc">"All or Nothing". A transaction succeeds completely or rolls back entirely to leave data untouched.
+                            <br><span class="text-xs text-[#a1a1aa]">Example: In a bank transfer, money must be successfully debited AND credited. If one fails, the entire transaction rolls back.</span>
+                        </div>
+                        
+                        <div class="details-term">C — Consistency:</div>
+                        <div class="details-desc">Ensures the database moves from one valid state to another, enforcing all schema constraints.
+                            <br><span class="text-xs text-[#a1a1aa]">Example: Account balances cannot become negative unless explicitly allowed by system rules.</span>
+                        </div>
+                        
+                        <div class="details-term">I — Isolation:</div>
+                        <div class="details-desc">Multiple concurrent transactions execute independently without interfering with each other's uncommitted data.
+                            <br><span class="text-xs text-[#a1a1aa]">Example: If two customers try to book the last available seat simultaneously, the system serializes execution so only one succeeds.</span>
+                        </div>
+                        
+                        <div class="details-term">D — Durability:</div>
+                        <div class="details-desc">Once a transaction commits, the changes are saved permanently in non-volatile storage and will survive power failures.
+                            <br><span class="text-xs text-[#a1a1aa]">Example: A system power outage right after a successful booking does not wipe out the transaction.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-dbms-sql-basics" class="doc-section scroll-mt-20" data-category="DBMS &amp; SQL">
+                    <h2 class="api-h2">16. SQL Joins &amp; Commands</h2>
+                    
+                    <h3 class="api-h3">Topic: Joins Catalog</h3>
+                    <div class="details-grid">
+                        <div class="details-term">INNER JOIN:</div>
+                        <div class="details-desc">Returns only rows that have matching values in both tables.</div>
+                        
+                        <div class="details-term">LEFT JOIN:</div>
+                        <div class="details-desc">Returns all records from the left table, plus matching records from the right table. Matches without pairs yield <code>NULL</code> on the right side.</div>
+                        
+                        <div class="details-term">RIGHT JOIN:</div>
+                        <div class="details-desc">Returns all records from the right table, plus matching records from the left table. Matches without pairs yield <code>NULL</code> on the left side.</div>
+                        
+                        <div class="details-term">FULL OUTER JOIN:</div>
+                        <div class="details-desc">Returns all records when there is a match in either left or right tables. Combines Left and Right join results.</div>
+                        
+                        <div class="details-term">CROSS JOIN:</div>
+                        <div class="details-desc">Returns the Cartesian product of the two tables — combining every row of the first table with every row of the second.</div>
+                        
+                        <div class="details-term">SELF JOIN:</div>
+                        <div class="details-desc">A table joined with itself (useful for representing employee-manager hierarchies).</div>
+                        
+                        <div class="details-term">NATURAL JOIN:</div>
+                        <div class="details-desc">Automatically joins tables based on columns with identical names and data types.</div>
+                        
+                        <div class="details-term">EQUI JOIN:</div>
+                        <div class="details-desc">Uses equality operators (<code>=</code>) in the join condition (similar to INNER JOIN).</div>
+                        
+                        <div class="details-term">NON-EQUI JOIN:</div>
+                        <div class="details-desc">Uses comparison operators other than equality (e.g., <code>&lt;</code>, <code>&gt;</code>, <code>BETWEEN</code>) to evaluate join logic.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: SQL Data Types</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Type Group</th><th>Data Type</th><th>Description</th><th>Example</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Numeric</strong></td><td><code>INT</code>, <code>BIGINT</code>, <code>DECIMAL(p,s)</code></td><td>Whole numbers or fixed decimals.</td><td><code>10</code>, <code>123.45</code></td></tr>
+                            <tr><td><strong>String</strong></td><td><code>CHAR(n)</code>, <code>VARCHAR(n)</code>, <code>TEXT</code></td><td>Fixed, variable strings, or large paragraphs.</td><td><code>'A'</code>, <code>'Vishnu'</code></td></tr>
+                            <tr><td><strong>Date &amp; Time</strong></td><td><code>DATE</code>, <code>DATETIME</code>, <code>TIMESTAMP</code></td><td>Calendar dates, clock times, or auto updates.</td><td><code>'2025-01-01 10:30'</code></td></tr>
+                            <tr><td><strong>Boolean</strong></td><td><code>BOOLEAN</code></td><td>Logical evaluation (stored internally as TINYINT).</td><td><code>TRUE / FALSE</code></td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="api-h3">Topic: SQL Command Sub-Languages</h3>
+                    <div class="details-grid">
+                        <div class="details-term">DQL (Query):</div>
+                        <div class="details-desc">Used to retrieve records from the database. <br>• <strong>Keywords:</strong> <code>SELECT</code>, <code>DISTINCT</code>, <code>FROM</code>, <code>WHERE</code>, <code>ORDER BY</code>, <code>GROUP BY</code>, <code>HAVING</code>, <code>LIMIT</code></div>
+                        
+                        <div class="details-term">DML (Manipulation):</div>
+                        <div class="details-desc">Used to add, modify, or delete data records. <br>• <strong>Keywords:</strong> <code>INSERT INTO</code>, <code>UPDATE</code>, <code>DELETE</code>, <code>MERGE</code></div>
+                        
+                        <div class="details-term">DDL (Definition):</div>
+                        <div class="details-desc">Used to create, modify, or destroy table structures. <br>• <strong>Keywords:</strong> <code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code>, <code>RENAME</code></div>
+                        
+                        <div class="details-term">TCL (Transaction):</div>
+                        <div class="details-desc">Used to manage ACID transaction states. <br>• <strong>Keywords:</strong> <code>COMMIT</code>, <code>ROLLBACK</code>, <code>START TRANSACTION</code>, <code>SAVEPOINT</code></div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: SQL Constraints</h3>
+                    <p class="text-sm mb-3">Constraints apply rules to the columns to ensure structural validity.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-textMuted mb-6">
+                        <li><code>PRIMARY KEY</code>: Enforces unique non-null values.</li>
+                        <li><code>FOREIGN KEY</code>: Enforces referential ties.</li>
+                        <li><code>UNIQUE</code>: Enforces unique column values.</li>
+                        <li><code>NOT NULL</code>: Enforces that columns cannot have blank data.</li>
+                        <li><code>CHECK</code>: Enforces customized boolean boundaries (e.g., <code>marks BETWEEN 0 AND 100</code>).</li>
+                        <li><code>DEFAULT</code>: Adds default values when empty.</li>
+                        <li><code>AUTO_INCREMENT</code>: Automatically bumps numeric IDs sequentially.</li>
+                    </ul>
+
+                    <h3 class="api-h3">Topic: Execution Order</h3>
+                    <p class="text-sm mb-3">While we write SQL starting with <code>SELECT</code>, the engine processes keywords in this strict order:</p>
+                    <div class="bg-surface border border-border p-4 rounded text-xs font-mono flex flex-wrap gap-2 items-center justify-center mb-6">
+                        <span class="bg-bg px-2 py-1 rounded">1. FROM</span> → 
+                        <span class="bg-bg px-2 py-1 rounded">2. WHERE</span> → 
+                        <span class="bg-bg px-2 py-1 rounded">3. GROUP BY</span> → 
+                        <span class="bg-bg px-2 py-1 rounded">4. HAVING</span> → 
+                        <span class="bg-bg px-2 py-1 rounded">5. SELECT</span> → 
+                        <span class="bg-bg px-2 py-1 rounded">6. ORDER BY</span> → 
+                        <span class="bg-bg px-2 py-1 rounded">7. LIMIT</span>
+                    </div>
+                </section>
+
+                <section id="section-dbms-practice" class="doc-section scroll-mt-20" data-category="DBMS &amp; SQL">
+                    <h2 class="api-h2">17. SQL Hands-On Practice Labs</h2>
+                    
+                    <h3 class="api-h3">Topic: Lab 1 (Student DB)</h3>
+<pre><code class="language-sql">-- 1. Create and Seed College Database
+CREATE DATABASE college_db;
+USE college_db;
+
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50) NOT NULL,
+    age INT,
+    gender CHAR(1) CHECK(gender IN ('M', 'F')),
+    marks INT CHECK(marks BETWEEN 0 AND 100),
+    dept_id INT,
+    FOREIGN KEY(dept_id) REFERENCES Departments(dept_id)
+);
+
+INSERT INTO Departments VALUES
+(10, 'CSE'), (20, 'ECE'), (30, 'MECH');
+
+INSERT INTO Students VALUES
+(1, 'Vishnu', 22, 'M', 85, 10),
+(2, 'Rahul', 21, 'M', 78, 20),
+(3, 'Priya', 20, 'F', 92, 10),
+(4, 'Sneha', 22, 'F', 88, 30),
+(5, 'Arjun', 23, 'M', 67, 30);
+
+-- 2. Query Operations
+-- List student and department names (INNER JOIN)
+SELECT s.student_name, d.dept_name
+FROM Students s
+INNER JOIN Departments d ON s.dept_id = d.dept_id;
+
+-- Find departments with more than 1 student
+SELECT dept_id, COUNT(*) AS total_students
+FROM Students
+GROUP BY dept_id
+HAVING COUNT(*) > 1;
+
+-- Find students with marks above department average (SUBQUERY)
+SELECT * FROM Students
+WHERE marks > (SELECT AVG(marks) FROM Students);</code></pre>
+
+                    <h3 class="api-h3">Topic: Lab 2 (Payroll DB)</h3>
+<pre><code class="language-sql">-- Create and Seed Payroll Database
+CREATE DATABASE company_db;
+USE company_db;
+
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50) NOT NULL,
+    age INT,
+    salary INT CHECK (salary > 0),
+    department_id INT
+);
+
+INSERT INTO Employees VALUES
+(101, 'Ravi', 24, 50000, 1),
+(102, 'Anita', 26, 60000, 2),
+(103, 'Rahul', 25, 55000, 1),
+(104, 'Priya', 23, 45000, 3),
+(105, 'Kiran', 28, 70000, 2),
+(106, 'Raj', 29, 48000, 1);
+
+-- Average salary per department having avg salary > 55000
+SELECT department_id, AVG(salary) AS avg_sal
+FROM Employees
+GROUP BY department_id
+HAVING AVG(salary) > 55000;
+
+-- Top paid employees (Window Function RANK)
+SELECT emp_name, salary,
+RANK() OVER(ORDER BY salary DESC) AS sal_rank
+FROM Employees;</code></pre>
+
+                    <h3 class="api-h3">Topic: Bugged SQL Exercise</h3>
+                    <p class="text-sm mb-3">Debug these common student syntax blunders:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                        <div class="bg-surface/50 border border-red-500/20 p-4 rounded-lg">
+                            <div class="text-red-400 font-semibold text-xs mb-2">❌ Bugged Code</div>
+                            <pre class="text-xs mb-2"><code class="language-sql">-- 1. Selection
+SELEC * FORM Customers;
+
+-- 2. Range Filter
+SELECT first_name, age
+FROM Customer
+WHERE age => 30;
+
+-- 3. Grouping
+SELECT customer_id, SUM(amount)
+FROM Orders
+GROUP customer_id;</code></pre>
+                        </div>
+                        <div class="bg-surface/50 border border-emerald-500/20 p-4 rounded-lg">
+                            <div class="text-emerald-400 font-semibold text-xs mb-2">✔ Fixed Code</div>
+                            <pre class="text-xs mb-2"><code class="language-sql">-- 1. Selection
+SELECT * FROM Customers;
+
+-- 2. Range Filter
+SELECT first_name, age
+FROM Customers
+WHERE age >= 30;
+
+-- 3. Grouping
+SELECT customer_id, SUM(amount)
+FROM Orders
+GROUP BY customer_id;</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= DSA LEETCODE INTERVIEW PREP ================= -->
+
+                <section id="section-dsa-leetcode-prep" class="doc-section scroll-mt-20" data-category="LeetCode DSA Prep">
+                    <h2 class="api-h2">18. LeetCode Prep Roadmap</h2>
+                    
+                    <h3 class="api-h3">Topic: Problem Set Taxonomy</h3>
+                    <p class="text-sm mb-4">A compiled roadmap of essential Data Structures and Algorithms problems classified for optimal interview patterns.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-surface/40 p-4 rounded-lg border border-border">
+                            <h4 class="text-white font-semibold text-sm mb-2">1. Searching (Linear &amp; Binary)</h4>
+                            <ul class="list-disc list-inside text-xs text-textMuted space-y-1">
+                                <li><strong>Linear Search:</strong> Two Sum, Rich Wealth, Highest Altitude, Kids With Candies, Majority Element.</li>
+                                <li><strong>Binary Search:</strong> Basic Search, Search Insert Position, Sqrt(x), Find Peak, Search in Rotated Sorted Array.</li>
+                                <li><strong>Binary on Answers:</strong> Koko Eating Bananas, Capacity to Ship Packages, Aggressive Cows.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-surface/40 p-4 rounded-lg border border-border">
+                            <h4 class="text-white font-semibold text-sm mb-2">2. Stacks &amp; Queues</h4>
+                            <ul class="list-disc list-inside text-xs text-textMuted space-y-1">
+                                <li><strong>Stacks:</strong> Valid Parentheses, Backspace Compare, Daily Temperatures (Monotonic Stack), Largest Rectangle in Histogram.</li>
+                                <li><strong>Queues &amp; Heaps:</strong> Implement Stack/Queue, Top K Frequent, Merge K Sorted Lists, Median from Data Stream.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-surface/40 p-4 rounded-lg border border-border">
+                            <h4 class="text-white font-semibold text-sm mb-2">3. Linked Lists</h4>
+                            <ul class="list-disc list-inside text-xs text-textMuted space-y-1">
+                                <li><strong>Singly:</strong> Reverse List, Middle of List, Linked List Cycle, Merge Sorted Lists, Palindrome LL.</li>
+                                <li><strong>Advanced:</strong> Reverse Nodes in k-Group, LRU Cache, Design Browser History.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-surface/40 p-4 rounded-lg border border-border">
+                            <h4 class="text-white font-semibold text-sm mb-2">4. Two Pointers &amp; Sliding Window</h4>
+                            <ul class="list-disc list-inside text-xs text-textMuted space-y-1">
+                                <li><strong>Two Pointers:</strong> Valid Palindrome, Two Sum II (Sorted), Container With Most Water, 3Sum, Trapping Rain Water.</li>
+                                <li><strong>Sliding Window:</strong> Max Average Subarray, Longest Substring Without Repeating Characters, Minimum Window Substring.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-surface/40 p-4 rounded-lg border border-border">
+                            <h4 class="text-white font-semibold text-sm mb-2">5. Graphs &amp; Dynamic Programming</h4>
+                            <ul class="list-disc list-inside text-xs text-textMuted space-y-1">
+                                <li><strong>Graphs:</strong> Number of Islands, Rotting Oranges, Clone Graph, Course Schedule (Topological Sort), Dijkstra's Algorithm.</li>
+                                <li><strong>DP:</strong> Climbing Stairs, House Robber, Coin Change, Longest Increasing Subsequence, Edit Distance.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: TOP 25 MUST-DO PROBLEMS</h3>
+                    <p class="text-xs text-textMuted mb-4">Click checkboxes to track your preparation during revision:</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
+                        <!-- Left Col -->
+                        <div class="space-y-2">
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">1. Two Sum</div>
+                                    <div class="text-[10px] text-textMuted">Easy | Arrays &amp; HashMap | Google</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">2. Valid Parentheses</div>
+                                    <div class="text-[10px] text-textMuted">Easy | Stack | Microsoft</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">3. Reverse Linked List</div>
+                                    <div class="text-[10px] text-textMuted">Easy | Linked Lists | Amazon</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">4. Maximum Subarray (Kadane)</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Arrays &amp; DP | Meta</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">5. Binary Search</div>
+                                    <div class="text-[10px] text-textMuted">Easy | Binary Search | Netflix</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">6. Merge Intervals</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Sorting | Salesforce</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">7. Longest Substring No Duplicates</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Sliding Window | Amazon</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">8. Product Except Self</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Prefix Sum | Apple</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">9. Container With Most Water</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Two Pointer | Google</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">10. 3Sum</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Two Pointers | Microsoft</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">11. Group Anagrams</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Hashing | Amazon</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">12. Number of Islands</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Graphs / DFS | Uber</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Right Col -->
+                        <div class="space-y-2">
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">13. Clone Graph</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Graphs | Twitter</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">14. Course Schedule</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Topological Graph | Meta</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">15. Kth Largest Element</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Heap / Priority Queue | Adobe</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">16. Climbing Stairs</div>
+                                    <div class="text-[10px] text-textMuted">Easy | DP Basics | Goldman Sachs</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">17. House Robber</div>
+                                    <div class="text-[10px] text-textMuted">Medium | DP | ByteDance</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">18. Coin Change</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Unbounded DP | Bloomberg</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">19. Longest Increasing Subsequence</div>
+                                    <div class="text-[10px] text-textMuted">Medium | DP / Binary Search | Salesforce</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">20. LRU Cache</div>
+                                    <div class="text-[10px] text-textMuted">Hard | Linked List + Map | Meta</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">21. Sliding Window Maximum</div>
+                                    <div class="text-[10px] text-textMuted">Hard | Deque | Citadel</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">22. Merge K Sorted Lists</div>
+                                    <div class="text-[10px] text-textMuted">Hard | Heap / Divide &amp; Conquer | Microsoft</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">23. Search in Rotated Array</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Binary Search | Amazon</div>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-2 rounded hover:bg-surface/35 transition-colors cursor-pointer select-none">
+                                <input type="checkbox" class="mt-1 rounded border-border bg-bg text-accentText focus:ring-accentText/50 cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-semibold text-textMain">24. Lowest Common Ancestor</div>
+                                    <div class="text-[10px] text-textMuted">Medium | Trees | Oracle</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= PLACEMENT & INTERVIEW PREP ================= -->
+
+                <section id="section-placement-prep" class="doc-section scroll-mt-20" data-category="Placement &amp; HR Prep">
+                    <h2 class="api-h2">19. Self-Introduction Formula</h2>
+                    
+                    <h3 class="api-h3">Topic: Universal Delivery Rules</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Structure:</div>
+                        <div class="details-desc">1. Greeting &amp; Name → 2. Current Status → 3. Education → 4. Core Skills &amp; Tech → 5. Projects/Internships → 6. Work Style/Strengths → 7. Professional Goal.</div>
+                        <div class="details-term">Rules:</div>
+                        <div class="details-desc">Speak slowly, avoid sounding memorized, maintain eye contact, and never include personal story items, hobbies, or family background details unless explicitly asked.</div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Core Formats</h3>
+                    <div class="space-y-4">
+                        <div class="bg-surface/40 p-4 rounded border border-border">
+                            <div class="text-white font-semibold text-xs uppercase tracking-wider mb-2">1-Minute Short Intro</div>
+                            <p class="text-xs text-textMuted italic leading-relaxed">
+                                "Good morning, I’m [Name]. I’m a recent graduate in [Branch] with a strong foundation in [Core Tech]. I have hands-on experience through academic projects where I focused on [Specific Work/Feature]. I am a dedicated and quick learner who enjoys problem-solving. I am now looking for an opportunity to grow professionally, learn from experienced team members, and add value to the organization."
+                            </p>
+                        </div>
+                        <div class="bg-surface/40 p-4 rounded border border-border">
+                            <div class="text-white font-semibold text-xs uppercase tracking-wider mb-2">2-Minute In-Depth (Manager Round)</div>
+                            <p class="text-xs text-textMuted italic leading-relaxed">
+                                "Good morning, my name is [Name]. I completed my graduation in [Branch] at [College]. During my studies, I focused on building strong fundamentals in [Tech stack], database operations, and data structures. I worked on a project named [Project Name] where I was responsible for [Specific Role, e.g., coding database logic, integrating APIs]. This helped me understand real-world troubleshooting and collaborative debugging. I’m a highly disciplined and adaptable person with a growth mindset. I am seeking an opportunity where I can take responsibility, contribute to production pipelines, and refine my skills as an engineer."
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Adjectives and Keywords</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Upskilling:</div>
+                        <div class="details-desc"><code>Quick learner</code>, <code>Adaptable</code>, <code>Curious</code>, <code>Continuous learner</code></div>
+                        
+                        <div class="details-term">Work Style:</div>
+                        <div class="details-desc"><code>Disciplined</code>, <code>Consistent</code>, <code>Reliable</code>, <code>Dedicated</code>, <code>Accountable</code></div>
+                        
+                        <div class="details-term">Thinking:</div>
+                        <div class="details-desc"><code>Analytical</code>, <code>Structured thinker</code>, <code>Detail-oriented</code>, <code>Logical approach</code></div>
+                        
+                        <div class="details-term">Banned Words:</div>
+                        <div class="details-desc">Never call yourself an <em>"expert"</em>, <em>"master"</em>, <em>"perfect"</em>, or <em>"genius"</em>. It sounds arrogant. Instead, describe your capabilities with evidence of your projects.</div>
+                    </div>
+                </section>
+
+                <section id="section-interview-hr-questions" class="doc-section scroll-mt-20" data-category="Placement &amp; HR Prep">
+                    <h2 class="api-h2">20. HR Interview Questions</h2>
+                    
+                    <h3 class="api-h3">Topic: Core HR Prep</h3>
+                    <div class="details-grid">
+                        <div class="details-term">Why should we hire you?</div>
+                        <div class="details-desc"><strong>Golden Structure:</strong> Acknowledge lack of corporate years → Highlight core fundamentals → Emphasize strong learning attitude → Align with company goals.
+                            <br><span class="text-xs text-[#a1a1aa]">"As a fresher, I bring solid programming fundamentals and a highly adaptive mindset. I am eager to learn and can quickly pick up your production stack, contributing effectively under guidance."</span>
+                        </div>
+                        
+                        <div class="details-term">What is your weakness?</div>
+                        <div class="details-desc"><strong>Structure:</strong> Real but safe weakness + Immediate action.
+                            <br><span class="text-xs text-[#a1a1aa]">"I sometimes spend extra time ensuring accuracy, which can slow me down. To manage this, I have started time-boxing my tasks and setting strict personal micro-deadlines."</span>
+                        </div>
+                        
+                        <div class="details-term">Salary Expectations?</div>
+                        <div class="details-desc"><strong>Structure:</strong> Growth priority → Flexible.
+                            <br><span class="text-xs text-[#a1a1aa]">"As a fresher, my main priority is learning, getting practical exposure, and growing with the team. I am comfortable with the company's standard package and open to discussion."</span>
+                        </div>
+                    </div>
+
+                    <h3 class="api-h3">Topic: Company-Type Positioning</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Company Type</th><th>Key Expectation</th><th>Best Pitch Strategy</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Service-Based</strong> (TCS, Infosys, Wipro)</td>
+                                <td>Stability &amp; long-term commitment</td>
+                                <td>Emphasize flexibility to work in any technology domain, ready to relocate, and eagerness for corporate training models.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Startups</strong></td>
+                                <td>Fast execution &amp; self-direction</td>
+                                <td>Highlight rapid learning abilities, ownership on projects, and comfort in working across frontend and backend boundaries.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Product-Based</strong> (FAANG)</td>
+                                <td>Problem-solving &amp; optimization</td>
+                                <td>Emphasize clean code standards, strong complexity analysis, and logical approach to unexpected edge cases.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="section-interview-managerial" class="doc-section scroll-mt-20" data-category="Placement &amp; HR Prep">
+                    <h2 class="api-h2">21. Managerial Scenarios</h2>
+                    
+                    <h3 class="api-h3">Topic: Situational Frameworks</h3>
+                    <div class="details-grid">
+                        <div class="details-term">1. Production Bug:</div>
+                        <div class="details-desc"><strong>Q: What if your code causes a production failure?</strong>
+                            <br><span class="text-xs text-[#a1a1aa]"><strong>Approach:</strong> Ownership → Rollback → Root Cause → Prevention.
+                                <br>"I will immediately own up to the issue, collaborate with the ops team to rollback to the last stable deployment, debug the root cause locally, submit a fix with robust test cases, and document the learnings to prevent future occurrences."</span>
+                        </div>
+                        
+                        <div class="details-term">2. Disagreement:</div>
+                        <div class="details-desc"><strong>Q: How do you handle a tech disagreement with a teammate?</strong>
+                            <br><span class="text-xs text-[#a1a1aa]"><strong>Approach:</strong> Professionalism → Data-driven metrics → Simplicity → Alignment.
+                                <br>"I will remove emotions from the discussion, compare both approaches objectively using metrics like readability, complexity, and implementation effort. If we remain split, I will seek advice from a senior or agree to back the team’s choice fully once a decision is finalized."</span>
+                        </div>
+                        
+                        <div class="details-term">3. Stuck on a Task:</div>
+                        <div class="details-desc"><strong>Q: What do you do if you are stuck on a technical blocker?</strong>
+                            <br><span class="text-xs text-[#a1a1aa]"><strong>Approach:</strong> Structured self-help (documentation, debuggers) → Time-box (30-60 mins) → Seek senior guidance with structured context.
+                                <br>"I will research, check logs/documentation for 45 minutes. If I still cannot solve it, I will prepare a concise summary of what I tried and ask a teammate or senior for help, respecting their time."</span>
+                        </div>
                     </div>
                 </section>
 
