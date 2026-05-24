@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Reference | By Ajay.</title>
+    <title>Python Reference | API Docs</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -441,6 +441,256 @@
                 max-height: 50vh !important;
             }
         }
+
+        /* 5. Python DSA Imports & Patterns Cheat Sheet Styles */
+        .dsa-tab {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background-color: var(--surface);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dsa-tab.active {
+            background-color: var(--accent-bg);
+            color: var(--accent-text);
+            border-color: var(--accent-border);
+        }
+        .dsa-tab:hover:not(.active) {
+            background-color: var(--border);
+            color: var(--text-main);
+        }
+        .dsa-panel {
+            display: none;
+        }
+        .dsa-panel.show {
+            display: block;
+        }
+        .dsa-section {
+            margin-bottom: 1.5rem;
+        }
+        .dsa-sec-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .dsa-block {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+        .dsa-block:hover {
+            border-color: var(--accent-border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+        .dsa-block-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .dsa-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background-color: var(--accent-bg);
+            color: var(--accent-text);
+            border: 1px solid var(--accent-border);
+            margin-left: 6px;
+        }
+        .dsa-tag.warn {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+        [data-theme="dark"] .dsa-tag.warn {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+        .dsa-copy-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 5px;
+            border: 1px solid var(--border);
+            background-color: var(--bg);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .dsa-copy-btn:hover {
+            color: var(--text-main);
+            background-color: var(--surface);
+            border-color: var(--scrollbar-thumb-hover);
+        }
+        .dsa-copy-btn.copied {
+            color: #34d399;
+            border-color: #059669;
+            background-color: #064e3b;
+        }
+
+        /* 6. Python Built-in Functions Reference Styles */
+        .builtin-search-input {
+            width: 100%;
+            font-size: 13px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background-color: var(--bg);
+            color: var(--text-main);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .builtin-search-input:focus {
+            outline: none;
+            border-color: var(--accent-border);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+        .builtin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+        .fn-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .fn-card:hover {
+            border-color: var(--accent-border);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+        }
+        .fn-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent-text);
+        }
+        .fn-sig {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .fn-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+        .builtin-detail {
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 20px;
+            display: none;
+            position: relative;
+            animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .builtin-detail.show {
+            display: block;
+        }
+        .detail-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-text);
+            margin-top: 4px;
+        }
+        .detail-sig {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-main);
+            margin: 6px 0 10px;
+            padding: 4px 8px;
+            background-color: var(--surface);
+            border-radius: 4px;
+            border-left: 3px solid var(--accent-border);
+            display: inline-block;
+        }
+        .detail-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .detail-ex {
+            background-color: #0e2a20;
+            border: 1px solid #164132;
+            color: #c3e2cc;
+            border-radius: 6px;
+            padding: 12px 14px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            position: relative;
+            margin-top: 8px;
+        }
+        .close-detail-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            border-radius: 50%;
+            transition: all 0.15s ease;
+        }
+        .close-detail-btn:hover {
+            color: var(--text-main);
+            background-color: var(--surface);
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden selection:bg-zinc-700 selection:text-white min-h-screen relative bg-bg">
@@ -633,6 +883,8 @@
             <a href="#section-dsa" class="hover:text-textMain transition-colors">DSA Basics</a>
             <a href="#section-dbms-intro" class="hover:text-textMain transition-colors">DBMS &amp; SQL</a>
             <a href="#section-dsa-leetcode-prep" class="hover:text-textMain transition-colors">LeetCode Prep</a>
+            <a href="#section-dsa-cheatsheet" class="hover:text-textMain transition-colors">DSA Cheat Sheet</a>
+            <a href="#section-python-builtins" class="hover:text-textMain transition-colors">Built-ins</a>
             <a href="#section-placement-prep" class="hover:text-textMain transition-colors">Interview &amp; HR</a>
             <!-- Theme Toggle inside Docs -->
             <button class="theme-toggle p-2 rounded-full border border-border bg-surface text-textMuted hover:text-textMain transition-all shadow-sm active:scale-95 flex items-center justify-center ml-2" title="Toggle Theme">
@@ -2155,6 +2407,47 @@ GROUP BY customer_id;</code></pre>
                     </div>
                 </section>
 
+                <!-- ================= PYTHON DSA CHEAT SHEET ================= -->
+                <section id="section-dsa-cheatsheet" class="doc-section scroll-mt-20" data-category="LeetCode DSA Prep">
+                    <h2 class="api-h2">18(b). Python DSA Cheat Sheet</h2>
+                    <p class="text-sm text-textMuted mb-6">
+                        A curated, one-stop reference panel for Python DSA contests and interviews. Paste the essential imports block at the top of your files, or quickly navigate tabs for optimized data structure recipes, common algorithm templates, math helpers, and performance tricks.
+                    </p>
+
+                    <!-- Tabs Selector -->
+                    <div class="flex flex-wrap gap-2 mb-6" id="dsa-tabs"></div>
+
+                    <!-- Panels Container -->
+                    <div id="dsa-panels" class="space-y-4"></div>
+                </section>
+
+                <!-- ================= PYTHON BUILT-IN FUNCTIONS REFERENCE ================= -->
+                <section id="section-python-builtins" class="doc-section scroll-mt-20" data-category="LeetCode DSA Prep">
+                    <h2 class="api-h2">18(c). Python Built-in Functions Reference</h2>
+                    <p class="text-sm text-textMuted mb-6">
+                        An interactive search and review workspace for all core built-in functions in Python. Easily search by name or category, examine signature parameters, and copy code example snippets instantly.
+                    </p>
+
+                    <!-- Expanded Detail View Drawer -->
+                    <div id="builtin-detail-drawer" class="builtin-detail"></div>
+
+                    <!-- Search and Category Filters -->
+                    <div class="space-y-4 mb-6">
+                        <div class="flex gap-3">
+                            <input id="builtin-search-input" class="builtin-search-input" placeholder="Search built-in functions by name, signature, or keyword..." oninput="renderBuiltins()">
+                        </div>
+                        
+                        <!-- Categories -->
+                        <div class="flex flex-wrap gap-2" id="builtin-categories"></div>
+                    </div>
+
+                    <!-- Count Indicator -->
+                    <div id="builtin-count" class="text-xs text-textMuted mb-4 font-mono font-bold"></div>
+
+                    <!-- Dynamic Sections Grid -->
+                    <div id="builtin-sections" class="space-y-6"></div>
+                </section>
+
                 <!-- ================= PLACEMENT & INTERVIEW PREP ================= -->
 
                 <section id="section-placement-prep" class="doc-section scroll-mt-20" data-category="Placement &amp; HR Prep">
@@ -2908,7 +3201,6 @@ GROUP BY customer_id;</code></pre>
                  matches.sort((a, b) => b.score - a.score);
                  renderResults(matches.slice(0, 8));
              });
-
              // Keyboard Navigation inside modal
              searchInput.addEventListener('keydown', (e) => {
                  const items = searchResults.querySelectorAll('.search-result-item');
@@ -2942,6 +3234,614 @@ GROUP BY customer_id;</code></pre>
                      }
                  });
              }
+
+             // ==========================================
+             // PYTHON DSA CHEAT SHEET CONTROLLER
+             // ==========================================
+             const dsaTabs = [
+                 { id: 'imports', label: 'All Imports' },
+                 { id: 'ds', label: 'Data Structures' },
+                 { id: 'math', label: 'Math & Numbers' },
+                 { id: 'algo', label: 'Algorithms' },
+                 { id: 'strings', label: 'Strings' },
+                 { id: 'tricks', label: 'Tricks' }
+             ];
+
+             const dsaPanels = {
+                 imports: {
+                     sections: [
+                         {
+                             title: 'One-shot DSA import block',
+                             items: [
+                                 {
+                                     title: 'Paste this at the top of every contest file',
+                                     tag: 'essential',
+                                     code: `import sys, math, heapq, bisect, itertools, functools, collections\nfrom collections import defaultdict, Counter, deque, OrderedDict\nfrom heapq import heappush, heappop, heapify, nlargest, nsmallest\nfrom bisect import bisect_left, bisect_right, insort\nfrom itertools import permutations, combinations, product, accumulate, chain, groupby\nfrom functools import lru_cache, reduce, cmp_to_key\nfrom math import gcd, lcm, sqrt, log2, ceil, floor, inf, factorial, comb, perm, isqrt\nimport sys; input = sys.stdin.readline  # fast input`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Conditional extras',
+                             items: [
+                                 {
+                                     title: 'Graph / advanced',
+                                     code: `from collections import deque          # BFS\nimport heapq                            # Dijkstra\n# Union-Find (write inline — no stdlib)`
+                                 },
+                                 {
+                                     title: 'Sorting with custom key',
+                                     code: `from functools import cmp_to_key\narr.sort(key=cmp_to_key(lambda a,b: a-b))`
+                                 }
+                             ]
+                         }
+                     ]
+                 },
+                 ds: {
+                     sections: [
+                         {
+                             title: 'Dictionary patterns',
+                             items: [
+                                 {
+                                     title: 'defaultdict — auto-init',
+                                     tag: 'freq',
+                                     code: `from collections import defaultdict\nfreq = defaultdict(int)\ngraph = defaultdict(list)\nfor x in arr: freq[x] += 1`
+                                 },
+                                 {
+                                     title: 'Counter — frequency map',
+                                     tag: 'freq',
+                                     code: `from collections import Counter\nc = Counter(arr)\nc.most_common(3)     # top 3 elements\nc['x'] += 1          # increment\nc.subtract(arr2)     # subtract counts`
+                                 },
+                                 {
+                                     title: 'OrderedDict — LRU cache base',
+                                     code: `from collections import OrderedDict\nod = OrderedDict()\nod.move_to_end('key')   # move to back\nod.popitem(last=True)   # pop from back`
+                                 }
+                     ]
+                         },
+                         {
+                             title: 'Queue / Stack',
+                             items: [
+                                 {
+                                     title: 'deque — O(1) both ends',
+                                     tag: 'BFS/DFS',
+                                     code: `from collections import deque\nq = deque()\nq.append(x)        # enqueue / push right\nq.appendleft(x)    # push left\nq.pop()            # pop right\nq.popleft()        # dequeue / pop left\nq = deque(arr, maxlen=k)  # sliding window`
+                                 },
+                                 {
+                                     title: 'Stack (plain list)',
+                                     code: `stack = []\nstack.append(x)   # push\nstack.pop()       # pop  O(1)\nstack[-1]         # peek`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Heap (Priority Queue)',
+                             items: [
+                                 {
+                                     title: 'Min-heap',
+                                     tag: 'Dijkstra',
+                                     code: `import heapq\nh = []\nheapq.heappush(h, val)\nval = heapq.heappop(h)   # smallest\nheapq.heapify(arr)       # in-place O(n)\nheapq.nsmallest(k, arr)\nheapq.nlargest(k, arr)`
+                                 },
+                                 {
+                                     title: 'Max-heap trick',
+                                     code: `# Negate values for max-heap\nheapq.heappush(h, -val)\nval = -heapq.heappop(h)`
+                                 },
+                                 {
+                                     title: 'Heap with tuple (priority, item)',
+                                     code: `heapq.heappush(h, (priority, item))\npriority, item = heapq.heappop(h)`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Union-Find (DSU)',
+                             items: [
+                                 {
+                                     title: 'Template — paste directly',
+                                     tag: 'graphs',
+                                     code: `parent = list(range(n))\nrank = [0]*n\n\ndef find(x):\n    while parent[x] != x:\n        parent[x] = parent[parent[x]]  # path compress\n        x = parent[x]\n    return x\n\ndef union(x, y):\n    px, py = find(x), find(y)\n    if px == py: return False\n    if rank[px] < rank[py]: px,py = py,px\n    parent[py] = px\n    if rank[px]==rank[py]: rank[px]+=1\n    return True`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Monotonic Stack / Queue',
+                             items: [
+                                 {
+                                     title: 'Next greater element',
+                                     code: `stack = []  # stores indices\nres = [-1]*n\nfor i,v in enumerate(arr):\n    while stack and arr[stack[-1]] < v:\n        res[stack.pop()] = v\n    stack.append(i)`
+                                 }
+                             ]
+                         }
+                     ]
+                 },
+                 math: {
+                     sections: [
+                         {
+                             title: 'Core math',
+                             items: [
+                                 {
+                                     title: 'GCD / LCM',
+                                     code: `from math import gcd, lcm\ngcd(12, 8)       # 4\nlcm(4, 6)        # 12\n# LCM without import: a*b//gcd(a,b)`
+                                 },
+                                 {
+                                     title: 'Integer square root (no float error)',
+                                     tag: 'safe',
+                                     code: `from math import isqrt\nisqrt(17)   # 4  (floor sqrt, exact int)`
+                                 },
+                                 {
+                                     title: 'Power & modular',
+                                     code: `pow(base, exp, mod)   # fast modular exponent\nMOD = 10**9 + 7\nans = pow(2, n, MOD)`
+                                 },
+                                 {
+                                     title: 'Combinations / Permutations',
+                                     code: `from math import comb, perm\ncomb(10, 3)   # C(10,3) = 120\nperm(10, 3)   # P(10,3) = 720`
+                                 },
+                                 {
+                                     title: 'log, ceil, floor',
+                                     code: `from math import log2, ceil, floor, inf\nceil(7/2)    # 4\nfloor(7/2)   # 3\nlog2(8)      # 3.0\ninf          # float('inf') — use for dist init`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Number theory',
+                             items: [
+                                 {
+                                     title: 'Sieve of Eratosthenes',
+                                     tag: 'primes',
+                                     code: `def sieve(n):\n    is_prime = [True]*(n+1)\n    is_prime[0]=is_prime[1]=False\n    for i in range(2, isqrt(n)+1):\n        if is_prime[i]:\n            for j in range(i*i, n+1, i):\n                is_prime[j]=False\n    return [i for i,v in enumerate(is_prime) if v]`
+                                 },
+                                 {
+                                     title: 'Prime factorization',
+                                     code: `def prime_factors(n):\n    factors=[]\n    d=2\n    while d*d<=n:\n        while n%d==0: factors.append(d); n//=d\n        d+=1\n    if n>1: factors.append(n)\n    return factors`
+                                 },
+                                 {
+                                     title: 'Modular inverse',
+                                     code: `# Fermat's little theorem (mod must be prime)\ninv = pow(a, MOD-2, MOD)`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Prefix sums',
+                             items: [
+                                 {
+                                     title: '1D prefix sum',
+                                     tag: 'O(1) range query',
+                                     code: `from itertools import accumulate\nprefix = list(accumulate(arr, initial=0))\nrange_sum = prefix[r+1] - prefix[l]`
+                                 },
+                                 {
+                                     title: '2D prefix sum',
+                                     code: `rows,cols=len(g),len(g[0])\nP=[[0]*(cols+1) for _ in range(rows+1)]\nfor i in range(rows):\n    for j in range(cols):\n        P[i+1][j+1]=g[i][j]+P[i][j+1]+P[i+1][j]-P[i][j]\n# query (r1,c1)..(r2,c2):\n# P[r2+1][c2+1]-P[r1][c2+1]-P[r2+1][c1]+P[r1][c1]`
+                                 }
+                             ]
+                         }
+                     ]
+                 },
+                 algo: {
+                     sections: [
+                         {
+                             title: 'Sorting',
+                             items: [
+                                 {
+                                     title: 'Built-in sort',
+                                     tag: 'O(n log n)',
+                                     code: `arr.sort()                          # in-place\narr.sort(reverse=True)\narr.sort(key=lambda x: (x[1],-x[0])) # multi-key\nsorted_arr = sorted(arr)            # new list`
+                                 },
+                                 {
+                                     title: 'Binary search',
+                                     tag: 'O(log n)',
+                                     code: `from bisect import bisect_left, bisect_right, insort\nbisect_left(arr, x)   # first pos where arr[i]>=x\nbisect_right(arr, x)  # first pos where arr[i]>x\ninsort(arr, x)        # insert keeping sorted\n\n# Manual binary search template:\nlo, hi = 0, len(arr)-1\nwhile lo <= hi:\n    mid = (lo+hi)//2\n    if arr[mid] == target: ...\n    elif arr[mid] < target: lo=mid+1\n    else: hi=mid-1`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Graph traversal',
+                             items: [
+                                 {
+                                     title: 'BFS',
+                                     tag: 'shortest path unweighted',
+                                     code: `from collections import deque\ndef bfs(graph, start):\n    visited=set([start])\n    q=deque([start])\n    while q:\n        node=q.popleft()\n        for nb in graph[node]:\n            if nb not in visited:\n                visited.add(nb)\n                q.append(nb)`
+                                 },
+                                 {
+                                     title: 'DFS iterative',
+                                     code: `def dfs(graph, start):\n    visited=set()\n    stack=[start]\n    while stack:\n        node=stack.pop()\n        if node in visited: continue\n        visited.add(node)\n        for nb in graph[node]:\n            stack.append(nb)`
+                                  },
+                                 {
+                                     title: 'Dijkstra',
+                                     tag: 'weighted shortest path',
+                                     code: `import heapq\ndef dijkstra(graph, src, n):\n    dist=[inf]*n; dist[src]=0\n    h=[(0,src)]\n    while h:\n        d,u=heapq.heappop(h)\n        if d>dist[u]: continue\n        for v,w in graph[u]:\n            if dist[u]+w<dist[v]:\n                dist[v]=dist[u]+w\n                heapq.heappush(h,(dist[v],v))\n    return dist`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Dynamic programming',
+                             items: [
+                                 {
+                                     title: 'Memoization with lru_cache',
+                                     tag: 'top-down',
+                                     code: `from functools import lru_cache\n@lru_cache(maxsize=None)\ndef dp(i, j):\n    if base_case: return 0\n    return min(dp(i+1,j), dp(i,j+1)) + cost[i][j]`
+                                 },
+                                 {
+                                     title: 'Bottom-up 1D DP template',
+                                     code: `dp = [0]*(n+1)\ndp[0] = base\nfor i in range(1, n+1):\n    dp[i] = max(dp[i-1], dp[i-2]+arr[i-1])`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Two pointers / sliding window',
+                             items: [
+                                 {
+                                     title: 'Two pointers',
+                                     code: `l,r=0,len(arr)-1\nwhile l<r:\n    if condition: r-=1\n    else: l+=1`
+                                 },
+                                 {
+                                     title: 'Sliding window (variable size)',
+                                     code: `l=best=cur=0\nfor r in range(len(arr)):\n    cur+=arr[r]               # expand\n    while cur>target:         # shrink\n        cur-=arr[l]; l+=1\n    best=max(best,r-l+1)`
+                                 }
+                             ]
+                         }
+                     ]
+                 },
+                 strings: {
+                     sections: [
+                         {
+                             title: 'String operations',
+                             items: [
+                                 {
+                                     title: 'Common patterns',
+                                     code: `s.split()             # split by whitespace\ns.split(',')          # split by delimiter\n','.join(lst)         # join list to str\ns.strip()             # remove leading/trailing\ns[::-1]               # reverse string\ns.count('a')          # count occurrences\ns.replace('a','b')    # replace`
+                                 },
+                                 {
+                                     title: 'Anagram / palindrome check',
+                                     code: `sorted(s1)==sorted(s2)           # anagram O(n log n)\nCounter(s1)==Counter(s2)         # anagram O(n)\ns==s[::-1]                       # palindrome`
+                                 },
+                                 {
+                                     title: 'String to list & back',
+                                     code: `arr = list(s)\narr[i] = 'x'\ns = ''.join(arr)`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Sliding window on strings',
+                             items: [
+                                 {
+                                     title: 'Minimum window substring pattern',
+                                     code: `from collections import Counter\nneed=Counter(t); missing=len(t)\nl=res_l=res_r=0; res=inf\nfor r,c in enumerate(s):\n    if need[c]>0: missing-=1\n    need[c]-=1\n    if missing==0:\n        while need[s[l]]<0: need[s[l]]+=1; l+=1\n        if r-l+1<res: res=r-l+1; res_l,res_r=l,r\n        need[s[l]]+=1; missing+=1; l+=1`
+                                 }
+                             ]
+                         }
+                     ]
+                 },
+                 tricks: {
+                     sections: [
+                         {
+                             title: 'One-liners',
+                             items: [
+                                 {
+                                     title: 'Flatten nested list',
+                                     code: `flat = [x for sub in nested for x in sub]\n# or: list(itertools.chain.from_iterable(nested))`
+                                 },
+                                 {
+                                     title: 'Transpose 2D matrix',
+                                     code: `transposed = list(zip(*matrix))\n# or: [[matrix[r][c] for r in range(rows)] for c in range(cols)]`
+                                 },
+                                 {
+                                     title: 'Rotate matrix 90° clockwise',
+                                     code: `rotated = list(zip(*matrix[::-1]))`
+                                 },
+                                 {
+                                     title: 'Group by value',
+                                     code: `from itertools import groupby\nfor key, group in groupby(sorted(arr), key=lambda x: x%2):\n    print(key, list(group))`
+                                 },
+                                 {
+                                     title: 'Product of array elements',
+                                     code: `from functools import reduce\nimport operator\nproduct = reduce(operator.mul, arr, 1)\n# or: math.prod(arr)  # Python 3.8+`
+                                 },
+                                 {
+                                     title: 'All permutations / combinations',
+                                     code: `from itertools import permutations, combinations, product\nlist(permutations([1,2,3], 2))    # ordered pairs\nlist(combinations([1,2,3], 2))   # unordered pairs\nlist(product([0,1], repeat=3))   # cartesian product (bitmask)`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Bit manipulation',
+                             items: [
+                                 {
+                                     title: 'Common bit tricks',
+                                     code: `n & (n-1)       # clear lowest set bit (check power of 2: ==0)\nn & (-n)        # isolate lowest set bit\nn >> 1          # n // 2\nn << 1          # n * 2\nn ^ n           # 0  (XOR self)\na ^ b ^ a       # b  (find single number)\nbin(n).count('1')       # popcount\n(n >> i) & 1            # get ith bit\nn | (1 << i)            # set ith bit\nn & ~(1 << i)           # clear ith bit`
+                                 }
+                             ]
+                         },
+                         {
+                             title: 'Recursion limits & fast IO',
+                             items: [
+                                 {
+                                     title: 'Always add these for contests',
+                                     tag: 'must',
+                                     code: `import sys\nsys.setrecursionlimit(10**6)      # deep recursion (DFS/backtrack)\ninput = sys.stdin.readline        # 3-5x faster input\nprint = sys.stdout.write          # faster output (add '\\n' manually)`
+                                 },
+                                 {
+                                     title: 'Read all at once',
+                                     code: `data = sys.stdin.read().split()\nidx = 0\ndef rd(): global idx; idx+=1; return data[idx-1]\ndef ri(): return int(rd())`
+                                  }
+                             ]
+                         },
+                         {
+                             title: 'Infinity & bounds',
+                             items: [
+                                 {
+                                     title: 'Use these instead of magic numbers',
+                                     code: `float('inf')   # or math.inf\nfloat('-inf')  # or -math.inf\nsys.maxsize    # max integer (platform)\n10**18         # safe large int for DP`
+                                 }
+                             ]
+                         }
+                     ]
+                 }
+             };
+
+             // Make copying fully global so copy clicks can trigger it cleanly
+             window.copyDsaCode = function(code, btn) {
+                 navigator.clipboard.writeText(code).then(() => {
+                     const origHTML = btn.innerHTML;
+                     btn.innerHTML = '<span class="material-symbols-rounded text-[14px]">check</span><span>Copied</span>';
+                     btn.classList.add('copied');
+                     setTimeout(() => {
+                         btn.innerHTML = origHTML;
+                         btn.classList.remove('copied');
+                     }, 1500);
+                 });
+             };
+
+             const dsaTabContainer = document.getElementById('dsa-tabs');
+             const dsaPanelContainer = document.getElementById('dsa-panels');
+             let activeDsaTab = dsaTabs[0].id;
+
+             // Render tabs
+             dsaTabs.forEach(tab => {
+                 const btn = document.createElement('button');
+                 btn.className = `dsa-tab ${tab.id === activeDsaTab ? 'active' : ''}`;
+                 btn.textContent = tab.label;
+                 btn.onclick = () => {
+                     document.querySelectorAll('.dsa-tab').forEach(el => el.classList.remove('active'));
+                     document.querySelectorAll('.dsa-panel').forEach(el => el.classList.remove('show'));
+                     btn.classList.add('active');
+                     document.getElementById(`dsa-p-${tab.id}`).classList.add('show');
+                 };
+                 dsaTabContainer.appendChild(btn);
+             });
+
+             // Render panels
+             dsaTabs.forEach(tab => {
+                 const panel = document.createElement('div');
+                 panel.className = `dsa-panel ${tab.id === activeDsaTab ? 'show' : ''}`;
+                 panel.id = `dsa-p-${tab.id}`;
+                 
+                 const data = dsaPanels[tab.id];
+                 let html = '';
+                 data.sections.forEach(sec => {
+                     html += `<div class="dsa-section"><div class="dsa-sec-title">${sec.title}</div>`;
+                     sec.items.forEach(item => {
+                         const tagHTML = item.tag ? `<span class="dsa-tag ${item.tag === 'warn' || item.tag === 'must' ? 'warn' : ''}">${item.tag}</span>` : '';
+                         // Escape code snippet HTML characters so it prints clean text
+                         const escapedCode = item.code
+                             .replace(/&/g, "&amp;")
+                             .replace(/</g, "&lt;")
+                             .replace(/>/g, "&gt;");
+                         
+                         html += `
+                             <div class="dsa-block">
+                                 <div class="dsa-block-title">
+                                     <span class="flex items-center gap-1.5 font-semibold">${item.title}${tagHTML}</span>
+                                     <button class="dsa-copy-btn" onclick="copyDsaCode(this.closest('.dsa-block').querySelector('pre').innerText, this)">
+                                         <span class="material-symbols-rounded text-[14px]">content_copy</span><span>Copy</span>
+                                     </button>
+                                 </div>
+                                 <pre class="bg-[#0e2a20] border border-[#164132] text-[#c3e2cc] p-4 rounded-md text-xs font-mono overflow-x-auto whitespace-pre leading-relaxed">${escapedCode}</pre>
+                             </div>
+                         `;
+                     });
+                     html += '</div>';
+                 });
+                 panel.innerHTML = html;
+                 dsaPanelContainer.appendChild(panel);
+             });
+
+             // ==========================================
+             // PYTHON BUILT-IN FUNCTIONS REFERENCE CONTROLLER
+             // ==========================================
+             const builtinData = [
+                 {n:"abs",s:"abs(x)",d:"Absolute value of a number.",ex:"abs(-5)  # 5\nabs(-3.2)  # 3.2",cat:"Math"},
+                 {n:"round",s:"round(n, ndigits=0)",d:"Round to ndigits decimal places.",ex:"round(3.14159, 2)  # 3.14\nround(2.5)  # 2",cat:"Math"},
+                 {n:"pow",s:"pow(base, exp, mod=None)",d:"base**exp, optionally mod mod.",ex:"pow(2, 10)  # 1024\npow(2, 10, 100)  # 24",cat:"Math"},
+                 {n:"divmod",s:"divmod(a, b)",d:"Returns (quotient, remainder) as a tuple.",ex:"divmod(17, 5)  # (3, 2)",cat:"Math"},
+                 {n:"sum",s:"sum(iterable, start=0)",d:"Sum of items, with optional start value.",ex:"sum([1,2,3])  # 6\nsum([1,2],10)  # 13",cat:"Math"},
+                 {n:"min",s:"min(iterable, *args, key=None)",d:"Minimum value from iterable or arguments.",ex:"min([3,1,2])  # 1\nmin('a','z')  # 'a'",cat:"Math"},
+                 {n:"max",s:"max(iterable, *args, key=None)",d:"Maximum value from iterable or arguments.",ex:"max([3,1,2])  # 3\nmax(key=len, *['ab','c'])  # 'ab'",cat:"Math"},
+                 {n:"len",s:"len(obj)",d:"Number of items in a container.",ex:"len([1,2,3])  # 3\nlen('hello')  # 5",cat:"Sequence"},
+                 {n:"range",s:"range(stop) / range(start,stop,step)",d:"Immutable sequence of numbers.",ex:"list(range(5))  # [0,1,2,3,4]\nlist(range(0,10,2))  # [0,2,4,6,8]",cat:"Sequence"},
+                 {n:"enumerate",s:"enumerate(iterable, start=0)",d:"Yields (index, value) pairs.",ex:"for i,v in enumerate(['a','b']):\n    print(i,v)  # 0 a  1 b",cat:"Sequence"},
+                 {n:"zip",s:"zip(*iterables, strict=False)",d:"Pairs elements from multiple iterables.",ex:"list(zip([1,2],[3,4]))  # [(1,3),(2,4)]",cat:"Sequence"},
+                 {n:"map",s:"map(func, *iterables)",d:"Applies function to each item lazily.",ex:"list(map(str, [1,2,3]))  # ['1','2','3']",cat:"Sequence"},
+                 {n:"filter",s:"filter(func, iterable)",d:"Filters items where func returns True.",ex:"list(filter(None,[0,1,2,False,3]))  # [1,2,3]",cat:"Sequence"},
+                 {n:"sorted",s:"sorted(iterable, key=None, reverse=False)",d:"Returns a new sorted list.",ex:"sorted([3,1,2])  # [1,2,3]\nsorted('bca')  # ['a','b','c']",cat:"Sequence"},
+                 {n:"reversed",s:"reversed(seq)",d:"Returns a reverse iterator.",ex:"list(reversed([1,2,3]))  # [3,2,1]",cat:"Sequence"},
+                 {n:"slice",s:"slice(stop) / slice(start,stop,step)",d:"Represents a slice. Used for custom __getitem__.",ex:"s = slice(1,4)\n[0,1,2,3,4][s]  # [1,2,3]",cat:"Sequence"},
+                 {n:"iter",s:"iter(obj, sentinel=None)",d:"Returns iterator from object.",ex:"it = iter([1,2,3])\nnext(it)  # 1",cat:"Sequence"},
+                 {n:"next",s:"next(iterator, default=None)",d:"Gets next item from iterator.",ex:"it = iter([1])\nnext(it, 'done')  # 1\nnext(it, 'done')  # 'done'",cat:"Sequence"},
+                 {n:"all",s:"all(iterable)",d:"True if all items are truthy (or iterable is empty).",ex:"all([1,2,3])  # True\nall([1,0,3])  # False",cat:"Sequence"},
+                 {n:"any",s:"any(iterable)",d:"True if at least one item is truthy.",ex:"any([0,0,1])  # True\nany([0,False])  # False",cat:"Sequence"},
+                 {n:"int",s:"int(x=0, base=10)",d:"Converts to integer.",ex:"int('42')  # 42\nint('ff', 16)  # 255",cat:"Type"},
+                 {n:"float",s:"float(x=0.0)",d:"Converts to float.",ex:"float('3.14')  # 3.14\nfloat(True)  # 1.0",cat:"Type"},
+                 {n:"complex",s:"complex(real=0, imag=0)",d:"Creates complex number.",ex:"complex(2, 3)  # (2+3j)",cat:"Type"},
+                 {n:"bool",s:"bool(x=False)",d:"Converts to boolean.",ex:"bool(0)  # False\nbool('hi')  # True",cat:"Type"},
+                 {n:"str",s:"str(obj='')",d:"Converts object to string.",ex:"str(42)  # '42'\nstr([1,2])  # '[1, 2]'",cat:"Type"},
+                 {n:"bytes",s:"bytes(src, enc='utf-8')",d:"Creates immutable byte sequence.",ex:"bytes('hi', 'utf-8')  # b'hi'\nbytes(4)  # b'\\x00\\x00\\x00\\x00'",cat:"Type"},
+                 {n:"bytearray",s:"bytearray(src, enc)",d:"Mutable version of bytes.",ex:"ba = bytearray(b'abc')\nba[0] = 65  # b'Abc'",cat:"Type"},
+                 {n:"list",s:"list(iterable=[])",d:"Creates a mutable list.",ex:"list('abc')  # ['a','b','c']\nlist(range(3))  # [0,1,2]",cat:"Type"},
+                 {n:"tuple",s:"tuple(iterable=())",d:"Creates an immutable tuple.",ex:"tuple([1,2,3])  # (1,2,3)",cat:"Type"},
+                 {n:"set",s:"set(iterable={})",d:"Creates an unordered set of unique items.",ex:"set([1,1,2,3])  # {1,2,3}",cat:"Type"},
+                 {n:"frozenset",s:"frozenset(iterable={})",d:"Creates an immutable set.",ex:"frozenset([1,2,2])  # frozenset({1,2})",cat:"Type"},
+                 {n:"dict",s:"dict(**kwargs) / dict(mapping)",d:"Creates a dictionary.",ex:"dict(a=1, b=2)  # {'a':1,'b':2}\ndict([('x',1)])  # {'x':1}",cat:"Type"},
+                 {n:"memoryview",s:"memoryview(obj)",d:"Memory view of buffer-supporting object.",ex:"mv = memoryview(b'abc')\nmv[0]  # 97",cat:"Type"},
+                 {n:"print",s:"print(*args, sep=' ', end='\\n', file=stdout, flush=False)",d:"Prints to stdout (or file).",ex:"print('a','b',sep='-')  # a-b\nprint('x', end='')  # no newline",cat:"IO"},
+                 {n:"input",s:"input(prompt='')",d:"Reads a line from stdin.",ex:"name = input('Name: ')\n# returns str",cat:"IO"},
+                 {n:"open",s:"open(file, mode='r', encoding=None, ...)",d:"Opens a file and returns a file object.",ex:"with open('f.txt','w') as f:\n    f.write('hello')",cat:"IO"},
+                 {n:"format",s:"format(value, format_spec='')",d:"Formats a value using format_spec.",ex:"format(3.14,':.2f')  # '3.14'\nformat(42,'08b')  # '00101010'",cat:"String"},
+                 {n:"chr",s:"chr(i)",d:"Unicode character for integer code point.",ex:"chr(65)  # 'A'\nchr(9829)  # '♥'",cat:"String"},
+                 {n:"ord",s:"ord(c)",d:"Integer Unicode code point for a character.",ex:"ord('A')  # 65\nord('♥')  # 9829",cat:"String"},
+                 {n:"repr",s:"repr(obj)",d:"Printable representation of an object.",ex:"repr([1,2])  # '[1, 2]'\nrepr('hi')  # \"'hi'\"",cat:"String"},
+                 {n:"ascii",s:"ascii(obj)",d:"Like repr() but escapes non-ASCII chars.",ex:"ascii('café')  # \"'caf\\xe9'\"",cat:"String"},
+                 {n:"bin",s:"bin(n)",d:"Binary string of an integer.",ex:"bin(10)  # '0b1010'",cat:"String"},
+                 {n:"oct",s:"oct(n)",d:"Octal string of an integer.",ex:"oct(8)  # '0o10'",cat:"String"},
+                 {n:"hex",s:"hex(n)",d:"Hexadecimal string of an integer.",ex:"hex(255)  # '0xff'",cat:"String"},
+                 {n:"type",s:"type(obj) / type(name, bases, dict)",d:"Returns type of object, or creates a new type.",ex:"type(42)  # <class 'int'>\ntype('x',[],{})  # dynamic class",cat:"Object"},
+                 {n:"isinstance",s:"isinstance(obj, classinfo)",d:"True if obj is instance of classinfo.",ex:"isinstance(42, int)  # True\nisinstance([], (list,tuple))  # True",cat:"Object"},
+                 {n:"issubclass",s:"issubclass(cls, classinfo)",d:"True if cls is subclass of classinfo.",ex:"issubclass(bool, int)  # True",cat:"Object"},
+                 {n:"id",s:"id(obj)",d:"Unique integer identity of an object.",ex:"id(42)  # some int\nid(x) == id(y)  # same object?",cat:"Object"},
+                 {n:"hash",s:"hash(obj)",d:"Hash value of an object.",ex:"hash('abc')  # integer\nhash((1,2))  # tuples are hashable",cat:"Object"},
+                 {n:"dir",s:"dir(obj=None)",d:"List of attributes of an object.",ex:"dir([])  # ['append','clear',...]\ndir()  # local names",cat:"Object"},
+                 {n:"vars",s:"vars(obj=None)",d:"__dict__ of an object.",ex:"vars()  # local namespace dict\nvars(obj)  # obj.__dict__",cat:"Object"},
+                 {n:"getattr",s:"getattr(obj, name, default)",d:"Gets attribute by name.",ex:"getattr([], 'append')  # bound method\ngetattr(x, 'y', None)  # safe get",cat:"Object"},
+                 {n:"setattr",s:"setattr(obj, name, value)",d:"Sets attribute by name.",ex:"setattr(obj, 'x', 42)\n# obj.x = 42",cat:"Object"},
+                 {n:"delattr",s:"delattr(obj, name)",d:"Deletes attribute by name.",ex:"delattr(obj, 'x')\n# del obj.x",cat:"Object"},
+                 {n:"hasattr",s:"hasattr(obj, name)",d:"True if object has the named attribute.",ex:"hasattr([], 'append')  # True\nhasattr(42, 'upper')  # False",cat:"Object"},
+                 {n:"callable",s:"callable(obj)",d:"True if object appears callable.",ex:"callable(print)  # True\ncallable(42)  # False",cat:"Object"},
+                 {n:"object",s:"object()",d:"Base class for all new-style classes.",ex:"class Foo(object): pass\n# same as: class Foo: pass",cat:"Object"},
+                 {n:"super",s:"super(type=None, obj=None)",d:"Proxies method resolution to parent class.",ex:"class B(A):\n  def m(self): super().m()",cat:"Object"},
+                 {n:"classmethod",s:"@classmethod",d:"Converts a method to a class method.",ex:"class C:\n  @classmethod\n  def f(cls): return cls()",cat:"Object"},
+                 {n:"staticmethod",s:"@staticmethod",d:"Converts a method to a static method.",ex:"class C:\n  @staticmethod\n  def f(x): return x*2",cat:"Object"},
+                 {n:"property",s:"@property",d:"Creates a managed attribute.",ex:"class C:\n  @property\n  def x(self): return self._x",cat:"Object"},
+                 {n:"globals",s:"globals()",d:"Current global symbol table as dict.",ex:"globals()['x'] = 42\n# sets global x",cat:"Scope"},
+                 {n:"locals",s:"locals()",d:"Current local symbol table as dict.",ex:"def f():\n  x=1; print(locals())  # {'x':1}",cat:"Scope"},
+                 {n:"eval",s:"eval(expr, globals=None, locals=None)",d:"Evaluates a Python expression string.",ex:"eval('2+3')  # 5\neval('x*2', {'x':3})  # 6",cat:"Scope"},
+                 {n:"exec",s:"exec(obj, globals=None, locals=None)",d:"Executes Python code string or object.",ex:"exec('x=1+1')\nprint(x)  # 2",cat:"Scope"},
+                 {n:"compile",s:"compile(src, filename, mode)",d:"Compiles source to code object.",ex:"code = compile('1+1','<str>','eval')\neval(code)  # 2",cat:"Scope"},
+                 {n:"__import__",s:"__import__(name, ...)",d:"Low-level import. Prefer importlib.",ex:"m = __import__('os')\nm.getcwd()",cat:"Scope"},
+                 {n:"breakpoint",s:"breakpoint(*args, **kw)",d:"Drops into debugger (pdb by default).",ex:"breakpoint()\n# equivalent to import pdb; pdb.set_trace()",cat:"Debug"},
+                 {n:"help",s:"help(obj=None)",d:"Interactive help system.",ex:"help(str.format)\nhelp()  # interactive mode",cat:"Debug"},
+                 {n:"assert",s:"assert expr, msg",d:"Raises AssertionError if expr is False.",ex:"assert 1==1  # ok\nassert x>0, 'must be positive'",cat:"Debug"},
+                 {n:"NotImplemented",s:"NotImplemented",d:"Singleton returned from binary operators to signal not implemented.",ex:"def __add__(self,o):\n  return NotImplemented",cat:"Debug"},
+             ];
+
+             const builtinCategories = ['All', ...new Set(builtinData.map(d => d.cat))];
+             let activeBuiltinCat = 'All';
+             let activeBuiltinDetail = null;
+
+             const builtinCatsContainer = document.getElementById('builtin-categories');
+             builtinCategories.forEach(cat => {
+                 const btn = document.createElement('button');
+                 btn.className = 'dsa-tab text-xs px-3 py-1.5 rounded border border-border bg-surface text-textMuted hover:text-textMain transition-all' + (cat === 'All' ? ' active bg-emerald-950 border-emerald-800 text-emerald-300' : '');
+                 btn.textContent = cat;
+                 btn.onclick = () => {
+                     activeBuiltinCat = cat;
+                     builtinCatsContainer.querySelectorAll('.dsa-tab').forEach(x => {
+                         x.classList.remove('active', 'bg-emerald-950', 'border-emerald-800', 'text-emerald-300');
+                     });
+                     btn.classList.add('active', 'bg-emerald-950', 'border-emerald-800', 'text-emerald-300');
+                     activeBuiltinDetail = null;
+                     document.getElementById('builtin-detail-drawer').classList.remove('show');
+                     renderBuiltins();
+                 };
+                 builtinCatsContainer.appendChild(btn);
+             });
+
+             window.closeBuiltinDetail = function() {
+                 document.getElementById('builtin-detail-drawer').classList.remove('show');
+                 activeBuiltinDetail = null;
+             };
+
+             window.copyBuiltinExample = function(btn) {
+                 const codeEl = btn.closest('.builtin-detail').querySelector('.detail-ex');
+                 if (!codeEl) return;
+                 const codeText = codeEl.textContent.trim();
+                 navigator.clipboard.writeText(codeText).then(() => {
+                     const originalHTML = btn.innerHTML;
+                     btn.innerHTML = `<span class="material-symbols-rounded text-[14px]">check</span><span>Copied</span>`;
+                     btn.classList.add('copied');
+                     showToast("Example snippet copied!");
+                     setTimeout(() => {
+                         btn.innerHTML = originalHTML;
+                         btn.classList.remove('copied');
+                     }, 1500);
+                 });
+             };
+
+             window.showBuiltinDetail = function(name) {
+                 const fn = builtinData.find(x => x.n === name);
+                 if (!fn) return;
+                 const d = document.getElementById('builtin-detail-drawer');
+                 if (activeBuiltinDetail === fn.n) {
+                     d.classList.remove('show');
+                     activeBuiltinDetail = null;
+                     return;
+                 }
+                 activeBuiltinDetail = fn.n;
+                 const escapedEx = escapeHtml(fn.ex);
+                 d.innerHTML = `
+                     <button class="close-detail-btn" onclick="closeBuiltinDetail()">
+                         <span class="material-symbols-rounded">close</span>
+                     </button>
+                     <div class="flex items-center justify-between mb-2">
+                         <span class="dsa-tag">${fn.cat}</span>
+                         <button class="dsa-copy-btn" onclick="copyBuiltinExample(this)">
+                             <span class="material-symbols-rounded text-[14px]">content_copy</span><span>Copy Example</span>
+                         </button>
+                     </div>
+                     <div class="detail-name">${fn.n}()</div>
+                     <div class="detail-sig">${escapeHtml(fn.s)}</div>
+                     <div class="detail-desc">${escapeHtml(fn.d)}</div>
+                     <pre class="detail-ex">${escapedEx}</pre>
+                 `;
+                 d.classList.add('show');
+                 d.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+             };
+
+             window.renderBuiltins = function() {
+                 const q = document.getElementById('builtin-search-input').value.toLowerCase().trim();
+                 const unique = new Map();
+                 builtinData.forEach(f => { if (!unique.has(f.n)) unique.set(f.n, f); });
+                 let fns = [...unique.values()];
+                 
+                 if (activeBuiltinCat !== 'All') {
+                     fns = fns.filter(f => f.cat === activeBuiltinCat);
+                 }
+                 if (q) {
+                     fns = fns.filter(f => f.n.includes(q) || f.d.toLowerCase().includes(q) || f.s.toLowerCase().includes(q));
+                 }
+
+                 document.getElementById('builtin-count').textContent = `${fns.length} Built-in function${fns.length !== 1 ? 's' : ''} found`;
+
+                 const byCat = {};
+                 fns.forEach(f => {
+                     if (!byCat[f.cat]) byCat[f.cat] = [];
+                     byCat[f.cat].push(f);
+                 });
+
+                 const secContainer = document.getElementById('builtin-sections');
+                 secContainer.innerHTML = '';
+
+                 Object.entries(byCat).forEach(([cat, flist]) => {
+                     const s = document.createElement('div');
+                     s.className = 'builtin-section space-y-2';
+                     s.innerHTML = `
+                         <div class="text-[10px] font-bold text-textMuted uppercase tracking-widest mb-2">${cat}</div>
+                         <div class="builtin-grid" id="builtin-grid-${cat.replace(/\s+/g, '-')}"></div>
+                     `;
+                     secContainer.appendChild(s);
+                     const grid = s.querySelector('.builtin-grid');
+                     flist.forEach(fn => {
+                         const card = document.createElement('div');
+                         card.className = 'fn-card';
+                         const shortSig = fn.s.length > 36 ? fn.s.slice(0, 34) + '…' : fn.s;
+                         card.innerHTML = `
+                             <div>
+                                 <div class="fn-name">${fn.n}()</div>
+                                 <div class="fn-sig">${escapeHtml(shortSig)}</div>
+                             </div>
+                             <div class="fn-desc">${escapeHtml(fn.d)}</div>
+                         `;
+                         card.onclick = () => showBuiltinDetail(fn.n);
+                         grid.appendChild(card);
+                     });
+                 });
+             };
+
+             // Initial Built-ins Render
+             renderBuiltins();
          });
     </script>
 
