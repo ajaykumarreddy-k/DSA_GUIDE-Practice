@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Reference | API Docs</title>
+    <title>Python Reference | By Ajay.</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -373,6 +373,74 @@
         [data-theme="light"] .token.regex,
         [data-theme="light"] .token.important,
         [data-theme="light"] .token.variable { color: #eab700; }
+
+        /* ── MOBILE OPTIMIZATIONS & UX REFINEMENTS ── */
+        
+        /* 1. Folder Cover Staggered Tab Row Offsets */
+        #staggered-tabs-container {
+            height: clamp(210px, 30vh, 260px);
+        }
+        .tab-row-4 { bottom: 164px; padding-left: clamp(65%, 70%, 75%); z-index: 0; padding-right: 0; }
+        .tab-row-3 { bottom: 124px; padding-left: clamp(48%, 52%, 56%); z-index: 1; padding-right: 0; }
+        .tab-row-2 { bottom: 84px; padding-left: clamp(32%, 36%, 40%); z-index: 2; padding-right: 0; }
+        .tab-row-1 { bottom: 44px; padding-left: clamp(16%, 20%, 24%); z-index: 3; padding-right: 0; }
+        .tab-row-0 { bottom: 4px; z-index: 4; }
+
+        @media (max-width: 640px) {
+            #staggered-tabs-container {
+                height: 180px !important;
+            }
+            .tab-row-4 { bottom: 132px; padding-left: 64%; }
+            .tab-row-3 { bottom: 100px; padding-left: 48%; }
+            .tab-row-2 { bottom: 68px; padding-left: 32%; }
+            .tab-row-1 { bottom: 36px; padding-left: 16%; }
+            .tab-row-0 { bottom: 4px; }
+        }
+        @media (max-width: 400px) {
+            #staggered-tabs-container {
+                height: 160px !important;
+            }
+            .tab-row-4 { bottom: 116px; padding-left: 60%; }
+            .tab-row-3 { bottom: 88px; padding-left: 45%; }
+            .tab-row-2 { bottom: 60px; padding-left: 30%; }
+            .tab-row-1 { bottom: 32px; padding-left: 15%; }
+            .tab-row-0 { bottom: 4px; }
+        }
+
+        /* 2. Global Snappy Touch Response (No 300ms delay) */
+        a, button, input, select, textarea, [onclick] {
+            touch-action: manipulation;
+        }
+
+        /* 3. Table Containers & Responsive Auto-Scrolling */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            background-color: var(--surface);
+        }
+        .table-container table {
+            margin: 0 !important;
+            width: 100%;
+            min-width: 580px; /* Forces dynamic scroll, preventing squish */
+        }
+        
+        /* 4. Code Blocks Touch & Scaling Optimizations */
+        pre {
+            touch-action: pan-y; /* Prioritizes page scroll on swipe */
+        }
+        @media (max-width: 640px) {
+            pre {
+                font-size: 0.8rem !important;
+                padding: 0.75rem 1rem !important;
+            }
+            #search-results {
+                max-height: 50vh !important;
+            }
+        }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden selection:bg-zinc-700 selection:text-white min-h-screen relative bg-bg">
@@ -387,37 +455,37 @@
              you go from front (bottom) to back (top), exactly
              replicating a physical multi-tab folder cover.
         ══════════════════════════════════════════════ -->
-        <div class="relative w-full flex-shrink-0" style="height: clamp(210px, 30vh, 260px);">
+        <div id="staggered-tabs-container" class="relative w-full flex-shrink-0">
 
             <!-- Row 4 — furthest back, rightmost -->
-            <div class="absolute inset-x-0 flex" style="bottom: 164px; padding-left: clamp(65%, 70%, 75%); z-index: 0; padding-right: 0;">
+            <div class="absolute inset-x-0 flex tab-row-4">
                 <div onclick="enterDocsAndScroll('#section-placement-prep')"
                      class="folder-tab bg-[#c8c1b9] text-[#1a3d2e]">
-                    <span>( PLACEMENT )</span>
+                    <span class="hidden sm:inline">( PLACEMENT )</span><span class="sm:hidden">( JOBS )</span>
                 </div>
                 <div class="flex-1 bg-transparent"></div>
             </div>
 
             <!-- Row 3 — middle-back depth -->
-            <div class="absolute inset-x-0 flex" style="bottom: 124px; padding-left: clamp(48%, 52%, 56%); z-index: 1; padding-right: 0;">
+            <div class="absolute inset-x-0 flex tab-row-3">
                 <div onclick="enterDocsAndScroll('#section-dbms-intro')"
                      class="folder-tab bg-[#b0c8b3] text-[#05241e]">
-                    <span>( DBMS &amp; SQL )</span>
+                    <span class="hidden sm:inline">( DBMS &amp; SQL )</span><span class="sm:hidden">( DBMS )</span>
                 </div>
                 <div class="flex-1 bg-transparent"></div>
             </div>
 
             <!-- Row 2 — middle depth -->
-            <div class="absolute inset-x-0 flex" style="bottom: 84px; padding-left: clamp(32%, 36%, 40%); z-index: 2; padding-right: 0;">
+            <div class="absolute inset-x-0 flex tab-row-2">
                 <div onclick="enterDocsAndScroll('#section-dsa-leetcode-prep')"
                      class="folder-tab bg-[#a2b997] text-[#05241e]">
-                    <span>( DSA &amp; ALGO )</span>
+                    <span class="hidden sm:inline">( DSA &amp; ALGO )</span><span class="sm:hidden">( DSA )</span>
                 </div>
                 <div class="flex-1 bg-transparent"></div>
             </div>
 
             <!-- Row 1 — near-front -->
-            <div class="absolute inset-x-0 flex" style="bottom: 44px; padding-left: clamp(16%, 20%, 24%); z-index: 3; padding-right: 0;">
+            <div class="absolute inset-x-0 flex tab-row-1">
                 <div onclick="enterDocsAndScroll('#section-basics')"
                      class="folder-tab bg-[#e5e0d8] text-[#1a3d2e]">
                     <span>( BASICS )</span>
@@ -426,7 +494,7 @@
             </div>
 
             <!-- Row 0 — front row, flush left: year tab + OOP tab + Ecosystem tab -->
-            <div class="absolute inset-x-0 flex" style="bottom: 4px; z-index: 4;">
+            <div class="absolute inset-x-0 flex tab-row-0">
                 <!-- Year tab merges into canvas background -->
                 <div class="folder-tab bg-[#05241e] text-[#c3e2cc]/60 border border-[#0e3d31] cursor-default flex-shrink-0">
                     <span>( 2026 )</span>
@@ -434,12 +502,12 @@
                 <!-- OOP sage-green tab -->
                 <div onclick="enterDocsAndScroll('#section-oop')"
                      class="folder-tab bg-[#9dc183] text-[#05241e] -ml-px flex-shrink-0">
-                    <span>( BRANDING / OOP )</span>
+                    <span class="hidden sm:inline">( BRANDING / OOP )</span><span class="sm:hidden">( OOP )</span>
                 </div>
                 <!-- Ecosystem warm stone tab -->
                 <div onclick="enterDocsAndScroll('#section-networking')"
                      class="folder-tab bg-[#d4cdc5] text-[#1a3d2e] -ml-px flex-shrink-0">
-                    <span>( ECOSYSTEM )</span>
+                    <span class="hidden sm:inline">( ECOSYSTEM )</span><span class="sm:hidden">( ECO )</span>
                 </div>
                 <!-- Canvas fill to right edge -->
                 <div class="flex-1 bg-transparent"></div>
@@ -502,7 +570,7 @@
                 <!-- Right column: large serif title — min-w-0 prevents flex overflow -->
                 <div class="min-w-0 flex flex-col items-end justify-end text-right overflow-hidden">
                     <h1 class="font-serif font-light tracking-tight text-[#c3e2cc] leading-[0.88] whitespace-nowrap
-                                text-[clamp(2.8rem,9vw,8.5rem)]">
+                                text-[clamp(2.2rem,9vw,8.5rem)]">
                         Ref<em class="italic font-extralight">erence</em>
                     </h1>
                 </div>
@@ -2359,6 +2427,16 @@ GROUP BY customer_id;</code></pre>
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Dynamically wrap all standard <table> elements in premium scrollable containers
+            document.querySelectorAll('.prose table').forEach(table => {
+                if (table.parentElement && !table.parentElement.classList.contains('table-container')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'table-container';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+
             // Update theme icons state on load
             updateThemeIcons(localStorage.getItem('theme') || 'dark');
 
@@ -2501,12 +2579,16 @@ GROUP BY customer_id;</code></pre>
                 leftSidebar.style.transform = 'translateX(0)';
                 overlay.classList.remove('hidden');
                 mobileMenuBtn.querySelector('span').innerText = 'close';
+                if (window.innerWidth < 768) {
+                    document.body.style.overflow = 'hidden';
+                }
             }
             function closeSidebar() {
                 // Explicit value — more reliable than clearing on iOS Safari
                 leftSidebar.style.transform = 'translateX(-100%)';
                 overlay.classList.add('hidden');
                 mobileMenuBtn.querySelector('span').innerText = 'menu';
+                document.body.style.overflow = '';
             }
             function toggleMenu() {
                 const isOpen = leftSidebar.style.transform === 'translateX(0)';
@@ -2870,14 +2952,14 @@ GROUP BY customer_id;</code></pre>
             <div class="flex items-center gap-3 px-4 py-3 border-b border-border bg-surface">
                 <span class="material-symbols-rounded text-textMuted text-[20px]">search</span>
                 <input type="text" id="search-input" placeholder="Search reference docs..." class="bg-transparent text-white placeholder-textMuted text-sm outline-none w-full" autocomplete="off" />
-                <span class="text-[9px] border border-border px-1.5 py-0.5 rounded bg-bg text-textMuted">ESC</span>
+                <span class="hidden sm:inline text-[9px] border border-border px-1.5 py-0.5 rounded bg-bg text-textMuted">ESC</span>
             </div>
             <!-- Search Results -->
             <div id="search-results" class="flex-1 overflow-y-auto p-2 space-y-0.5 max-h-[300px]">
                 <div class="text-xs text-textMuted p-3 text-center">Type something to search...</div>
             </div>
             <!-- Search Footer -->
-            <div class="px-4 py-2 border-t border-border bg-surface flex items-center justify-between text-[11px] text-[#71717a]">
+            <div class="hidden sm:flex px-4 py-2 border-t border-border bg-surface items-center justify-between text-[11px] text-[#71717a]">
                 <div class="flex items-center gap-3">
                     <span class="flex items-center gap-1"><span class="material-symbols-rounded text-[12px]">keyboard_arrow_up</span><span class="material-symbols-rounded text-[12px]">keyboard_arrow_down</span> Navigate</span>
                     <span class="flex items-center gap-1"><span class="material-symbols-rounded text-[12px]">keyboard_return</span> Select</span>
